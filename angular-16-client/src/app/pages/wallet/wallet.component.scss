@@ -1,0 +1,38 @@
+$color-text-top-menu: #ffffff;
+$color1: #1F2544;
+$color2: #474F7A;
+$color3: #81689D;
+$color4: #FFD0EC;
+
+.content-wallet{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vh;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.butt-add{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+:host ::ng-deep .p-button{
+  background-color: $color3;
+}
+
+.content-popup{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+  font-weight: 400px;
+}
+
+.butt-validate{
+  margin-top: 2vh;
+}

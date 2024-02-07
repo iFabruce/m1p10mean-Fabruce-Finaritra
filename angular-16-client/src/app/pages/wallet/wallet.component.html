@@ -1,0 +1,31 @@
+<p-panel header="Porte feuille">
+  <div class="content-wallet">500000.00 MGA</div>
+  <div class="butt-add">
+    <p-button label="Ajouter argent" (click)="showDialog()"></p-button>
+  </div>
+</p-panel>
+
+<div class="card flex justify-content-center">
+  <p-dialog
+    header="Ajout argent"
+    [(visible)]="visible"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <div class="content-popup">
+      <p-inputNumber
+        [(ngModel)]="value"
+        inputId="minmaxfraction"
+        mode="decimal"
+        [minFractionDigits]="2"
+        [maxFractionDigits]="10"
+      >
+      </p-inputNumber>
+      MGA
+    </div>
+    <div class="butt-add"><p-button label="Valider" (click)="showDialog()" class="butt-validate"></p-button></div>
+
+  </p-dialog>
+</div>

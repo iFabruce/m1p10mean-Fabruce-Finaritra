@@ -8,19 +8,44 @@ import { AppComponent } from './app.component';
 import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.component';
 import { TutorialDetailsComponent } from './components/tutorial-details/tutorial-details.component';
 import { TutorialsListComponent } from './components/tutorials-list/tutorials-list.component';
-
+import { ButtonModule } from 'primeng/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuModule } from 'primeng/menu';
+import { HistoricComponent } from './pages/historic/historic.component';
+import { MenubarComponent } from './components/menubar/menubar.component';
+import { MenutopComponent } from './components/menutop/menutop.component';
+import { DataViewModule } from 'primeng/dataview';
+import { PanelModule } from 'primeng/panel';
+import { WalletComponent } from './pages/wallet/wallet.component';
+import { DialogModule } from 'primeng/dialog';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 @NgModule({
   declarations: [
     AppComponent,
     AddTutorialComponent,
     TutorialDetailsComponent,
-    TutorialsListComponent
+    TutorialsListComponent,
+    HistoricComponent,
+    MenubarComponent,
+    MenutopComponent,
+    WalletComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ButtonModule,
+    MenuModule,
+    BrowserAnimationsModule,
+    DataViewModule,
+    PanelModule,
+    DialogModule,
+    InputNumberModule,
+    AvatarGroupModule,
+    AvatarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
