@@ -1,26 +1,30 @@
 $color-text-top-menu: #ffffff;
-$color1:#1F2544;
+$color1: #1F2544;
 $color2: #474F7A;
-$color3:#81689D;
-$color4:#FFD0EC;
-.container{
-  width: 100%!important;
-}
-.app-component {
+$color3: #81689D;
+$color4: #FFD0EC;
 
-  .app-component-row2{
+.scroll-container {
+  height: 100vh;  // Hauteur de la fenêtre visible
+  overflow-y: auto;  // Permet le défilement vertical si le contenu dépasse la hauteur
+}
+
+.app-component {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+
+  .app-component-row2 {
     margin-left: 1vw;
     display: flex;
     gap: 2vw;
     margin-top: 4vh;
-
-    .app-component-row2-col1{
-
-    }
   }
 }
 
-
-.p-panel .p-panel-header {
-  background-color: red!important;
+.app-component-row2-col2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 12vh;
 }

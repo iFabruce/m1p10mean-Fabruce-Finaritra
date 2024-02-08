@@ -1,0 +1,109 @@
+$color-text-top-menu: #ffffff;
+$color1: #1F2544;
+$color2: #474F7A;
+$color3: #81689D;
+$color4: #FFD0EC;
+$width-form: 30vw;
+
+.signin {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .signin-content {
+
+    .welcome-title {
+      text-align: center;
+      margin-bottom: 3vh;
+      font-size: 42px;
+      font-weight: 900;
+      font-family: initial;
+      color: #81689D;
+    }
+
+    .signin-popup {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+
+      .form-login {
+        width: 35vw;
+        height: 60vh;
+        border-bottom-left-radius: 15px;
+        border-top-left-radius: 15px;
+        color: #1F2544;
+      }
+
+      .image-login {
+        background-image: url("https://i.pinimg.com/564x/66/90/02/669002ab03a4545fd713aec4d04eb2c9.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 25vw;
+        height: 60vh;
+      border-bottom-right-radius: 15px;
+      border-top-right-radius: 15px;
+      }
+
+      .form-login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .signup-butt{
+          display: flex;
+          justify-content: center;
+        }
+        .content {
+          width: 30vw;
+          height: 50vh;
+        }
+      }
+    }
+  }
+
+
+  .butt-list{
+    display: flex;
+    justify-content: end;
+    gap: 3vw;
+    margin-top: 7vh;
+  }
+}
+.signup-butt{
+  width: 100%;
+}
+:host ::ng-deep .p-input-icon-right > .p-inputtext{
+  width: $width-form;
+}
+
+:host ::ng-deep .flex{
+  margin-top: 3vh;
+}
+
+:host ::ng-deep .p-button:enabled:hover{
+  background: $color3;
+  border-color: $color3;
+}
+
+:host ::ng-deep .p-button{
+  background: $color1;
+}
+
+:host ::ng-deep .signup-butt .p-button:enabled:hover{
+  background: $color3;
+  border-color: $color3;
+}
+
+:host ::ng-deep .signup-butt .p-button{
+  background: $color2;
+}

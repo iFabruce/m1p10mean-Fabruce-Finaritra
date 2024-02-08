@@ -21,6 +21,10 @@ import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { InputTextModule } from 'primeng/inputtext';
+import { SigninComponent } from './pages/signin/signin.component';
+import { PasswordModule } from 'primeng/password';
+import { SignupComponent } from './pages/signup/signup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,9 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     HistoricComponent,
     MenubarComponent,
     MenutopComponent,
-    WalletComponent
+    WalletComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,9 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     DialogModule,
     InputNumberModule,
     AvatarGroupModule,
-    AvatarModule
+    AvatarModule,
+    InputTextModule,
+    PasswordModule
   ],
   providers: [],
   bootstrap: [AppComponent]

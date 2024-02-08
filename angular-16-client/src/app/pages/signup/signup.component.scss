@@ -1,0 +1,66 @@
+$color-text-top-menu: #ffffff;
+$color1: #1F2544;
+$color2: #474F7A;
+$color3: #81689D;
+$color4: #FFD0EC;
+$width-form: 30vw;
+
+.signup {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  .welcome-title {
+    text-align: center;
+    margin-bottom: 3vh;
+    font-size: 42px;
+    font-weight: 900;
+    font-family: initial;
+    color: #81689D;
+  }
+  .signup-content{
+    width: 30vw;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    .from{
+      width: 90%;
+    }
+    .list-butt{
+      margin-top: 6vh;
+      display: flex;
+      gap: 2vw;
+      justify-content: center;
+    }
+  }
+}
+
+:host ::ng-deep .p-button:enabled:hover{
+  background: $color3;
+  border-color: $color3;
+}
+
+:host ::ng-deep .p-button{
+  background: $color2;
+}
+
+:host ::ng-deep .signup-butt .p-button:enabled:hover{
+  background: $color3;
+  border-color: $color3;
+}
+
+:host ::ng-deep .signup-butt .p-button{
+  background: $color1;
+}
+
+:host ::ng-deep .p-inputtext{
+  margin-bottom: 2vh;
+  width: 27vw;
+}

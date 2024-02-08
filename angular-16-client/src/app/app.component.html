@@ -1,17 +1,14 @@
-<div >
-  <div class="app-component">
-    <app-menutop></app-menutop>
+<div class="scroll-container">
+  <div class="app-component" *ngIf="currentRoute !== '/signin' && currentRoute !== '/signup'">
+    <app-menutop ></app-menutop>
     <div class="app-component-row2">
-      <div class="app-component-row2-col1">
+      <div class="app-component-row2-col1" >
         <app-menubar></app-menubar>
-      </div>
-
-      <div class="app-component-row2-col2">
-        <router-outlet></router-outlet>
       </div>
     </div>
   </div>
 
-
-
+  <div class="app-component-row2-col2">
+    <router-outlet></router-outlet>
+  </div>
 </div>

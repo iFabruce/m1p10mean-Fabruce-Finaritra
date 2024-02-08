@@ -1,0 +1,49 @@
+<div class="signin">
+  <div class="signin-content">
+    <div class="welcome-title">Bienvenu !</div>
+    <div class="signin-popup">
+      <div class="form-login">
+        <div class="content">
+          <div class="flex flex-column gap-2">
+            <label htmlFor="user">Nom d'utilisateur</label>
+            <input
+              pInputText
+              id="username"
+              aria-describedby="username-help"
+              [(ngModel)]="username"
+            />
+            <!-- <small id="username-help">Enter your username to reset your password.</small> -->
+          </div>
+          <div class="flex flex-column gap-2">
+            <label htmlFor="password">Mot de passe</label>
+            <p-password [(ngModel)]="password" [toggleMask]="true"></p-password>
+          </div>
+          <div class="butt-list">
+            <a href="/historics">
+              <div class="flex justify-content-center">
+                <p-button
+                  label="Se connecter"
+                  icon="pi pi-sign-in"
+                  iconPos="right"
+                  severity="help"
+                ></p-button>
+              </div>
+            </a>
+            <a href="/signup">
+              <div class="flex justify-content-center">
+                <p-button
+                  class="signup-butt"
+                  label="S'inscrire"
+                  icon="pi pi-plus"
+                  iconPos="right"
+                  severity="help"
+                ></p-button>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="image-login"></div>
+    </div>
+  </div>
+</div>
