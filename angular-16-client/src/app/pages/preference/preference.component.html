@@ -1,0 +1,42 @@
+<div class="preference">
+  <div class="form">
+    <p-panel header="Gestion préference">
+      <div class="flex flex-column gap-2">
+        <label htmlFor="user">Employé</label>
+        <p-dropdown
+          [options]="employes"
+          [(ngModel)]="selectedEmploye"
+          optionLabel="fullname"
+          [showClear]="true"
+          placeholder="Select a Employe"
+          [filter]="true" filterBy="fullname"
+        ></p-dropdown>
+        <!-- <small id="username-help">Enter your username to reset your password.</small> -->
+      </div>
+      <div class="flex flex-column gap-2">
+        <label htmlFor="user">Service</label>
+        <p-dropdown
+          [options]="services"
+          [(ngModel)]="selectedService"
+          optionLabel="nomService"
+          [showClear]="true"
+          placeholder="Select a Service"
+          [filter]="true" filterBy="nomService"
+        ></p-dropdown>
+        <!-- <small id="username-help">Enter your username to reset your password.</small> -->
+      </div>
+      <div class="flex justify-content-end">
+        <p-button
+          class="butt"
+          label="Valider"
+          icon="pi pi-check"
+          iconPos="right"
+          severity="help"
+        ></p-button>
+      </div>
+    </p-panel>
+  </div>
+  <div class="wallet">
+    <app-wallet></app-wallet>
+  </div>
+</div>

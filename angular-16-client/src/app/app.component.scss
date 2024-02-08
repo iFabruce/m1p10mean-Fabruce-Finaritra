@@ -3,10 +3,12 @@ $color1: #1F2544;
 $color2: #474F7A;
 $color3: #81689D;
 $color4: #FFD0EC;
+$backgroundColor: #EEF5FF;
 
 .scroll-container {
   height: 100vh;  // Hauteur de la fenêtre visible
   overflow-y: auto;  // Permet le défilement vertical si le contenu dépasse la hauteur
+  background-color: $backgroundColor;
 }
 
 .app-component {

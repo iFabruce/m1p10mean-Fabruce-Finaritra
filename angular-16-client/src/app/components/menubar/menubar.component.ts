@@ -7,35 +7,32 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./menubar.component.scss']
 })
 export class MenubarComponent {
-  title = 'Angular 16 Crud example';
+  title = 'Menu';
   items: MenuItem[] | undefined;
     ngOnInit() {
         this.items = [
             {
-                label: 'Options',
+                label: 'Rendez-vous',
                 items: [
                     {
-                        label: 'Update',
-                        icon: 'pi pi-refresh'
+                        label: 'Ajouter',
+                        icon: 'pi pi-plus',
+                        routerLink: '#'
                     },
                     {
-                        label: 'Delete',
-                        icon: 'pi pi-times'
+                        label: 'Historique',
+                        icon: 'pi pi-align-left',
+                        routerLink:'/historics'
                     }
                 ]
             },
             {
-                label: 'Navigate',
+                label: 'Gestion',
                 items: [
                     {
-                        label: 'Angular',
-                        icon: 'pi pi-external-link',
-                        url: 'http://angular.io'
-                    },
-                    {
-                        label: 'Router',
-                        icon: 'pi pi-upload',
-                        routerLink: '/fileupload'
+                        label: 'Preference',
+                        icon: 'pi pi-heart',
+                        routerLink:'/preference'
                     }
                 ]
             }

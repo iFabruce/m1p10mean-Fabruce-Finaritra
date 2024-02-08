@@ -25,6 +25,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SigninComponent } from './pages/signin/signin.component';
 import { PasswordModule } from 'primeng/password';
 import { SignupComponent } from './pages/signup/signup.component';
+import { PreferenceComponent } from './pages/preference/preference.component';
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,8 @@ import { SignupComponent } from './pages/signup/signup.component';
     MenutopComponent,
     WalletComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    PreferenceComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { SignupComponent } from './pages/signup/signup.component';
     AvatarGroupModule,
     AvatarModule,
     InputTextModule,
-    PasswordModule
+    PasswordModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

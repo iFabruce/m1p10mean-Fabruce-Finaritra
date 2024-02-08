@@ -6,6 +6,7 @@ import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.com
 import { HistoricComponent } from './pages/historic/historic.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { PreferenceComponent } from './pages/preference/preference.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'tutorials', component: TutorialsListComponent },
   { path: 'tutorials/:id', component: TutorialDetailsComponent },
   { path: 'add', component: AddTutorialComponent },
+  { path: 'preference', component: PreferenceComponent },
   { path: 'historics', component: HistoricComponent }
 ];
 
