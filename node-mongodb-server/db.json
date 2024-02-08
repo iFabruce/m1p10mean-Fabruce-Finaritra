@@ -1,0 +1,65 @@
+[
+    {
+        "Client": {
+            "id": "",
+            "fullname": "",
+            "username": "",
+            "password": "",
+            "wallet": "",
+            "favoriteEmployee": {
+                "id": "",
+                "fullname": ""
+            }
+        }
+    },
+    {
+        "Employee": {
+            "id": "",
+            "fullname": "",
+            "username": "",
+            "password": "",
+            "schedules": "",
+            "status": ""
+        }
+    },
+    {
+        "Service": {
+            "id": "",
+            "name": "",
+            "price": "",
+            "duration": "",
+            "commission": ""
+        }
+    },
+    {
+        "Appointment": {
+            "id": "",
+            "date": "",
+            "start": "",
+            "status": "",
+            "Client": {
+                "id": "",
+                "fullname": ""
+            },
+            "Service": {
+                "id": "",
+                "name": "",
+                "price": "",
+                "duration": "",
+                "commission": ""
+            },
+            "Employee": {
+                "id": "",
+                "fullname": ""
+            }
+        },
+        "Spent": [
+            {
+                "type": "",
+                "price": "",
+                "month": "",
+                "year": ""
+            }
+        ]
+    }
+]
