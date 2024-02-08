@@ -56,7 +56,7 @@ exports.signin = (req, res) => {
 
 //Signup
 exports.signup = (req, res) => {
-  const { username, password, fullname,preferedEmployee  } = req.body;
+  const { username, password, fullname  } = req.body;
 
   // Vérification si l'utilisateur existe déjà
   Client.findOne({ username })
@@ -74,7 +74,7 @@ exports.signup = (req, res) => {
             password: hashedPassword,
             fullname,
             wallet: 100,
-            preferedEmployee
+            // preferedEmployee
           });
 
           // Sauvegarde de l'utilisateur dans la base de données

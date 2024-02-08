@@ -1,3 +1,3 @@
 module.exports = {
-  url: "mongodb://0.0.0.0:27017/m1p10-mean"
+  url: "mongodb+srv://fabrucemaminiaina:root123@cluster0.szbjkcu.mongodb.net/?retryWrites=true&w=majority"
 };
