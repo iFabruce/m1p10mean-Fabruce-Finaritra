@@ -67,7 +67,8 @@
               "browserTarget": "angular-16-crud:build:production"
             },
             "development": {
-              "browserTarget": "angular-16-crud:build:development"
+              "browserTarget": "angular-16-crud:build:development",
+              "proxyConfig": "proxy.config.js"
             }
           },
           "defaultConfiguration": "development"

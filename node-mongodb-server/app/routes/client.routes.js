@@ -3,7 +3,7 @@ module.exports = app => {
   var router = require("express").Router();
 
   router.get("/findAll", client.findAll);
-  router.get("/signin", client.signin);
+  router.post("/signin", client.signin);
   router.post("/signup", client.signup);
 
 
