@@ -1,0 +1,54 @@
+<div class="appointment">
+  <div class="form">
+    <p-panel header="Prendre rendez-vous">
+      <div class="flex flex-column gap-2">
+        <label htmlFor="date">Date</label>
+        <p-calendar [(ngModel)]="date" [showIcon]="true"></p-calendar>
+        <!-- <small id="username-help">Enter your username to reset your password.</small> -->
+      </div>
+      <div class="flex flex-column gap-2">
+        <label htmlFor="user">Service</label>
+        <p-dropdown
+          [options]="services"
+          [(ngModel)]="selectedService"
+          optionLabel="nomService"
+          [showClear]="true"
+          placeholder="Selectionner service"
+          [filter]="true" filterBy="nomService"
+        ></p-dropdown>
+        <!-- <small id="username-help">Enter your username to reset your password.</small> -->
+      </div>
+      <div class="flex flex-column gap-2">
+        <label htmlFor="user">Employé</label>
+        <p-dropdown
+          [options]="employes"
+          [(ngModel)]="selectedEmploye"
+          optionLabel="fullname"
+          [showClear]="true"
+          placeholder="Selectionner employe"
+          [filter]="true" filterBy="fullname"
+        ></p-dropdown>
+        <!-- <small id="username-help">Enter your username to reset your password.</small> -->
+        <label htmlFor="heure">Choisir heure</label>
+        <div class="flex align-items-center gap-6">
+          <div *ngFor="let heure of heures" class="field-checkbox">
+              <p-radioButton [inputId]="heure.id" name="heure" [value]="heure.heure" [(ngModel)]="selectedHeure"></p-radioButton>
+              <label [for]="heure.key" class="ml-2">{{ heure.heure }}</label>
+          </div>
+      </div>
+      </div>
+      <div class="flex justify-content-end">
+        <p-button
+          class="butt"
+          label="Ajouter"
+          icon="pi pi-check"
+          iconPos="right"
+          severity="help"
+        ></p-button>
+      </div>
+    </p-panel>
+  </div>
+  <div class="wallet">
+    <app-wallet></app-wallet>
+  </div>
+</div>

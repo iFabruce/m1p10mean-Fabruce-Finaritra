@@ -27,6 +27,9 @@ import { PasswordModule } from 'primeng/password';
 import { SignupComponent } from './pages/signup/signup.component';
 import { PreferenceComponent } from './pages/preference/preference.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { AppointmentComponent } from './pages/appointment/appointment.component';
+import { CalendarModule } from 'primeng/calendar';
+import { RadioButtonModule } from 'primeng/radiobutton';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,8 @@ import { DropdownModule } from 'primeng/dropdown';
     WalletComponent,
     SigninComponent,
     SignupComponent,
-    PreferenceComponent
+    PreferenceComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,9 @@ import { DropdownModule } from 'primeng/dropdown';
     AvatarModule,
     InputTextModule,
     PasswordModule,
-    DropdownModule
+    DropdownModule,
+    CalendarModule,
+    RadioButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

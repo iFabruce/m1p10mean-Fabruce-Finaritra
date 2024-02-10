@@ -1,0 +1,39 @@
+$color-text-top-menu: #ffffff;
+$color1: #1F2544;
+$color2: #474F7A;
+$color3: #81689D;
+$color4: #FFD0EC;
+
+.appointment{
+  display: flex;
+  gap: 2vw;
+  .form{
+    width: 50vw;
+    background-color: aqua;
+  }
+  .wallet{
+    width: 38vw;
+  }
+}
+
+:host ::ng-deep .p-panel .p-panel-header {
+  background: $color2 !important;
+  color: white !important;
+}
+
+:host ::ng-deep .p-dropdown{
+  width: 100%;
+  margin-bottom: 3vh;
+}
+:host ::ng-deep .p-calendar{
+  width: 100%;
+  margin-bottom: 3vh;
+}
+:host ::ng-deep .butt .p-button:enabled:hover{
+  background: $color3;
+  border-color: $color3;
+}
+
+:host ::ng-deep .butt .p-button{
+  background: $color2;
+}

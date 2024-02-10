@@ -3,11 +3,9 @@ $color1: #1F2544;
 $color2: #474F7A;
 $color3: #81689D;
 $color4: #FFD0EC;
-$backgroundColor: #EEF5FF;
 .historic {
   display: flex;
   gap: 2vw;
-  background-color: $backgroundColor;
   div.p-grid.p-nogutter.grid.grid-nogutter {
     display: block !important;
   }
