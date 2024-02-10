@@ -1,10 +1,14 @@
 <div class="signin">
   <div class="signin-content">
-    <div class="welcome-title">Bienvenu !</div>
+    <div class="welcome-title">Connectez vous</div>
       <form (ngSubmit)="signIn()">
         <div class="signin-popup">
           <div class="form-login">
             <div class="content">
+              <div class="flex">
+                 <p-dropdown  [options]="profil" name="profil" [(ngModel)]="selectedProfil" optionLabel="name" placeholder="Select a City">
+                </p-dropdown>
+              </div>
               <div class="flex flex-column gap-2">
                 <label htmlFor="user">Nom d'utilisateur</label>
                 <input
@@ -21,8 +25,10 @@
                 <p-password [(ngModel)]="password" name="password" [toggleMask]="true"></p-password>
               </div>
               <div class="butt-list">
-                <input type="submit" name="Signin" id="">
-                <a href="/historics">
+                <div class="bg-prim w-full text-center px-16  py-4 rounded-xl">
+                  <input type="submit" value="Se connecter"  class="text-white font-medium"/>
+                </div>
+                <!-- <a href="/historics">
                   <div class="flex justify-content-center">
                     <p-button
                       label="Se connecter"
@@ -31,16 +37,10 @@
                       severity="help"
                     ></p-button>
                   </div>
-                </a>
+                </a> -->
                 <a href="/signup">
-                  <div class="flex justify-content-center">
-                    <p-button
-                      class="signup-butt"
-                      label="S'inscrire"
-                      icon="pi pi-plus"
-                      iconPos="right"
-                      severity="help"
-                    ></p-button>
+                  <div class="bg-sec w-full text-center px-16  py-4 rounded-xl">
+                    <input type="submit" value="S'inscrire"  class="text-white font-medium"/>
                   </div>
                 </a>
               </div>

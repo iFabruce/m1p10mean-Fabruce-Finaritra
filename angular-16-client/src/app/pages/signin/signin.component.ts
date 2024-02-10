@@ -15,6 +15,12 @@ export class SigninComponent {
   data: any[] = [];
 
   token:any ="";
+
+  profil: any[] | undefined;
+
+  selectedProfil: any | undefined;
+
+    
   constructor(private tutorialService: TutorialService, private authService: AuthService) {}
   ngOnInit(): void {
     this.getAll();
@@ -28,6 +34,13 @@ export class SigninComponent {
         console.error(error);
       }
     );
+
+    this.profil = [
+      { name: 'Client' },
+      { name: 'Employé' },
+      { name: 'Manager' },
+    
+  ];
   }
 
   signIn(): void{

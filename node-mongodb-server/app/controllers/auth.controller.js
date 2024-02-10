@@ -1,5 +1,6 @@
 const db = require("../models");
 const Client = db.client; // Assurez-vous que votre modèle s'appelle "users" ou ajustez le nom en conséquence
+const authService = require('../services/auth.service');
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -7,9 +8,7 @@ const jwt = require('jsonwebtoken');
 //
 exports.findAll = (req, res) => {
   const fullname = req.query.fullname;
-  var condition = fullname ? { fullname: { $regex: new RegExp(fullname), $options: "i" } } : {};
-
-  Client.find(condition)
+  authService.findAllClients(fullname)
     .then(data => {
       res.send(data);
     })
@@ -26,6 +25,7 @@ exports.signin = (req, res) => {
   const { username, password } = req.body;
   console.log("username:"+username + " password:"+password)
   // Recherche de l'utilisateur dans la base de données par nom d'utilisateur
+  
   Client.findOne({ username })
     .then(user => {
       if (!user) {
