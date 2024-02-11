@@ -32,14 +32,15 @@ $width-form: 30vw;
       align-items: center;
       justify-content: center;
       width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+      box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.05);
+      background: white;
 
       .form-login {
         width: 35vw;
         height: 60vh;
-        border-bottom-left-radius: 15px;
-        border-top-left-radius: 15px;
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
         color: #1F2544;
       }
 
@@ -50,8 +51,8 @@ $width-form: 30vw;
         background-position: center;
         width: 25vw;
         height: 60vh;
-      border-bottom-right-radius: 15px;
-      border-top-right-radius: 15px;
+        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;
       }
 
       .form-login {

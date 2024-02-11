@@ -1,6 +1,7 @@
-const db = require("../models");
-const Client = db.client; // Assurez-vous que votre modèle s'appelle "users" ou ajustez le nom en conséquence
+ // Assurez-vous que votre modèle s'appelle "users" ou ajustez le nom en conséquence
 const clientService = require('../services/client.service');
+const employeeService = require('../services/employee.service');
+const managerService = require('../services/manager.service');
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -8,8 +9,10 @@ const jwt = require('jsonwebtoken');
 // Signin
 exports.signin = (req, res) => {
   const { username, password, profil } = req.body;
-  
-  if(profil == "Client"){
+  console.log(profil.name)
+  //CLIENT
+  if(profil.name == "Client"){
+    console.log("c")
     clientService.findOne(username)
       .then(user => {
         if (!user) return res.status(401).json({ message: 'User not found' });
@@ -17,7 +20,7 @@ exports.signin = (req, res) => {
           .then(isValid => {
             if (!isValid) return res.status(401).json({ message: 'Invalid username or password' });
             const token = jwt.sign({ id: user._id, username: user.username }, 'secret_key', { expiresIn: '1h' });
-            res.json({ token });
+            res.json({ token, profil: profil.name});
           })
           .catch(err => {
             res.status(500).json({ message: err.message });
@@ -27,6 +30,38 @@ exports.signin = (req, res) => {
         res.status(500).json({ message: err.message });
       });
   }
+  //EMPLOYEE
+  else if(profil.name == "Employé"){
+    console.log("e",username)
+    employeeService.findOne(username)
+      .then(user => {
+        if (!user) return res.status(401).json({ message: 'User not found' });
+        if(password == user.password){
+          res.json({ token: 'Employee', profil: profil.name})
+        }
+      })
+      .catch(err => {
+        res.status(500).json({ message: err.message });
+      });
+  }
+    
+    //MANAGER
+    else if(profil.name == "Manager"){
+      console.log("m")
+      managerService.findOne(username)
+        .then(user => {
+          if (!user) return res.status(401).json({ message: 'User not found' });
+          if(password == user.password){
+            res.json({ token: 'Manager', profil: profil.name})
+          }
+        })
+        .catch(err => {
+          res.status(500).json({ message: err.message });
+        });
+    }
+    else{
+      return res.status(401).json({ message: 'Choose a profile' });
+    }
 
 };
 

@@ -5,7 +5,7 @@ const EmployeeSchema = mongoose.Schema(
     fullname: { type: String, required: true },
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    picture: { type: String, required: false},  
+    // picture: { type: String, required: false},  
     schedules: { type: String, required: true },
     status: { type: String, required: true },
   },

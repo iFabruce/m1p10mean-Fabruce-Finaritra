@@ -6,6 +6,6 @@ exports.findAll = () => {
 };
 
 exports.findOne = (username) => {
-  var condition = username ? { username: { $regex: new RegExp(username), $options: "i" } } : {};
-  return Client.findOne(condition);
+  // var condition = username ? { username: { $regex: new RegExp(username), $options: "i" } } : {};
+  return Client.findOne({username});
 };

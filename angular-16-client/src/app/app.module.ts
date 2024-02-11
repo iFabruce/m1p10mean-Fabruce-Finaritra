@@ -30,6 +30,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
 import { CalendarModule } from 'primeng/calendar';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { HomeComponent } from './pages/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     SigninComponent,
     SignupComponent,
     PreferenceComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

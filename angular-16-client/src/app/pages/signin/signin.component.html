@@ -1,10 +1,10 @@
 <div class="signin">
   <div class="signin-content">
-    <div class="welcome-title">Connectez vous</div>
       <form (ngSubmit)="signIn()">
-        <div class="signin-popup">
-          <div class="form-login">
+        <div class="bg-white px-6 rounded-xl py-8 ">
+          <div class="form-login ">
             <div class="content">
+              <h1 class="font-nunito text-4xl text-center font-semibold">Connectez vous</h1> <br>
               <div class="flex">
                  <p-dropdown  [options]="profil" name="profil" [(ngModel)]="selectedProfil" optionLabel="name" placeholder="Select a City">
                 </p-dropdown>
@@ -24,25 +24,18 @@
                 <label htmlFor="password">Mot de passe</label>
                 <p-password [(ngModel)]="password" name="password" [toggleMask]="true"></p-password>
               </div>
-              <div class="butt-list">
-                <div class="bg-prim w-full text-center px-16  py-4 rounded-xl">
+              <div class="flex butt-list">
+                <div class=" bg-prim w-full text-center px-16  py-3 rounded-xl">
                   <input type="submit" value="Se connecter"  class="text-white font-medium"/>
                 </div>
-                <!-- <a href="/historics">
-                  <div class="flex justify-content-center">
-                    <p-button
-                      label="Se connecter"
-                      icon="pi pi-sign-in"
-                      iconPos="right"
-                      severity="help"
-                    ></p-button>
-                  </div>
-                </a> -->
                 <a href="/signup">
-                  <div class="bg-sec w-full text-center px-16  py-4 rounded-xl">
+                  <div class=" bg-sec w-full text-center px-16  py-3 rounded-xl">
                     <input type="submit" value="S'inscrire"  class="text-white font-medium"/>
                   </div>
                 </a>
+              </div>
+              <div *ngIf="erreurLogin" class="alert alert-danger">
+                {{ erreurLogin }}
               </div>
             </div>
           </div>
