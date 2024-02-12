@@ -1,4 +1,3 @@
-const db = require("../models");
 const clientService = require('../services/client.service');
 
 exports.findAll = (req, res) => {

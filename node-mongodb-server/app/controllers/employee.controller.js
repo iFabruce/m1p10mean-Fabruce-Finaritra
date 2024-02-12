@@ -1,4 +1,3 @@
-const db = require("../models");
 const employeeService = require('../services/employee.service');
 
 exports.findAll = (req, res) => {

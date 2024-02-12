@@ -10,6 +10,9 @@ db.tutorials = require("./tutorial.model.js")(mongoose);
 db.client = require("./client.model.js")(mongoose);
 db.employee = require("./employee.model.js")(mongoose);
 db.manager = require("./manager.model.js")(mongoose);
+db.service = require("./service.model.js")(mongoose);
+db.appointment = require("./appointment.model.js")(mongoose);
+
 
 
 

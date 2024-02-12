@@ -4,9 +4,8 @@ const ServiceSchema = mongoose.Schema(
   {
     name: { type: String, required: true },
     price: { type: Number, required: true, unique: true },
-    password: { type: String, required: true },
-    schedules: { type: Number, required: true },
-    status: { type: String, required: false },
+    duration: { type: Number, required: true },
+    commission: { type: String, required: false },
   },
   { timestamps: true }
 );

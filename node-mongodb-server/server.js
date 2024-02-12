@@ -35,6 +35,8 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/client.routes")(app);
 require("./app/routes/employee.routes")(app);
 require("./app/routes/manager.routes")(app);
+require("./app/routes/appointment.routes")(app);
+
 
 
 
