@@ -20,9 +20,9 @@ exports.findOne = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  const {date, hour, clientId, serviceId, EmployeeId} = req.body
+  const {date, hour} = req.body
   console.log("date:",date)
-  appointmentService.create(date, hour, clientId, serviceId, EmployeeId).then(
+  appointmentService.create(date, hour).then(
     data => {
       res.send(data)
     }

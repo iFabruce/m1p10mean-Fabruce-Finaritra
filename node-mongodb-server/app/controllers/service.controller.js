@@ -1,7 +1,7 @@
-const employeeService = require('../services/employee.service');
+const serviceService = require('../services/service.service');
 
 exports.findAll = (req, res) => {
-  employeeService.findAll()
+  serviceService.findAll()
     .then(data => {
       res.send(data);
     })
@@ -11,7 +11,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findByUsername = (req, res) => {
-  employeeService.findByUsername(req.params.username)
+  serviceService.findByUsername(req.params.username)
     .then(data => {
       res.send(data);
     })
@@ -20,7 +20,7 @@ exports.findByUsername = (req, res) => {
     });
 };
 exports.findOne = (req, res) => {
-  employeeService.findOne(req.params.id)
+  serviceService.findOne(req.params.id)
   .then(data => {
     console.log("data: ",data)
     res.send(data);
@@ -31,7 +31,7 @@ exports.findOne = (req, res) => {
 
 }
 exports.create = (req, res) => {
-  employeeService.create(req.body)
+  serviceService.create(req.body)
     .then(data => {
       res.send(data);
     })
@@ -41,7 +41,7 @@ exports.create = (req, res) => {
 };
 
 exports.update = (req, res) => {
-  employeeService.update(req.params.id, req.body)
+  serviceService.update(req.params.id, req.body)
     .then(
       data => {
         res.send(data);
@@ -53,7 +53,7 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-  employeeService.delete(req.params.id, req.body)
+  serviceService.delete(req.params.id, req.body)
   .then(
     data => {
       res.send(data);

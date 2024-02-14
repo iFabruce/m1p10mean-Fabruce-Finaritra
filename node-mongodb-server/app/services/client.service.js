@@ -5,10 +5,10 @@ exports.findAll = () => {
   return Client.find();
 };
 
-exports.findOne = (username) => {
+exports.findByUsername = (username) => {
   // var condition = username ? { username: { $regex: new RegExp(username), $options: "i" } } : {};
   return Client.findOne({username});
 };
-exports.findById = (id) => {
-  return Client.findOne({id: id});
+exports.findOne = (id) => {
+  return Client.findById(id);
 };

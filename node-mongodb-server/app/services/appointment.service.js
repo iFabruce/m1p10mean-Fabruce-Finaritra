@@ -20,11 +20,11 @@ exports.create = async(date, hour) => {
   try {
     const dateSplit = date.split('-')
     const hourSplit = hour.split(':')
-console.log(dateSplit[0],dateSplit[1],dateSplit[2],hourSplit[0],hourSplit[1])
     var startingDate = new Date(dateSplit[0]-1,dateSplit[1],dateSplit[2],hourSplit[0],hourSplit[1])
-    console.log(`startingDate:${startingDate}`)
-    // var endingDate = endingDate.setHours(startingDate.getHours()+service.duration)
-    
+    console.log(`startingDate: ${startingDate}`)
+    var endingDate = startingDate
+    endingDate.setHours(startingDate.getHours()+2)
+    console.log(`endingDate: ${endingDate}`)
     // console.log(`startingDate:${startingDate} | endingDate:${endingDate}`)
     // const client = clientService.findById({id: clientId})
     // const employee = employeeService.findById({id: employeeId}) 

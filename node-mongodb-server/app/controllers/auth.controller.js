@@ -13,7 +13,7 @@ exports.signin = (req, res) => {
   //CLIENT
   if(profil.name == "Client"){
     console.log("c")
-    clientService.findOne(username)
+    clientService.findByUsername(username)
       .then(user => {
         if (!user) return res.status(401).json({ message: 'User not found' });
         bcrypt.compare(password, user.password)
@@ -33,7 +33,7 @@ exports.signin = (req, res) => {
   //EMPLOYEE
   else if(profil.name == "Employé"){
     console.log("e",username)
-    employeeService.findOne(username)
+    employeeService.findByUsername(username)
       .then(user => {
         if (!user) return res.status(401).json({ message: 'User not found' });
         if(password == user.password){
@@ -48,7 +48,7 @@ exports.signin = (req, res) => {
     //MANAGER
     else if(profil.name == "Manager"){
       console.log("m")
-      managerService.findOne(username)
+      managerService.findByUsername(username)
         .then(user => {
           if (!user) return res.status(401).json({ message: 'User not found' });
           if(password == user.password){

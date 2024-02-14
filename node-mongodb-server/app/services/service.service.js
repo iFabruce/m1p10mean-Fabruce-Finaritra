@@ -5,10 +5,37 @@ exports.findAll = () => {
   return Service.find();
 };
 
-exports.findOne = (username) => {
-  // var condition = username ? { username: { $regex: new RegExp(username), $options: "i" } } : {};
+exports.findByUsername = (username) => {
   return Service.findOne({username});
 };
-exports.findById = (id) => {
-  return Service.findOne({id: id});
+
+exports.findOne = (id) => {
+  return Service.findById(id);
 };
+
+//Create
+exports.create = (serviceData) => {
+  try {
+    const newService = new Service(serviceData);
+    return newService.save();
+  } catch (error) {
+    throw error;
+  }
+}
+// Update
+exports.update = (serviceId, updatedServiceData) => {
+  try {
+    return Service.findByIdAndUpdate(serviceId, updatedServiceData, { new: true });
+  } catch (error) {
+    throw error;
+  }
+}
+
+// Delete
+exports.delete = (serviceId) => {
+  try {
+    return Service.findByIdAndDelete(serviceId);
+  } catch (error) {
+    throw error;
+  }
+}

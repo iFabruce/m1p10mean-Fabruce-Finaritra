@@ -5,6 +5,6 @@ exports.findAll = () => {
   return Manager.find();
 };
 
-exports.findOne = (username) => {
+exports.findByUsername = (username) => {
   return Manager.findOne({username});
 };

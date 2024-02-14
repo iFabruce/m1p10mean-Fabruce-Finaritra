@@ -3,7 +3,9 @@ module.exports = app => {
     var router = require("express").Router();
 
     router.get("/findAll", client.findAll);
-    router.get("/findOne/:username", client.findOne);
+    router.get("/findByUsername/:username", client.findByUsername);
+    router.get("/findOne/:id", client.findOne);
+
 
     app.use("/api/client", router);
 };

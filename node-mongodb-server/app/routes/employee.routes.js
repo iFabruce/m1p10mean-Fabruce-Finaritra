@@ -3,7 +3,12 @@ module.exports = app => {
     var router = require("express").Router();
 
     router.get("/findAll", employee.findAll);
-    router.get("/findOne/:username", employee.findOne);
+    router.get("/findByUsername/:username", employee.findByUsername);
+    router.get("/findOne/:id", employee.findOne);
+
+    router.post("/create", employee.create);
+    router.put("/update/:id", employee.update);
+    router.delete("/delete/:id", employee.delete);
 
     app.use("/api/employee", router);
 };
