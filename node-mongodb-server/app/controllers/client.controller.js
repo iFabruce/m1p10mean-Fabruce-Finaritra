@@ -34,8 +34,6 @@ exports.findOne = (req, res) => {
  
 }
 
-
-
 exports.updateFavoriteController = async (req, res) => {
   const clientId = req.params.clientId;
   const newFavoriteEmployeeData = req.body.favoriteEmployee; // Assurez-vous que votre corps de demande contient les données mises à jour
@@ -43,6 +41,18 @@ exports.updateFavoriteController = async (req, res) => {
   try {
     const updatedClient = await clientService.updateFavorite(clientId, newFavoriteEmployeeData, newFavoriteServiceData);
     res.json(updatedClient);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    console.log(error);
+  }
+}
+
+exports.addWallet = async (req, res) => {
+  const clientId = req.params.clientId; 
+  const price = req.body.price; 
+  try {
+    const addWallet = await clientService.addWallet(clientId, price);
+    res.json(addWallet);
   } catch (error) {
     res.status(500).json({ error: error.message });
     console.log(error);

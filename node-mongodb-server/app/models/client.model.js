@@ -15,7 +15,7 @@ const ClientSchema = mongoose.Schema(
     fullname: { type: String, required: true },
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    wallet: { type: String, required: true },
+    wallet: { type: Number, required: true },
     favoriteEmployee: { type: FavoriteEmployeeSchema, ref: 'Employee' },
     favoriteService: { type: FavoriteServiceSchema, ref: 'Service' },
   },
