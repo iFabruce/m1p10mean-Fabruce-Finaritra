@@ -8,6 +8,7 @@ exports.findAll = (req, res) => {
       })
       .catch(err => {
         res.status(500).send({ message: err.message || "Erreur" });
+        console.log(err)
       });
 };
 exports.findByUsername = (req, res) => {
@@ -17,8 +18,10 @@ exports.findByUsername = (req, res) => {
       })
       .catch(err => {
         res.status(500).send({ message: err.message || "Erreur" });
+        console.log(err)
       });
 };
+
 exports.findOne = (req, res) => {
   clientService.findOne(req.params.id)
   .then(data => {
@@ -31,3 +34,17 @@ exports.findOne = (req, res) => {
  
 }
 
+
+
+exports.updateFavoriteController = async (req, res) => {
+  const clientId = req.params.clientId;
+  const newFavoriteEmployeeData = req.body.favoriteEmployee; // Assurez-vous que votre corps de demande contient les données mises à jour
+  const newFavoriteServiceData = req.body.favoriteService;
+  try {
+    const updatedClient = await clientService.updateFavorite(clientId, newFavoriteEmployeeData, newFavoriteServiceData);
+    res.json(updatedClient);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    console.log(error);
+  }
+}

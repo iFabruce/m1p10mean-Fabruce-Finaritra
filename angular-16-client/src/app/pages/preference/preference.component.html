@@ -9,7 +9,9 @@
           optionLabel="fullname"
           [showClear]="true"
           placeholder="Select a Employe"
-          [filter]="true" filterBy="fullname"
+          [filter]="true"
+          filterBy="fullname"
+          optionValue="id"
         ></p-dropdown>
         <!-- <small id="username-help">Enter your username to reset your password.</small> -->
       </div>
@@ -18,10 +20,12 @@
         <p-dropdown
           [options]="services"
           [(ngModel)]="selectedService"
-          optionLabel="nomService"
+          optionLabel="name"
+          optionValue="id"
           [showClear]="true"
           placeholder="Select a Service"
-          [filter]="true" filterBy="nomService"
+          [filter]="true"
+          filterBy="name"
         ></p-dropdown>
         <!-- <small id="username-help">Enter your username to reset your password.</small> -->
       </div>
@@ -32,6 +36,8 @@
           icon="pi pi-check"
           iconPos="right"
           severity="help"
+          (click)="updateFavorite()"
+          [disabled]="!selectedEmploye || !selectedService"
         ></p-button>
       </div>
     </p-panel>
