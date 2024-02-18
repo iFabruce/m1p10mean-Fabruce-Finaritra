@@ -104,6 +104,7 @@
         .subscribe(
           (data: any) => {
             console.log(data)
+            // this.router.navigate('/paiement')
           }
         )
     }
