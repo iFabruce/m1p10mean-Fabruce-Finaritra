@@ -1,5 +1,15 @@
 const managerService = require('../services/manager.service');
 
+exports.workingTime = (req,res) =>{
+  managerService.workingTime()
+    .then(data =>{
+        res.send(data)
+      }
+    )
+    .catch(err => {
+      res.status(500).send({ message: err.message || "Erreur" });
+    });
+}
 exports.findAll = (req, res) => {
   managerService.findAll()
     .then(data => {

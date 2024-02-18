@@ -1,8 +1,6 @@
 <div class="w-screen flex md:flex-row sm:flex-col  md:space-x-8 sm:space-x-0  md:space-y-0 p-4 ">
   <div class="md:flex-3  sm:order-2 md:order-1 p-2">
-    <ng-container *ngIf="message">
-      <p-messages [(value)]="message" [enableService]="false" [closable]="false"></p-messages>
-    </ng-container>
+ 
     <app-wallet></app-wallet>
       
     <form (ngSubmit)="addAppointment()">

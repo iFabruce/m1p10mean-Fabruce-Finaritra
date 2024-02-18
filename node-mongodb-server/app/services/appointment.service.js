@@ -73,7 +73,7 @@ exports.create = async(date, hour, clientId, employeeId, serviceId) => {
       })
       newAppointmentWithClient.save();
       console.log('Rendez-vous ajouté avec succès:', newAppointmentWithClient);
-      return newAppointmentWithClient
+      return 'Rendez-vous ajouté avec succès:'
     }
 
   } catch (error) {

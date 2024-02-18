@@ -2,6 +2,7 @@ module.exports = app => {
     const manager = require("../controllers/manager.controller.js");
     var router = require("express").Router();
 
+    router.get("/workingTime", manager.workingTime);
     router.get("/findAll", manager.findAll);
     router.get("/findByUsername/:username", manager.findByUsername);
     router.get("/findOne/:id", manager.findOne);
