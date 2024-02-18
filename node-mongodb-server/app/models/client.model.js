@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 
 const FavoriteEmployeeSchema = mongoose.Schema({
-  id: { type: mongoose.Schema.Types.ObjectId, ref: 'Client' },
+  id: { type: mongoose.Schema.Types.ObjectId, ref: 'Employee' },
   fullname: { type: String, required: true },
+});
+
+const FavoriteServiceSchema = mongoose.Schema({
+  id: { type: mongoose.Schema.Types.ObjectId, ref: 'Service' },
+  name: { type: String, required: true },
 });
 
 const ClientSchema = mongoose.Schema(
@@ -10,8 +15,9 @@ const ClientSchema = mongoose.Schema(
     fullname: { type: String, required: true },
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    wallet: { type: String, required: true },
-    favoriteEmployee: { type: FavoriteEmployeeSchema },
+    wallet: { type: Number, required: true },
+    favoriteEmployee: { type: FavoriteEmployeeSchema, ref: 'Employee' },
+    favoriteService: { type: FavoriteServiceSchema, ref: 'Service' },
   },
   { timestamps: true }
 );

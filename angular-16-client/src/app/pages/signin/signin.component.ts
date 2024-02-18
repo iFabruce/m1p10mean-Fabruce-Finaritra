@@ -24,12 +24,12 @@ export class SigninComponent {
     { name: 'Employé' },
     { name: 'Manager' },
   ];
-  
+
   constructor(private router: Router, private tutorialService: TutorialService, private authService: AuthService) {}
   ngOnInit(): void {
-   
+
   }
-  
+
   signIn(): void{
     console.log("click")
     this.authService.signIn(this.username,this.password, this.selectedProfil).subscribe(
@@ -54,4 +54,3 @@ export class SigninComponent {
     )
   }
 }
-

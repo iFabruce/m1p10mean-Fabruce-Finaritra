@@ -5,7 +5,8 @@ module.exports = app => {
     router.get("/findAll", client.findAll);
     router.get("/findByUsername/:username", client.findByUsername);
     router.get("/findOne/:id", client.findOne);
-
+    router.put('/:clientId/updateFavorite', client.updateFavoriteController);
+    router.put('/:clientId/addWallet', client.addWallet);
 
     app.use("/api/client", router);
 };

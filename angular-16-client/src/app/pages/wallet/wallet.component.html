@@ -1,6 +1,6 @@
-<p-panel header="Porte feuille" class="p-2">
-  <div class="text-2xl font-bold text-center">500000.00 MGA</div>
-  <div class="butt-add mt-2">
+<p-panel header="Porte feuille">
+  <div class="content-wallet">{{wallet}} MGA</div>
+  <div class="butt-add">
     <p-button label="Ajouter argent" (click)="showDialog()"></p-button>
   </div>
 </p-panel>
@@ -25,7 +25,7 @@
       </p-inputNumber>
       MGA
     </div>
-    <div class="butt-add"><p-button label="Valider" (click)="showDialog()" class="butt-validate"></p-button></div>
+    <div class="butt-add"><p-button label="Valider" (click)="addWallet()" class="butt-validate"></p-button></div>
 
   </p-dialog>
 </div>

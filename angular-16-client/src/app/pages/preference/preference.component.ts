@@ -1,15 +1,5 @@
+import { GetObjectService } from './../../services/getObject.service';
 import { Component } from '@angular/core';
-
-interface Employe {
-  id: String;
-  fullname: string;
-}
-
-interface Service {
-  id: String;
-  nomService: string;
-}
-
 @Component({
   selector: 'app-preference',
   templateUrl: './preference.component.html',
@@ -19,27 +9,41 @@ interface Service {
 
 export class PreferenceComponent {
   username: string | undefined;
-  employes: Employe[] | undefined;
-  services: Service[] | undefined;
+  employes: any;
+  services: any;
 
-    selectedEmploye: Employe | undefined;
-    selectedService: Service | undefined;
+    selectedEmploye: any;
+    selectedService: any;
+
+    constructor(private getObjectService: GetObjectService) {}
 
     ngOnInit() {
-        this.employes = [
-            { id: '1', fullname: 'NY' },
-            { id: '2', fullname: 'RM' },
-            { id: '3', fullname: 'LDN' },
-            { id: '4', fullname: 'IST' },
-            { id: '5', fullname: 'PRS' }
-        ];
+      this.getObjectService.fetchData("employee","findAll").subscribe(data => {
+        this.employes = data;
+      });
 
-        this.services = [
-          { id:"1", nomService:"service1"},
-          { id:"2", nomService:"service2"},
-          { id:"3", nomService:"service3"},
-          { id:"4", nomService:"service4"},
-          { id:"5", nomService:"service5"}
-        ]
+      this.getObjectService.fetchData("service","findAll").subscribe(data => {
+        this.services = data;
+      });
+    }
+
+    updateFavorite() {
+      console.log("tonga")
+      console.log(this.selectedEmploye.id+","+this.selectedService.id)
+      if (this.selectedEmploye && this.selectedService) {
+        const clientId = '65cd10c1598e80e655057dfa';
+        const favoriteEmployee = {id: this.selectedEmploye.id, fullname: this.selectedEmploye.fullname}
+        const favoriteService = {id: this.selectedService.id, fullname: this.selectedService.name}
+        const data = {favoriteEmployee, favoriteService};
+        this.getObjectService.updateData("client","updateFavorite",clientId,data).subscribe(updatedClient => {
+          console.log(' mis à jour:', updatedClient);
+        }, error => {
+          console.error('Erreur lors de la mise à jour :', error);
+        });
+      }
+    }
+
+    onServiceChange(event: any) {
+      console.log('Service sélectionné :', this.selectedService);
     }
 }
