@@ -36,13 +36,15 @@ export class SigninComponent {
       (data: any) => {
         console.log(data)
         localStorage.setItem('token', data.token)
-        if(data.profil == "Client"){
+        localStorage.setItem('profil', data.token)
+
+        if(data.type == "Client"){
           this.router.navigate(['/appointment']);
-        }else if(data.profil == "Employé"){
-          console.log(data.profil)
+        }else if(data.type == "Employé"){
+          console.log(data.type)
           // this.router.navigate(['/EmployeeAppointement']);
         }else{
-          console.log(data.profil)
+          console.log(data.type)
           // this.router.navigate(['/EmployeeManagement']);
         }
       },(error: any) => {

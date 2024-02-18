@@ -20,7 +20,7 @@ exports.signin = (req, res) => {
           .then(isValid => {
             if (!isValid) return res.status(401).json({ message: 'Invalid username or password' });
             const token = jwt.sign({ id: user._id, username: user.username }, 'secret_key', { expiresIn: '1h' });
-            res.json({ token, profil: profil.name});
+            res.json({ token, profil: user.id, type: 'Client'});
           })
           .catch(err => {
             res.status(500).json({ message: err.message });
@@ -37,7 +37,7 @@ exports.signin = (req, res) => {
       .then(user => {
         if (!user) return res.status(401).json({ message: 'User not found' });
         if(password == user.password){
-          res.json({ token: 'Employee', profil: profil.name})
+          res.json({ token: 'Employee', profil: user.id, type: 'Employee'})
         }
       })
       .catch(err => {
@@ -52,7 +52,7 @@ exports.signin = (req, res) => {
         .then(user => {
           if (!user) return res.status(401).json({ message: 'User not found' });
           if(password == user.password){
-            res.json({ token: 'Manager', profil: profil.name})
+            res.json({ token: 'Manager', profil: user.id, type: 'Manager'})
           }
         })
         .catch(err => {

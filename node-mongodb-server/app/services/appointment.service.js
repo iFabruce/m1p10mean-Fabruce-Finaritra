@@ -4,7 +4,24 @@ const clientService = require('../services/client.service');
 const employeeService = require('../services/employee.service');
 const serviceService = require('../services/service.service');
 
+function convertDate(date){
+  const dateSplit = date.split('-')
+  return new Date(dateSplit[0]-1,dateSplit[1],dateSplit[2])
 
+}
+exports.employeeAppointment = async(employeeId, date) => {
+  const dateSplit = date.split('-')
+  
+  const startingDate= new Date(dateSplit[0]-1,dateSplit[1]-1,dateSplit[2], '08')
+  const endDate= new Date(dateSplit[0]-1,dateSplit[1]-1,dateSplit[2], '16')
+
+  return await Appointment.find({ 
+    $and:[
+      {'employee._id': employeeId},
+      {startingDate: { $gte: startingDate, $lte: endDate}}
+    ]
+  })
+} 
 
 
 exports.findAll = () => {
@@ -20,7 +37,7 @@ exports.create = async(date, hour, clientId, employeeId, serviceId) => {
   try {
     const dateSplit = date.split('-')
     const hourSplit = hour.split(':')
-    var startingDate = new Date(dateSplit[0]-1,dateSplit[1],dateSplit[2],hourSplit[0],hourSplit[1])
+    var startingDate = new Date(dateSplit[0]-1,dateSplit[1]-1,dateSplit[2],hourSplit[0],hourSplit[1])
     
     var endingDate = new Date(startingDate)
     endingDate.setHours(startingDate.getHours()+2)
@@ -30,27 +47,18 @@ exports.create = async(date, hour, clientId, employeeId, serviceId) => {
     const service = await serviceService.findOne(serviceId) 
 
     const overlappingAppointments = await Appointment.find({
-      $or: [
+      $and: [
+        { 'Employee.id': employeeId },
         {
-          $and: [
-            { startingDate: { $lt: startingDate } },  // Nouvel appointment commence après l'existante
-            { endingDate: { $gt: startingDate } } // Nouvel appointment se termine avant l'existante
-          ]
-        },
-        {
-          $and: [
-            { startingDate: { $lt: endingDate } }, // Nouvel appointment commence après l'existante
-            { endingDate: { $gt: endingDate } } // Nouvel appointment se termine avant l'existante
-          ]
-        },
-        {
-          $and: [
-            { startingDate: { $gte: startingDate } }, // Nouvel appointment commence avant l'existante
-            { endingDate: { $lte: endingDate } } // Nouvel appointment se termine après l'existante
+          $or: [
+            { startingDate: { $lt: startingDate }, endingDate: { $gt: startingDate } }, // Nouvel appointment commence après l'existante
+            { startingDate: { $lt: endingDate }, endingDate: { $gt: endingDate } }, // Nouvel appointment se termine avant l'existante
+            { startingDate: { $gte: startingDate }, endingDate: { $lte: endingDate } } // Nouvel appointment se chevauche complètement avec l'existante
           ]
         }
       ]
     });
+    
     
     if (overlappingAppointments.length > 0) {
       return 'Le nouveau rendez se chevauche avec un rendez-vous existant.'
@@ -67,10 +75,6 @@ exports.create = async(date, hour, clientId, employeeId, serviceId) => {
       console.log('Rendez-vous ajouté avec succès:', newAppointmentWithClient);
       return newAppointmentWithClient
     }
-
-    
-  
-    // return savedAppointment;
 
   } catch (error) {
     console.log(error.message);

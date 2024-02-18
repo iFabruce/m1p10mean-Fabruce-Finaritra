@@ -31,6 +31,9 @@ import { AppointmentComponent } from './pages/appointment/appointment.component'
 import { CalendarModule } from 'primeng/calendar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { HomeComponent } from './pages/home/home.component';
+import { TableModule } from 'primeng/table';
+import { MessagesModule } from 'primeng/messages';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +68,9 @@ import { HomeComponent } from './pages/home/home.component';
     PasswordModule,
     DropdownModule,
     CalendarModule,
-    RadioButtonModule
+    RadioButtonModule,
+    TableModule,
+    MessagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

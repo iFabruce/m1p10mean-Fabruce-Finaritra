@@ -5,7 +5,6 @@ module.exports = app => {
     router.get("/findAll", employee.findAll);
     router.get("/findByUsername/:username", employee.findByUsername);
     router.get("/findOne/:id", employee.findOne);
-
     router.post("/create", employee.create);
     router.put("/update/:id", employee.update);
     router.delete("/delete/:id", employee.delete);
