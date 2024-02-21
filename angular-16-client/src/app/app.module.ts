@@ -33,7 +33,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { HomeComponent } from './pages/home/home.component';
 import { TableModule } from 'primeng/table';
 import { MessagesModule } from 'primeng/messages';
-
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +70,8 @@ import { MessagesModule } from 'primeng/messages';
     CalendarModule,
     RadioButtonModule,
     TableModule,
-    MessagesModule
+    MessagesModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@
   import { EmployeeService } from 'src/app/services/employee.service';
   import { ServiceService } from 'src/app/services/service.service';
   import { AppointmentService } from 'src/app/services/appointment.service';
-
+  import { MessageService } from 'primeng/api';
   import { Router } from '@angular/router';
 
   interface Employe {
@@ -13,6 +13,8 @@
   interface Service {
     id: String;
     name: String;
+    price: String;
+    duration: String;
   }
   interface Appointment {
     id: String;
@@ -23,11 +25,12 @@
   @Component({
     selector: 'app-appointment',
     templateUrl: './appointment.component.html',
-    styleUrls: ['./appointment.component.scss']
+    styleUrls: ['./appointment.component.scss'],
+    providers: [MessageService]
   })
   export class AppointmentComponent {
   
-    constructor(private router: Router, private employeeService: EmployeeService, private serviceService: ServiceService, private appointmentService: AppointmentService){}
+    constructor(private messageService: MessageService, private router: Router, private employeeService: EmployeeService, private serviceService: ServiceService, private appointmentService: AppointmentService){}
     
     employes: Employe[] | undefined;
     services: Service[] | undefined;
@@ -50,7 +53,8 @@
     selectedService: Service | undefined;
 
     appointment: Appointment[] | undefined;
-    // message: String | undefined;
+    price: any | undefined
+    result: any | undefined;
 
     formatDate(date: any) {
       const year = date?.getFullYear();
@@ -60,6 +64,7 @@
         return formattedDate
     }
     onValeurInputChange() {
+        //Quand la date et l'employé est choisi
         if(this.selectedEmploye!==undefined && !this.date!==undefined){
           //Formater la date en YYYY-MM-DD
           const year = this.date?.getFullYear();
@@ -70,9 +75,14 @@
           this.appointmentService.employeeAppointment(this.selectedEmploye?.id,formattedDate).subscribe(
             (data: any) => {
               this.appointment=data
+              
             }
           )
         }
+        //Quand le service est choisi
+        // if(this.selectedService !== undefined){
+          
+        // }
     }
 
     ngOnInit() {
@@ -104,8 +114,19 @@
         .subscribe(
           (data: any) => {
             console.log(data)
-            // this.router.navigate('/paiement')
+            if(!data){
+              this.showError("Un rendez-vous est déjà reservé sur la date et l'heure choisi. Veuillez choisir un autre creuno")
+            }else{
+              this.showSuccess("Rendez-vous ajouté avec succès. Vous allez recevoir un email.")
+            }
           }
         )
+    }
+
+    showSuccess(message:any) {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
+    }
+    showError(message:any) {
+      this.messageService.add({ severity: 'error', summary: 'Erreur', detail: message });
     }
   }

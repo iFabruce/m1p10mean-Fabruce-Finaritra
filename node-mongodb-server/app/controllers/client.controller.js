@@ -58,3 +58,15 @@ exports.addWallet = async (req, res) => {
     console.log(error);
   }
 }
+
+exports.payment = async (req, res) => {
+  const clientId = req.params.clientId; 
+  const price = req.body.price; 
+  try {
+    const addWallet = await clientService.payment(clientId, Number(price));
+    res.json(addWallet);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    console.log(error.message);
+  }
+}

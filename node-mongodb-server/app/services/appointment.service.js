@@ -61,7 +61,7 @@ exports.create = async(date, hour, clientId, employeeId, serviceId) => {
     
     
     if (overlappingAppointments.length > 0) {
-      return 'Le nouveau rendez se chevauche avec un rendez-vous existant.'
+      return false
     } else {
       const newAppointmentWithClient = new Appointment({
         startingDate,
@@ -72,8 +72,8 @@ exports.create = async(date, hour, clientId, employeeId, serviceId) => {
         status: 'actif'
       })
       newAppointmentWithClient.save();
-      console.log('Rendez-vous ajouté avec succès:', newAppointmentWithClient);
-      return 'Rendez-vous ajouté avec succès:'
+      console.log('Rendez-vous ajouté avec succès:');
+      return true
     }
 
   } catch (error) {

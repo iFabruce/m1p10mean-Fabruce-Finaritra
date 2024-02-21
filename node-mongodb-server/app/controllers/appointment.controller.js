@@ -34,7 +34,7 @@ exports.create = (req, res) => {
   console.log("date:",date)
   appointmentService.create(date, hour, clientId, employeeId, serviceId).then(
     data => {
-      res.send(data)
+      res.json(data)
     }
   )
   .catch(err => {

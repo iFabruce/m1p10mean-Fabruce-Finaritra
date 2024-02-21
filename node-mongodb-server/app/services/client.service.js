@@ -30,6 +30,21 @@ exports.addWallet = async (id, price) => {
     throw new Error(`Erreur lors de la mise à jour du porte-feuille : ${error.message}`);
   }
 };
+exports.payment = async (id, price) => {
+  try {
+    const client = await Client.findById(id);
+    if (!client) throw new Error("Client not found")
+    if(client.wallet - price >= 0){
+      client.wallet -= price;
+      const updatedClient = await client.save();
+      return updatedClient;
+    }else{
+      return "Votre solde est insuffisant pour effectuer ce paiement. Veuillez recharger votre portefeuille... "
+    }
+  } catch (error) {
+    throw new Error(`Erreur lors de la mise à jour du porte-feuille : ${error.message}`);
+  }
+}
 
 
 exports.updateFavorite = async (clientId, newFavoriteEmployeeData,newFavoriteServiceData) => {

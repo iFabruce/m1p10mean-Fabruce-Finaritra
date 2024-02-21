@@ -1,27 +1,13 @@
 <div class="w-screen flex md:flex-row sm:flex-col  md:space-x-8 sm:space-x-0  md:space-y-0 p-4 ">
   <div class="md:flex-3  sm:order-2 md:order-1 p-2">
  
-    <app-wallet></app-wallet>
-      
+    <p-toast></p-toast>
     <form (ngSubmit)="addAppointment()">
       <p-panel header="Prendre rendez-vous">
         <div class="">
           <label htmlFor="date">Date</label>
            
             <p-calendar [(ngModel)]="date" [showIcon]="true" name="calendar" (ngModelChange)="onValeurInputChange()"></p-calendar>
-          <!-- <small id="username-help">Enter your username to reset your password.</small> -->
-        </div>
-        <div class="flex flex-column gap-2">
-          <label htmlFor="user">Service</label>
-          <p-dropdown
-            [options]="services"
-            [(ngModel)]="selectedService"
-            optionLabel="name"
-            [showClear]="true"
-            placeholder="Selectionner service"
-            [filter]="true" filterBy="nomService"
-            name="service"
-          ></p-dropdown>
           <!-- <small id="username-help">Enter your username to reset your password.</small> -->
         </div>
         <div class="flex flex-column gap-2">
@@ -36,6 +22,20 @@
             [filter]="true" filterBy="fullname"
             name="employee"
 
+          ></p-dropdown>
+        
+          <!-- <small id="username-help">Enter your username to reset your password.</small> -->
+        </div>
+        <div class="flex flex-column gap-2">
+          <label htmlFor="user">Service</label>
+          <p-dropdown
+            [options]="services"
+            [(ngModel)]="selectedService"
+            optionLabel="name"
+            [showClear]="true"
+            placeholder="Selectionner service"
+            [filter]="true" filterBy="nomService"
+            name="service"
           ></p-dropdown>
           <!-- <small id="username-help">Enter your username to reset your password.</small> -->
           <label htmlFor="heure">Choisir heure</label>
@@ -52,7 +52,6 @@
             name="Ajouter"
             class="butt"
             label="Ajouter"
-            icon="pi pi-check"
             iconPos="right"
             severity="help"
           ></p-button>
@@ -62,11 +61,12 @@
     </div>
     <div class="md:flex-1  sm:order-1">
       <ng-container *ngIf="appointment && appointment.length > 0">
+        <h3 class="text-2xl font-semibold">Les rendez-vous à la date séléctionnée pour <span class="text-prim">{{selectedEmploye?.fullname}}</span>:</h3> <br>
         <p-table [value]="appointment" [tableStyle]="{ 'min-width': '50rem' }">
           <ng-template pTemplate="header">
             <tr>
-              <th>Début</th>
-              <th>Fin</th>
+              <th>Heure de début</th>
+              <th>Heure de fin</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-appointmentItem>
@@ -80,6 +80,16 @@
       <div *ngIf="!appointment || appointment.length === 0">
         Aucun rendez-vous à ce date pour cet employé.
       </div>
+
+      <div *ngIf="selectedService" class="mt-4 ">
+        <h3 class="text-2xl font-semibold">Informations sur le service:</h3>
+        <p class=" bg-white px-4 w-full py-4 rounded-md mt-2 shadow-sm text-md font-medium">Durée: {{ selectedService.duration}} h</p>
+        <p class="bg-white px-4 w-full py-4 rounded-md shadow-sm mt-2 text-lg font-semibold">Prix: {{ selectedService.price}} Ar</p> <br>
+
+      </div>
+    <br>
+    <app-wallet></app-wallet> <br>
+
     </div>
     
 </div>

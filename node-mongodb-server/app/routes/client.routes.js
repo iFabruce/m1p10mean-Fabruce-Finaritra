@@ -7,6 +7,8 @@ module.exports = app => {
     router.get("/findOne/:id", client.findOne);
     router.put('/:clientId/updateFavorite', client.updateFavoriteController);
     router.put('/:clientId/addWallet', client.addWallet);
+    router.put('/:clientId/payment', client.payment);
+
 
     app.use("/api/client", router);
 };
