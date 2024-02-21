@@ -86,6 +86,12 @@
     }
 
     ngOnInit() {
+      this.selectedEmploye=undefined;
+      this.selectedHeure=undefined;
+      this.selectedService=undefined;
+      this.date=undefined
+
+
       this.serviceService.findAll().subscribe(
         (data: any) => {
           this.services = data
@@ -110,21 +116,28 @@
     }
 
     addAppointment(): any{
-      this.appointmentService.addAppointment(this.formatDate(this.date), this.selectedHeure, localStorage.getItem('client'),  this.selectedService?.id, this.selectedEmploye?.id)
+      this.appointmentService.addAppointment(this.formatDate(this.date), this.selectedHeure, localStorage.getItem('profil')?.toString(),  this.selectedService?.id, this.selectedEmploye?.id)
         .subscribe(
           (data: any) => {
             console.log(data)
-            if(!data){
+            if(data=="overlapping"){
               this.showError("Un rendez-vous est déjà reservé sur la date et l'heure choisi. Veuillez choisir un autre creuno")
-            }else{
+            }else if(data=="cash"){
+              this.showError("Votre solde est insuffisant.Veuillez recharger votre portefeuille...")
+            }
+            else if(data=="success"){
               this.showSuccess("Rendez-vous ajouté avec succès. Vous allez recevoir un email.")
+            }else{
+              this.showInfo("Veuillez remplir tous les champs.")
             }
           }
         )
     }
-
+    showInfo(message:any) {
+      this.messageService.add({ severity: 'info', summary: 'Info', detail: message });
+    }
     showSuccess(message:any) {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
+      this.messageService.add({ severity: 'success', summary: 'Succès', detail: message });
     }
     showError(message:any) {
       this.messageService.add({ severity: 'error', summary: 'Erreur', detail: message });

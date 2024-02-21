@@ -36,7 +36,7 @@ export class SigninComponent {
       (data: any) => {
         console.log(data)
         localStorage.setItem('token', data.token)
-        localStorage.setItem('profil', data.token)
+        localStorage.setItem('profil', data.profil)
 
         if(data.type == "Client"){
           this.router.navigate(['/appointment']);

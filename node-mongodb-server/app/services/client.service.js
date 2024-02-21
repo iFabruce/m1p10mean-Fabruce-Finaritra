@@ -36,10 +36,10 @@ exports.payment = async (id, price) => {
     if (!client) throw new Error("Client not found")
     if(client.wallet - price >= 0){
       client.wallet -= price;
-      const updatedClient = await client.save();
-      return updatedClient;
+      await client.save();
+      return true;
     }else{
-      return "Votre solde est insuffisant pour effectuer ce paiement. Veuillez recharger votre portefeuille... "
+      return false
     }
   } catch (error) {
     throw new Error(`Erreur lors de la mise à jour du porte-feuille : ${error.message}`);

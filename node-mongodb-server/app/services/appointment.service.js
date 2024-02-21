@@ -4,6 +4,7 @@ const clientService = require('../services/client.service');
 const employeeService = require('../services/employee.service');
 const serviceService = require('../services/service.service');
 
+
 function convertDate(date){
   const dateSplit = date.split('-')
   return new Date(dateSplit[0]-1,dateSplit[1],dateSplit[2])
@@ -39,12 +40,13 @@ exports.create = async(date, hour, clientId, employeeId, serviceId) => {
     const hourSplit = hour.split(':')
     var startingDate = new Date(dateSplit[0]-1,dateSplit[1]-1,dateSplit[2],hourSplit[0],hourSplit[1])
     
-    var endingDate = new Date(startingDate)
-    endingDate.setHours(startingDate.getHours()+2)
     
     const client = await clientService.findOne(clientId)
     const employee = await employeeService.findOne(employeeId) 
     const service = await serviceService.findOne(serviceId) 
+    
+    var endingDate = new Date(startingDate)
+    endingDate.setHours(startingDate.getHours()+service.duration)
 
     const overlappingAppointments = await Appointment.find({
       $and: [
@@ -61,7 +63,7 @@ exports.create = async(date, hour, clientId, employeeId, serviceId) => {
     
     
     if (overlappingAppointments.length > 0) {
-      return false
+      return 'overlapping'
     } else {
       const newAppointmentWithClient = new Appointment({
         startingDate,
@@ -72,8 +74,15 @@ exports.create = async(date, hour, clientId, employeeId, serviceId) => {
         status: 'actif'
       })
       newAppointmentWithClient.save();
-      console.log('Rendez-vous ajouté avec succès:');
-      return true
+      
+      //Paiement
+      const result = await clientService.payment(client.id, service.price)
+        if(result){
+          // console.log('Rendez-vous ajouté avec succès:');
+          return 'success'
+        }else{
+          return 'cash'
+        }
     }
 
   } catch (error) {
