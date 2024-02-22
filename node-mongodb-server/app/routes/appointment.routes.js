@@ -6,7 +6,8 @@ module.exports = app => {
     router.get("/findOne/:username", appointment.findOne);
     router.post("/create", appointment.create);
     router.get("/employeeAppointment/:employeeId/:date", appointment.employeeAppointment);
-
+    router.post("/create", appointment.create);
+    router.post('/clientAppointment', appointment.getAppointmentsByClientAndDateRange);
     app.use("/api/appointment", router);
 };
   

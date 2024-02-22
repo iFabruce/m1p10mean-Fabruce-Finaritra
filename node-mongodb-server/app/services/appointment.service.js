@@ -1,28 +1,55 @@
 // client.service.js
-const Appointment = require('../models/appointment.model');
-const clientService = require('../services/client.service');
-const employeeService = require('../services/employee.service');
-const serviceService = require('../services/service.service');
-
-
-function convertDate(date){
-  const dateSplit = date.split('-')
-  return new Date(dateSplit[0]-1,dateSplit[1],dateSplit[2])
-
+const mongoose = require("mongoose");
+const Appointment = require("../models/appointment.model");
+const clientService = require("../services/client.service");
+const employeeService = require("../services/employee.service");
+const serviceService = require("../services/service.service");
+function convertDate(date) {
+  const dateSplit = date.split("-");
+  return new Date(dateSplit[0] - 1, dateSplit[1], dateSplit[2]);
 }
-exports.employeeAppointment = async(employeeId, date) => {
-  const dateSplit = date.split('-')
-  
-  const startingDate= new Date(dateSplit[0]-1,dateSplit[1]-1,dateSplit[2], '08')
-  const endDate= new Date(dateSplit[0]-1,dateSplit[1]-1,dateSplit[2], '16')
+exports.employeeAppointment = async (employeeId, date) => {
+  const dateSplit = date.split("-");
 
-  return await Appointment.find({ 
-    $and:[
-      {'employee._id': employeeId},
-      {startingDate: { $gte: startingDate, $lte: endDate}}
-    ]
-  })
-} 
+  const startingDate = new Date(
+    dateSplit[0] - 1,
+    dateSplit[1] - 1,
+    dateSplit[2],
+    "08"
+  );
+  const endDate = new Date(
+    dateSplit[0] - 1,
+    dateSplit[1] - 1,
+    dateSplit[2],
+    "16"
+  );
+
+  return await Appointment.find({
+    $and: [
+      { "employee._id": employeeId },
+      { startingDate: { $gte: startingDate, $lte: endDate } },
+    ],
+  });
+};
+
+exports.getAppointmentsByClientAndDateRange = async (clientId, startDate, endDate) => {
+  if (!startDate || startDate.toISOString() === '1970-01-01T00:00:00.000Z' ||
+      !endDate || endDate.toISOString() === '1970-01-01T00:00:00.000Z') {
+    console.log("tsy mety");
+    return await Appointment.find({
+      'client._id': clientId
+    });
+  } else {
+    console.log(startDate,endDate)
+    console.log("mety");
+    return await Appointment.find({
+      'client._id': clientId,
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+  }
+}
+
+
 
 
 exports.findAll = () => {
@@ -31,39 +58,52 @@ exports.findAll = () => {
 
 exports.findOne = (username) => {
   // var condition = username ? { username: { $regex: new RegExp(username), $options: "i" } } : {};
-  return Appointment.findOne({username});
+  return Appointment.findOne({ username });
 };
 
-exports.create = async(date, hour, clientId, employeeId, serviceId) => {
+exports.create = async (date, hour, clientId, employeeId, serviceId) => {
   try {
-    const dateSplit = date.split('-')
-    const hourSplit = hour.split(':')
-    var startingDate = new Date(dateSplit[0]-1,dateSplit[1]-1,dateSplit[2],hourSplit[0],hourSplit[1])
-    
-    
-    const client = await clientService.findOne(clientId)
-    const employee = await employeeService.findOne(employeeId) 
-    const service = await serviceService.findOne(serviceId) 
-    
-    var endingDate = new Date(startingDate)
-    endingDate.setHours(startingDate.getHours()+service.duration)
+    const dateSplit = date.split("-");
+    const hourSplit = hour.split(":");
+    var startingDate = new Date(
+      dateSplit[0] - 1,
+      dateSplit[1] - 1,
+      dateSplit[2],
+      hourSplit[0],
+      hourSplit[1]
+    );
+
+    var endingDate = new Date(startingDate);
+    endingDate.setHours(startingDate.getHours() + 2);
+
+    const client = await clientService.findOne(clientId);
+    const employee = await employeeService.findOne(employeeId);
+    const service = await serviceService.findOne(serviceId);
 
     const overlappingAppointments = await Appointment.find({
       $and: [
-        { 'Employee.id': employeeId },
+        { "Employee.id": employeeId },
         {
           $or: [
-            { startingDate: { $lt: startingDate }, endingDate: { $gt: startingDate } }, // Nouvel appointment commence après l'existante
-            { startingDate: { $lt: endingDate }, endingDate: { $gt: endingDate } }, // Nouvel appointment se termine avant l'existante
-            { startingDate: { $gte: startingDate }, endingDate: { $lte: endingDate } } // Nouvel appointment se chevauche complètement avec l'existante
-          ]
-        }
-      ]
+            {
+              startingDate: { $lt: startingDate },
+              endingDate: { $gt: startingDate },
+            }, // Nouvel appointment commence après l'existante
+            {
+              startingDate: { $lt: endingDate },
+              endingDate: { $gt: endingDate },
+            }, // Nouvel appointment se termine avant l'existante
+            {
+              startingDate: { $gte: startingDate },
+              endingDate: { $lte: endingDate },
+            }, // Nouvel appointment se chevauche complètement avec l'existante
+          ],
+        },
+      ],
     });
-    
-    
+
     if (overlappingAppointments.length > 0) {
-      return 'overlapping'
+      return "Le nouveau rendez se chevauche avec un rendez-vous existant.";
     } else {
       const newAppointmentWithClient = new Appointment({
         startingDate,
@@ -71,23 +111,14 @@ exports.create = async(date, hour, clientId, employeeId, serviceId) => {
         client,
         service,
         employee,
-        status: 'actif'
-      })
+        status: "actif",
+      });
       newAppointmentWithClient.save();
-      
-      //Paiement
-      const result = await clientService.payment(client.id, service.price)
-        if(result){
-          // console.log('Rendez-vous ajouté avec succès:');
-          return 'success'
-        }else{
-          return 'cash'
-        }
+      console.log("Rendez-vous ajouté avec succès:", newAppointmentWithClient);
+      return "Rendez-vous ajouté avec succès:";
     }
-
   } catch (error) {
     console.log(error.message);
     return error.message;
   }
-}
-
+};

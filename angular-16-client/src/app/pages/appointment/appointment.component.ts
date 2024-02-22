@@ -29,9 +29,9 @@
     providers: [MessageService]
   })
   export class AppointmentComponent {
-  
+
     constructor(private messageService: MessageService, private router: Router, private employeeService: EmployeeService, private serviceService: ServiceService, private appointmentService: AppointmentService){}
-    
+
     employes: Employe[] | undefined;
     services: Service[] | undefined;
     date: Date | undefined;
@@ -75,13 +75,13 @@
           this.appointmentService.employeeAppointment(this.selectedEmploye?.id,formattedDate).subscribe(
             (data: any) => {
               this.appointment=data
-              
+
             }
           )
         }
         //Quand le service est choisi
         // if(this.selectedService !== undefined){
-          
+
         // }
     }
 

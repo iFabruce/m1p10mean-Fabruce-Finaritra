@@ -9,17 +9,24 @@ $color4: #FFD0EC;
   div.p-grid.p-nogutter.grid.grid-nogutter {
     display: block !important;
   }
+  .historic-search{
+    margin-bottom: 2vh;
+  }
 
   .list-historics {
-    width: 50vw;
+    width: 60vw;
   }
 
   .wallet{
-    width: 38vw;
+    width: 28vw;
   }
   .date-text{
     font-size: 12px;
     font-weight: 300;
+  }
+  .row{
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -27,4 +34,9 @@ $color4: #FFD0EC;
 :host ::ng-deep .p-panel .p-panel-header {
   background: $color2 !important;
   color: white !important;
+}
+
+:host ::ng-deep .p-button{
+  background-color: $color3;
+  border: 1px solid $color3;
 }
