@@ -15,6 +15,16 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+// require("./app/routes/turorial.routes")(app);
+require("./app/routes/auth.routes")(app);
+require("./app/routes/client.routes")(app);
+require("./app/routes/employee.routes")(app);
+require("./app/routes/service.routes")(app);
+require("./app/routes/manager.routes")(app);
+require("./app/routes/appointment.routes")(app);
+require("./app/routes/email.routes")(app);
+
+
 const db = require("./app/models");
 db.mongoose
   .connect(db.url, {
@@ -28,16 +38,6 @@ db.mongoose
     console.log("Cannot connect to the database!", err);
     process.exit();
   });
-
-
-// require("./app/routes/turorial.routes")(app);
-require("./app/routes/auth.routes")(app);
-require("./app/routes/client.routes")(app);
-require("./app/routes/employee.routes")(app);
-require("./app/routes/service.routes")(app);
-require("./app/routes/manager.routes")(app);
-require("./app/routes/appointment.routes")(app);
-
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
