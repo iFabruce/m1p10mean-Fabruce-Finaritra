@@ -8,6 +8,8 @@ import { PreferenceComponent } from './pages/preference/preference.component';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
 import { AuthGuard } from './services/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -17,7 +19,9 @@ const routes: Routes = [
   { path: 'add',   canActivate: [AuthGuard], component: AddTutorialComponent },
   { path: 'preference',   canActivate: [AuthGuard], component: PreferenceComponent },
   { path: 'historics',   canActivate: [AuthGuard], component: HistoricComponent },
-  { path: 'appointment',   canActivate: [AuthGuard], component: AppointmentComponent }
+  { path: 'appointment',   canActivate: [AuthGuard], component: AppointmentComponent },
+  { path: 'calendar',   canActivate: [AuthGuard], component: CalendarComponent }
+
   // { path: 'tutorials', component: TutorialsListComponent },
   // { path: 'tutorials/:id', component: TutorialDetailsComponent },
 ];

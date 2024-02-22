@@ -34,6 +34,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { TableModule } from 'primeng/table';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { CalendarComponent } from './pages/calendar/calendar.component';
+// import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +53,8 @@ import { ToastModule } from 'primeng/toast';
     SignupComponent,
     PreferenceComponent,
     AppointmentComponent,
-    HomeComponent
+    HomeComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +77,8 @@ import { ToastModule } from 'primeng/toast';
     RadioButtonModule,
     TableModule,
     MessagesModule,
-    ToastModule
+    ToastModule,
+    FullCalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
