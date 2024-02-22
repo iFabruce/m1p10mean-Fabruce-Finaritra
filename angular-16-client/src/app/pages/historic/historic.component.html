@@ -1,43 +1,72 @@
 <div class="historic">
   <div class="list-historics">
     <p-panel header="Historique">
+      <div class="historic-search">
+        <div class="flex flex-wrap justify-content-center gap-3">
+          <span class="p-input-icon-left">
+            <p-calendar
+              [(ngModel)]="startDate"
+              placeholder="Date debut"
+              [showIcon]="true"
+            ></p-calendar>
+          </span>
+
+          <span class="p-input-icon-left">
+            <p-calendar
+              [(ngModel)]="endDate"
+              placeholder="Date fin"
+              [showIcon]="true"
+            ></p-calendar>
+          </span>
+          <div class="card flex justify-content-center">
+            <p-button label="Rechercher" (click)="onSearch()"></p-button>
+          </div>
+        </div>
+      </div>
       <p-dataView #dv [value]="historics" [rows]="5" [paginator]="true">
         <ng-template let-historic pTemplate="listItem">
           <div class="col-12">
+            <div class="date-text">
+              {{ formatDate(historic.createdAt) }}
+            </div>
             <div
               class="flex flex-column xl:flex-row xl:align-items-start p-3 gap-4"
             >
               <div
                 class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4"
               >
-                <div
-                  class="flex flex-column align-items-center sm:align-items-start gap-3"
-                >
-                  <div class="text-2xl font-bold text-900">
-                    {{ historic.serviceName }}
-                    <div class="date-text">{{ historic.date }}</div>
-                  </div>
-                  <div class="flex align-items-center gap-3">
-                    <!-- <span class="flex align-items-center gap-2">
-                      <i class="pi pi-tag"></i>
-                      <span class="font-semibold">{{ historic.date }}</span>
-                    </span> -->
-                    <div class="flex align-items-center gap-2" style="display:flex; align-items: center;">
-                      <p-avatar
-                        image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-                        styleClass="mr-2"
-                        shape="circle"
-                      ></p-avatar>
-                      <div>{{ historic.nameUser }}</div>
+                <div class="row">
+                  <div
+                    class="flex flex-column align-items-center sm:align-items-start gap-3"
+                  >
+                    <div class="col1">
+                      <div class="text-2xl font-bold text-900">
+                        {{ historic.service.name }}
+                      </div>
+                      <div class="flex align-items-center gap-3">
+                        <div
+                          class="flex align-items-center gap-2"
+                          style="display: flex; align-items: center"
+                        >
+                          <p-avatar
+                            image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                            styleClass="mr-2"
+                            shape="circle"
+                          ></p-avatar>
+                          <div>{{ historic.employee.fullname }}</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div
-                  class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2"
-                >
-                  <span class="text-2xl font-semibold">{{
-                    "$" + historic.price
-                  }}</span>
+                <div class="col2">
+                  <div
+                    class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2"
+                  >
+                    <span class="text-2xl font-semibold">{{
+                      "$" + historic.service.price
+                    }}</span>
+                  </div>
                 </div>
               </div>
             </div>
