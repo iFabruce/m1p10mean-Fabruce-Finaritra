@@ -10,6 +10,7 @@ import { AuthGuard } from './services/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 
+import { ManageemployeeComponent } from './pages/manageemployee/manageemployee.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -17,11 +18,10 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'add',   canActivate: [AuthGuard], component: AddTutorialComponent },
-  { path: 'preference',   canActivate: [AuthGuard], component: PreferenceComponent },
-  { path: 'historics',   canActivate: [AuthGuard], component: HistoricComponent },
-  { path: 'appointment',   canActivate: [AuthGuard], component: AppointmentComponent },
-  { path: 'calendar',   canActivate: [AuthGuard], component: CalendarComponent }
-
+  { path: 'client/preference',   canActivate: [AuthGuard], component: PreferenceComponent },
+  { path: 'client/historics',   canActivate: [AuthGuard], component: HistoricComponent },
+  { path: 'client/appointment',   canActivate: [AuthGuard], component: AppointmentComponent },
+  { path: 'manager/manageEmploye',   canActivate: [AuthGuard], component: ManageemployeeComponent }
   // { path: 'tutorials', component: TutorialsListComponent },
   // { path: 'tutorials/:id', component: TutorialDetailsComponent },
 ];

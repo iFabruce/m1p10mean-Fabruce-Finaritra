@@ -8,7 +8,9 @@ module.exports = app => {
     router.post("/create", service.create);
     router.put("/update/:id", service.update);
     router.delete("/delete/:id", service.delete);
-
+    router.put("/updateStatus", service.updateStatus);
+    router.put("/updateService", service.updateService);
+    router.get("/findByStatus/:status", service.findByStatus);
 
     app.use("/api/service", router);
 };

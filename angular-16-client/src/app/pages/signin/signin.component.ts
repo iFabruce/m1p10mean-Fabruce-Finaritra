@@ -39,13 +39,13 @@ export class SigninComponent {
         localStorage.setItem('profil', data.profil)
 
         if(data.type == "Client"){
-          this.router.navigate(['/appointment']);
+          this.router.navigate(['client/appointment']);
         }else if(data.type == "Employé"){
           console.log(data.type)
           // this.router.navigate(['/EmployeeAppointement']);
         }else{
           console.log(data.type)
-          // this.router.navigate(['/EmployeeManagement']);
+          this.router.navigate(['manager/manageEmploye']);
         }
       },(error: any) => {
         console.log(error.message);

@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser');
 module.exports = app => {
     const employee = require("../controllers/employee.controller.js");
     var router = require("express").Router();
@@ -8,6 +9,10 @@ module.exports = app => {
     router.post("/create", employee.create);
     router.put("/update/:id", employee.update);
     router.delete("/delete/:id", employee.delete);
+    router.put("/updateStatus", employee.updateStatus);
+    router.put("/updateEmploye", employee.updateEmploye);
+    router.get("/findByStatus/:status", employee.findByStatus);
 
     app.use("/api/employee", router);
+    app.use(bodyParser.json());
 };

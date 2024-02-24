@@ -64,3 +64,40 @@ exports.delete = (req, res) => {
   })
 
 };
+
+exports.updateStatus = (req, res) => {
+  employeeService.updateStatus(req.body.service, req.body.statusFilter)
+    .then(
+      data => {
+        res.send(data);
+      }
+    )
+    .catch(error =>{
+      console.log(error)
+      res.status(500).send({message: error.message || "Erreur"})
+    })
+};
+
+exports.updateService = (req, res) => {
+  console.log("contr",req.body)
+  serviceService.updateService(req.body)
+    .then(
+      data => {
+        res.send(data);
+      }
+    )
+    .catch(error =>{
+      console.log(error)
+      res.status(500).send({message: error.message || "Erreur"})
+    })
+};
+
+exports.findByStatus = (req, res) => {
+  serviceService.findStatus(req.params)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message || "Erreur" });
+    });
+};

@@ -6,6 +6,7 @@ const ServiceSchema = mongoose.Schema(
     price: { type: Number, required: true, unique: true },
     duration: { type: Number, required: true },
     commission: { type: String, required: false },
+    status: { type: String, required: true },
   },
   { timestamps: true }
 );

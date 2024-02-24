@@ -59,3 +59,4 @@ exports.updateFavorite = async (clientId, newFavoriteEmployeeData,newFavoriteSer
     throw new Error(`Erreur lors de la mise à jour du client: ${error.message}`);
   }
 }
+
