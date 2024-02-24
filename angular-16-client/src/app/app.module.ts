@@ -34,11 +34,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { TableModule } from 'primeng/table';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
-import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarComponent } from './pages/calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 // import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-
+import { ManageemployeeComponent } from './pages/manageemployee/manageemployee.component';
+import { DragDropModule } from 'primeng/dragdrop';
+import { CardModule } from 'primeng/card';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +57,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     PreferenceComponent,
     AppointmentComponent,
     HomeComponent,
-    CalendarComponent
+    CalendarComponent,
+    ManageemployeeComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +82,10 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     TableModule,
     MessagesModule,
     ToastModule,
-    FullCalendarModule,
+    DragDropModule,
+    CardModule,
+    ScrollPanelModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

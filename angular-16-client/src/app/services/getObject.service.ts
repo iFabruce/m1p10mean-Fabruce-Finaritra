@@ -23,6 +23,12 @@ export class GetObjectService {
     return this.http.put(url, data);
   }
 
+  updateDataObject(nameObject: String, apiname: String, data: any): Observable<any> {
+    console.log("url",data)
+    const url = `http://localhost:8080/api/${nameObject}/${apiname}`;
+    return this.http.put(url, data);
+  }
+
   findByDataBody(nameObject: String, apiname: String, data: any): Observable<any> {
     const url = `http://localhost:8080/api/${nameObject}/${apiname}`;
     return this.http.post(url, data);

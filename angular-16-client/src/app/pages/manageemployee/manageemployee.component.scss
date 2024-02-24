@@ -1,0 +1,16 @@
+$color-text-top-menu: #ffffff;
+$color1: #1F2544;
+$color2: #474F7A;
+$color3: #81689D;
+$color4: #FFD0EC;
+
+.manageemploye{
+  width: 80vw;
+}
+:host ::ng-deep .p-button{
+  background: $color3;
+  border: 1px solid $color3;
+}
+.butt{
+  margin-top: 2vh;
+}

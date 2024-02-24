@@ -39,3 +39,44 @@ exports.delete = (serviceId) => {
     throw error;
   }
 }
+
+exports.updateStatus = async (service,statusFilter) => {
+  try {
+    console.log(service)
+      const updatedService = await Service.findOneAndUpdate(
+        { "_id": service.id },
+        { $set: { status: statusFilter } },
+        { new: true }
+      );
+      console.log("Serv: ",updatedService)
+      return updatedService;
+  } catch (error) {
+    throw new Error(`Erreur lors de la mise à jour du status: ${error.message}`);
+  }
+};
+
+exports.updateService = async (service) => {
+  console.log("serviceback",service)
+  try {
+      const updatedService = await ServiceWorkerContainer.findOneAndUpdate(
+        { "_id": service._id },
+        { $set: { name: service.name, price:service.price, duration:service.duration, commission:service.commission } },
+        { new: true }
+      );
+      console.log("Serv: ",updatedService)
+      return updatedService;
+  } catch (error) {
+    throw new Error(`Erreur lors de la mise à jour du service: ${error.message}`);
+  }
+};
+
+
+exports.findStatus = (statusFilter) => {
+  if(statusFilter.status==="actif"){
+    console.log("actif",statusFilter)
+    return Service.find({status:"actif"});
+  }else{
+    console.log(statusFilter)
+    return Service.find({status:"inactif"});
+  }
+};
