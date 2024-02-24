@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'client/preference',   canActivate: [AuthGuard], component: PreferenceComponent },
   { path: 'client/historics',   canActivate: [AuthGuard], component: HistoricComponent },
   { path: 'client/appointment',   canActivate: [AuthGuard], component: AppointmentComponent },
-  { path: 'manager/manageEmploye',   canActivate: [AuthGuard], component: ManageemployeeComponent }
+  { path: 'client/calendar',  canActivate: [AuthGuard], component: CalendarComponent },
+  { path: 'manager/manageEmploye', canActivate: [AuthGuard], component: ManageemployeeComponent },
   // { path: 'tutorials', component: TutorialsListComponent },
   // { path: 'tutorials/:id', component: TutorialDetailsComponent },
 ];

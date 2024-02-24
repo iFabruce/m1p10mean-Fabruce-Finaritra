@@ -8,6 +8,10 @@ module.exports = app => {
     router.get("/employeeAppointment/:employeeId/:date", appointment.employeeAppointment);
     router.post("/create", appointment.create);
     router.post('/clientAppointment', appointment.getAppointmentsByClientAndDateRange);
+    router.get('/calendar/:clientId', appointment.getClientAppointment);
+
+
+
     app.use("/api/appointment", router);
 };
   

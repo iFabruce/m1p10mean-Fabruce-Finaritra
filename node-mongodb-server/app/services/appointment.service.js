@@ -4,24 +4,29 @@ const Appointment = require("../models/appointment.model");
 const clientService = require("../services/client.service");
 const employeeService = require("../services/employee.service");
 const serviceService = require("../services/service.service");
+
+exports.getClientAppointment = async (clientId) => {
+  return Appointment.find({ "client._id": clientId})  
+}
+
 function convertDate(date) {
   const dateSplit = date.split("-");
   return new Date(dateSplit[0] - 1, dateSplit[1], dateSplit[2]);
 }
-exports.employeeAppointment = async (employeeId, date) => {
-  const dateSplit = date.split("-");
 
+exports.employeeAppointment = async (employeeId, date) => {
+  const dateSplit = date.split("-")
   const startingDate = new Date(
-    dateSplit[0] - 1,
+    dateSplit[0],
     dateSplit[1] - 1,
     dateSplit[2],
-    "08"
+    "08" //heure d'ouverture
   );
   const endDate = new Date(
-    dateSplit[0] - 1,
+    dateSplit[0],
     dateSplit[1] - 1,
     dateSplit[2],
-    "16"
+    "16" //heure de fermeture
   );
 
   return await Appointment.find({
@@ -49,36 +54,36 @@ exports.getAppointmentsByClientAndDateRange = async (clientId, startDate, endDat
   }
 }
 
-
-
-
 exports.findAll = () => {
   return Appointment.find();
 };
 
 exports.findOne = (username) => {
-  // var condition = username ? { username: { $regex: new RegExp(username), $options: "i" } } : {};
   return Appointment.findOne({ username });
 };
 
 exports.create = async (date, hour, clientId, employeeId, serviceId) => {
   try {
+    const offset = new Date().getTimezoneOffset();
     const dateSplit = date.split("-");
     const hourSplit = hour.split(":");
+    // const hh = (Number(hourSplit[0]) + offset/60).toString()
     var startingDate = new Date(
-      dateSplit[0] - 1,
+      dateSplit[0],
       dateSplit[1] - 1,
       dateSplit[2],
-      hourSplit[0],
+      (Number(hourSplit[0])+3).toString(), //UTC+3
       hourSplit[1]
     );
+    console.log(dateSplit[2])
+
+    const service = await serviceService.findOne(serviceId);
 
     var endingDate = new Date(startingDate);
-    endingDate.setHours(startingDate.getHours() + 2);
+    endingDate.setHours(startingDate.getHours() + service.duration);
 
     const client = await clientService.findOne(clientId);
     const employee = await employeeService.findOne(employeeId);
-    const service = await serviceService.findOne(serviceId);
 
     const overlappingAppointments = await Appointment.find({
       $and: [
@@ -103,19 +108,26 @@ exports.create = async (date, hour, clientId, employeeId, serviceId) => {
     });
 
     if (overlappingAppointments.length > 0) {
-      return "Le nouveau rendez se chevauche avec un rendez-vous existant.";
+      return "overlapping";
     } else {
-      const newAppointmentWithClient = new Appointment({
-        startingDate,
-        endingDate,
-        client,
-        service,
-        employee,
-        status: "actif",
-      });
-      newAppointmentWithClient.save();
-      console.log("Rendez-vous ajouté avec succès:", newAppointmentWithClient);
-      return "Rendez-vous ajouté avec succès:";
+      const payment = await clientService.payment(clientId, service.price)
+      if(payment){
+        const newAppointmentWithClient = new Appointment({
+          startingDate,
+          endingDate,
+          client,
+          service,
+          employee,
+          status: "actif",
+        });
+        newAppointmentWithClient.save();
+        console.log("Rendez-vous ajouté avec succès:", newAppointmentWithClient);
+        return "success"
+      }
+      else{
+        console.log("Solde insuffisant");
+        return "cash"
+      }
     }
   } catch (error) {
     console.log(error.message);

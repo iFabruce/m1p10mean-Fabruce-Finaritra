@@ -41,13 +41,12 @@
         { id:2, heure: '09:00', key: '9' },
         { id:3, heure: '10:00', key: '10' },
         { id:4, heure: '11:00', key: '11' },
-        { id:4, heure: '12:00', key: '12' },
-        { id:4, heure: '13:00', key: '13' },
-        { id:4, heure: '14:00', key: '14' },
-        { id:4, heure: '15:00', key: '15' },
-        { id:4, heure: '16:00', key: '15' }
+        { id:5, heure: '12:00', key: '12' },
+        { id:6, heure: '13:00', key: '13' },
+        { id:7, heure: '14:00', key: '14' },
+        { id:8, heure: '15:00', key: '15' },
+        { id:9, heure: '16:00', key: '15' }
     ];
-
 
     selectedEmploye: Employe | undefined;
     selectedService: Service | undefined;
@@ -71,13 +70,14 @@
           const month = this.date ? ("0" + (this.date.getMonth() + 1)).slice(-2) : '';
           const day = ("0" + this.date?.getDate()).slice(-2); // Ajoute un zéro en tête si nécessaire
           const formattedDate = `${year}-${month}-${day}`;
+          console.log("form date", formattedDate)
 
-          this.appointmentService.employeeAppointment(this.selectedEmploye?.id,formattedDate).subscribe(
-            (data: any) => {
-              this.appointment=data
+          // this.appointmentService.employeeAppointment(this.selectedEmploye?.id,formattedDate).subscribe(
+          //   (data: any) => {
+          //     this.appointment=data
 
-            }
-          )
+          //   }
+          // )
         }
         //Quand le service est choisi
         // if(this.selectedService !== undefined){

@@ -42,6 +42,7 @@ import { ManageemployeeComponent } from './pages/manageemployee/manageemployee.c
 import { DragDropModule } from 'primeng/dragdrop';
 import { CardModule } from 'primeng/card';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+
 @NgModule({
   declarations: [
     AppComponent,
