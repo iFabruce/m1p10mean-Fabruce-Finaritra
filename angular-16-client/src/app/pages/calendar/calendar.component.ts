@@ -11,6 +11,9 @@ import timeGridPlugin from '@fullcalendar/timegrid'; // Import timeGridPlugin
 export class CalendarComponent {
 calendarOptions: CalendarOptions = {
     initialView: 'timeGridWeek',
+    events: [
+      { title: 'event 1', start: '2024-02-22T08:00:00',end: '2024-02-22T10:00:00' },
+    ],
     plugins: [dayGridPlugin, timeGridPlugin]
   };
 }
