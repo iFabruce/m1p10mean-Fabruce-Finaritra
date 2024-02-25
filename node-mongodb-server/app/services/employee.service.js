@@ -29,6 +29,7 @@ exports.create = (EmployeeData) => {
     const newEmployee = new Employee(EmployeeData);
     return newEmployee.save();
   } catch (error) {
+    console.log(error)
     throw error;
   }
 }

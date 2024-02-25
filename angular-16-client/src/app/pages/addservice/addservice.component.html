@@ -1,0 +1,57 @@
+<div>
+  <div class="flex flex-column gap-2">
+    <label htmlFor="service">Nom </label>
+    <input
+      pInputText
+      id="service"
+      aria-describedby="service-help"
+      [(ngModel)]="name"
+      placeholder="nom du service"
+    />
+  </div>
+  <br />
+  <div class="flex flex-column gap-2" >
+    <label htmlFor="schedules">Prix</label>
+    <p-inputNumber
+      [(ngModel)]="price"
+      inputId="minmaxfraction"
+      mode="decimal"
+      [minFractionDigits]="2"
+      [maxFractionDigits]="2"
+      placeholder="Prix du service"
+    >
+    </p-inputNumber>
+  </div>
+  <br />
+  <div class="flex flex-column gap-2" >
+    <label htmlFor="suration">Durée</label>
+    <p-inputNumber
+      [(ngModel)]="duration"
+      inputId="minmaxfraction"
+      mode="decimal"
+      [minFractionDigits]="2"
+      [maxFractionDigits]="2"
+      placeholder="Durée du service"
+    >
+    </p-inputNumber>
+  </div>
+  <br />
+  <div class="flex flex-column gap-2" >
+    <label htmlFor="commission">Commission</label>
+    <p-inputNumber
+      [(ngModel)]="commission"
+      inputId="minmaxfraction"
+      mode="decimal"
+      [minFractionDigits]="2"
+      [maxFractionDigits]="2"
+      placeholder="Commission "
+    >
+    </p-inputNumber>
+  </div>
+  <br />
+  <div class="form">
+    <div class="flex justify-content-end gap-2">
+      <p-button label="Modifier" (onClick)="addservice()"></p-button>
+    </div>
+  </div>
+</div>

@@ -27,6 +27,18 @@ export class ManageserviceComponent {
 
 	currentlyDragging: Service | null = null;
 
+  refreshData (){
+		this.getObjectService.findOne("service","actif","findByStatus").subscribe(data => {
+      this.available = data;
+    });
+
+		this.getObjectService.findOne("service","inactif","findByStatus").subscribe(data => {
+      this.selected = data;
+    });
+
+
+  }
+
   freshList(){
 		this.getObjectService.findOne("service","actif","findByStatus").subscribe(data => {
       this.available = data;
@@ -105,6 +117,7 @@ export class ManageserviceComponent {
 
   //page modif
   visible: boolean = false;
+  visibleCreate: boolean = false;
 
   name:any;
   price:any;
@@ -121,6 +134,9 @@ export class ManageserviceComponent {
       this.commission=service.commission;
       this.id=service.id;
       console.log(this.serviceModif);
+  }
+  showDialogCreate(){
+    this.visibleCreate=true;
   }
 
   onModif(){
