@@ -42,6 +42,11 @@ import { ManageemployeeComponent } from './pages/manageemployee/manageemployee.c
 import { DragDropModule } from 'primeng/dragdrop';
 import { CardModule } from 'primeng/card';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { ChartModule } from 'primeng/chart';
+import { TrackingComponent } from './pages/tracking/monthly/tracking.component';
+import { WorkingTimeComponent } from './pages/working-time/working-time.component';
+import { DailyTrackingComponent } from './pages/tracking/daily/daily-tracking/daily-tracking.component';
+
 import { ManageserviceComponent } from './pages/manageservice/manageservice.component';
 import { AddemployeComponent } from './pages/addemploye/addemploye.component';
 import { AddserviceComponent } from './pages/addservice/addservice.component';
@@ -63,6 +68,9 @@ import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/upda
     HomeComponent,
     CalendarComponent,
     ManageemployeeComponent,
+    WorkingTimeComponent,
+    TrackingComponent,
+    DailyTrackingComponent,
     ManageserviceComponent,
     AddemployeComponent,
     AddserviceComponent,
@@ -93,7 +101,8 @@ import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/upda
     DragDropModule,
     CardModule,
     ScrollPanelModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ChartModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
