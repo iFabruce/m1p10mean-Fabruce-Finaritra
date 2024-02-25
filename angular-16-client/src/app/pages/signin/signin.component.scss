@@ -108,3 +108,12 @@ $width-form: 30vw;
 :host ::ng-deep .signup-butt .p-button{
   background: $color2;
 }
+
+
+:host ::ng-deep .p-password{
+  width: 100%;
+}
+
+:host ::ng-deep .p-input-icon-right > .p-inputtext{
+  width: 100%;
+}

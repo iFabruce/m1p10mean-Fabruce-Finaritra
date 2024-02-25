@@ -70,10 +70,10 @@ export class MenubarComponent {
     }else{
       this.items = [
         {
-          label: 'Gestion',
+          label: 'Parametre',
           items: [
             {
-              label: 'Employé',
+              label: 'Profil',
               icon: 'pi pi-users',
               routerLink: 'manager/manageEmploye',
             },
@@ -91,7 +91,9 @@ export class MenubarComponent {
               label: 'Réservation mensuelle',
               icon: 'pi pi-tags',
               routerLink: 'manager/tracking/monthly',
-            },
+            },{
+              routerLink: 'employee/updateProfil',
+            }
           ],
         },
       ];

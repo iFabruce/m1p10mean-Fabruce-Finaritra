@@ -50,6 +50,7 @@ import { DailyTrackingComponent } from './pages/tracking/daily/daily-tracking/da
 import { ManageserviceComponent } from './pages/manageservice/manageservice.component';
 import { AddemployeComponent } from './pages/addemploye/addemploye.component';
 import { AddserviceComponent } from './pages/addservice/addservice.component';
+import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/updateprofilemployee.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +74,7 @@ import { AddserviceComponent } from './pages/addservice/addservice.component';
     ManageserviceComponent,
     AddemployeComponent,
     AddserviceComponent,
+    UpdateprofilemployeeComponent,
   ],
   imports: [
     BrowserModule,
