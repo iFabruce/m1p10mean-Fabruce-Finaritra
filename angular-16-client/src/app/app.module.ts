@@ -47,6 +47,9 @@ import { TrackingComponent } from './pages/tracking/monthly/tracking.component';
 import { WorkingTimeComponent } from './pages/working-time/working-time.component';
 import { DailyTrackingComponent } from './pages/tracking/daily/daily-tracking/daily-tracking.component';
 
+import { ManageserviceComponent } from './pages/manageservice/manageservice.component';
+import { AddemployeComponent } from './pages/addemploye/addemploye.component';
+import { AddserviceComponent } from './pages/addservice/addservice.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +69,10 @@ import { DailyTrackingComponent } from './pages/tracking/daily/daily-tracking/da
     ManageemployeeComponent,
     WorkingTimeComponent,
     TrackingComponent,
-    DailyTrackingComponent
+    DailyTrackingComponent,
+    ManageserviceComponent,
+    AddemployeComponent,
+    AddserviceComponent,
   ],
   imports: [
     BrowserModule,

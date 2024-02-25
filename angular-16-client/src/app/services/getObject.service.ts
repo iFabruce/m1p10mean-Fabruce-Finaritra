@@ -8,6 +8,12 @@ import { Observable } from 'rxjs';
 export class GetObjectService {
   constructor(private http: HttpClient) {}
 
+  create(nameObject: String, apiname: String, data: any): Observable<any> {
+    console.log("url",data)
+    const url = `http://localhost:8080/api/${nameObject}/${apiname}`;
+    return this.http.post(url, data);
+  }
+
   fetchData(nameObject: string, apiname: string): Observable<any> {
     const apiUrl = `http://localhost:8080/api/${nameObject}/${apiname}`;
     return this.http.get(apiUrl);

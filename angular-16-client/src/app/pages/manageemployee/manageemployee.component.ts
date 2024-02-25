@@ -18,14 +18,14 @@ interface Person {
 export class ManageemployeeComponent {
   @ViewChild('dt1') dt1: Table | undefined;
   @ViewChild('dt') dt: Table | undefined;
-
+//Drag and drop
 	constructor(private msg: MessageService,private getObjectService: GetObjectService) {}
 	available: Person[] = [];
 	selected: Person[] = [];
 
 	currentlyDragging: Person | null = null;
 
-	ngOnInit() {
+  refreshData (){
 		this.getObjectService.findOne("employee","actif","findByStatus").subscribe(data => {
       this.available = data;
     });
@@ -34,6 +34,11 @@ export class ManageemployeeComponent {
       this.selected = data;
     });
 
+
+  }
+
+	ngOnInit() {
+    this.refreshData();
 	}
 
 	dragStart(person: Person) {
@@ -98,6 +103,7 @@ export class ManageemployeeComponent {
 
   //page modif
   visible: boolean = false;
+  visibleCreate: boolean = false;
 
   fullname:any;
   username:any;
@@ -115,7 +121,9 @@ export class ManageemployeeComponent {
       console.log(this.employeeModif);
 
   }
-
+  showDialogCreate(){
+    this.visibleCreate=true;
+  }
   onModif(){
     const employee = {
       _id:this.id,
@@ -125,9 +133,11 @@ export class ManageemployeeComponent {
     }
     console.log("modif: ",employee)
     this.getObjectService.updateDataObject("employee","updateEmploye",employee).subscribe(updatedEmploye => {
+      this.visible=false;
       console.log(' mis à jour:', updatedEmploye);
     }, error => {
       console.error('Erreur lors de la mise à jour :', error);
     });
   }
 }
+

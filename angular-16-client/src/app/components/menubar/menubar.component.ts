@@ -47,12 +47,12 @@ export class MenubarComponent {
             {
               label: 'Employé',
               icon: 'pi pi-users',
-              routerLink: '/manageEmploye',
+              routerLink: 'manager/manageEmploye',
             },
             {
               label: 'Service',
               icon: 'pi pi-briefcase',
-              routerLink: '/manageEmploye',
+              routerLink: 'manager/manageService',
             }
           ],
         },
@@ -65,12 +65,12 @@ export class MenubarComponent {
             {
               label: 'Employé',
               icon: 'pi pi-users',
-              routerLink: '/manageEmploye',
+              routerLink: 'manager/manageEmploye',
             },
             {
               label: 'Service',
               icon: 'pi pi-briefcase',
-              routerLink: '/manageEmploye',
+              routerLink: 'manager/manageService',
             }
           ],
         },
