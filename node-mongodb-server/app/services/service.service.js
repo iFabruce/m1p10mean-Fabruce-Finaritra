@@ -56,10 +56,10 @@ exports.updateStatus = async (service,statusFilter) => {
 };
 
 exports.updateService = async (service) => {
-  console.log("serviceback",service)
+  console.log("serviceback",service._id)
   try {
-      const updatedService = await ServiceWorkerContainer.findOneAndUpdate(
-        { "_id": service._id },
+      const updatedService = await Service.findOneAndUpdate(
+        { "id": service._id },
         { $set: { name: service.name, price:service.price, duration:service.duration, commission:service.commission } },
         { new: true }
       );
@@ -69,7 +69,6 @@ exports.updateService = async (service) => {
     throw new Error(`Erreur lors de la mise à jour du service: ${error.message}`);
   }
 };
-
 
 exports.findStatus = (statusFilter) => {
   if(statusFilter.status==="actif"){

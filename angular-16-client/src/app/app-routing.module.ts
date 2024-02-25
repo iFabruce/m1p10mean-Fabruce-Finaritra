@@ -11,6 +11,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 
 import { ManageemployeeComponent } from './pages/manageemployee/manageemployee.component';
+import { ManageserviceComponent } from './pages/manageservice/manageservice.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -21,8 +22,8 @@ const routes: Routes = [
   { path: 'client/preference',   canActivate: [AuthGuard], component: PreferenceComponent },
   { path: 'client/historics',   canActivate: [AuthGuard], component: HistoricComponent },
   { path: 'client/appointment',   canActivate: [AuthGuard], component: AppointmentComponent },
-  { path: 'client/calendar',  canActivate: [AuthGuard], component: CalendarComponent },
-  { path: 'manager/manageEmploye', canActivate: [AuthGuard], component: ManageemployeeComponent },
+  { path: 'manager/manageEmploye',   canActivate: [AuthGuard], component: ManageemployeeComponent },
+  { path: 'manager/manageService',   canActivate: [AuthGuard], component: ManageserviceComponent }
   // { path: 'tutorials', component: TutorialsListComponent },
   // { path: 'tutorials/:id', component: TutorialDetailsComponent },
 ];

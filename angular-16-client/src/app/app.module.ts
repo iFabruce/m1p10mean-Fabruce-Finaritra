@@ -42,7 +42,7 @@ import { ManageemployeeComponent } from './pages/manageemployee/manageemployee.c
 import { DragDropModule } from 'primeng/dragdrop';
 import { CardModule } from 'primeng/card';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
-
+import { ManageserviceComponent } from './pages/manageservice/manageservice.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +60,7 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
     HomeComponent,
     CalendarComponent,
     ManageemployeeComponent,
+    ManageserviceComponent,
   ],
   imports: [
     BrowserModule,

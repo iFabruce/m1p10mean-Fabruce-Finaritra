@@ -66,7 +66,9 @@ exports.delete = (req, res) => {
 };
 
 exports.updateStatus = (req, res) => {
-  employeeService.updateStatus(req.body.service, req.body.statusFilter)
+  const service =req.body.service
+  console.log('service',service,'')
+  serviceService.updateStatus(service, req.body.statusFilter)
     .then(
       data => {
         res.send(data);
@@ -79,7 +81,7 @@ exports.updateStatus = (req, res) => {
 };
 
 exports.updateService = (req, res) => {
-  console.log("contr",req.body)
+  console.log("contr: ",req.body)
   serviceService.updateService(req.body)
     .then(
       data => {
