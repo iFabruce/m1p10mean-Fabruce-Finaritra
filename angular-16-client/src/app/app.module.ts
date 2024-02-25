@@ -42,6 +42,10 @@ import { ManageemployeeComponent } from './pages/manageemployee/manageemployee.c
 import { DragDropModule } from 'primeng/dragdrop';
 import { CardModule } from 'primeng/card';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { ChartModule } from 'primeng/chart';
+import { TrackingComponent } from './pages/tracking/monthly/tracking.component';
+import { WorkingTimeComponent } from './pages/working-time/working-time.component';
+import { DailyTrackingComponent } from './pages/tracking/daily/daily-tracking/daily-tracking.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +64,9 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
     HomeComponent,
     CalendarComponent,
     ManageemployeeComponent,
+    WorkingTimeComponent,
+    TrackingComponent,
+    DailyTrackingComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +93,8 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
     DragDropModule,
     CardModule,
     ScrollPanelModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ChartModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

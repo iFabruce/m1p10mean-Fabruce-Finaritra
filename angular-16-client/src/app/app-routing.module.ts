@@ -9,8 +9,10 @@ import { AppointmentComponent } from './pages/appointment/appointment.component'
 import { AuthGuard } from './services/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
-
 import { ManageemployeeComponent } from './pages/manageemployee/manageemployee.component';
+import { TrackingComponent } from './pages/tracking/monthly/tracking.component';
+import { WorkingTimeComponent } from './pages/working-time/working-time.component';
+import { DailyTrackingComponent } from './pages/tracking/daily/daily-tracking/daily-tracking.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -23,6 +25,9 @@ const routes: Routes = [
   { path: 'client/appointment',   canActivate: [AuthGuard], component: AppointmentComponent },
   { path: 'client/calendar',  canActivate: [AuthGuard], component: CalendarComponent },
   { path: 'manager/manageEmploye', canActivate: [AuthGuard], component: ManageemployeeComponent },
+  { path: 'manager/tracking/daily', canActivate: [AuthGuard], component: DailyTrackingComponent },
+  { path: 'manager/tracking/monthly', canActivate: [AuthGuard], component: TrackingComponent },
+  { path: 'manager/workingTime', canActivate: [AuthGuard], component: WorkingTimeComponent },
   // { path: 'tutorials', component: TutorialsListComponent },
   // { path: 'tutorials/:id', component: TutorialDetailsComponent },
 ];

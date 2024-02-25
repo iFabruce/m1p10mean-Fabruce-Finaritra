@@ -1,5 +1,26 @@
 const managerService = require('../services/manager.service');
 
+exports.getDailyAppointmentNumber = (req,res) =>{
+  managerService.getDailyAppointmentNumber()
+    .then(data =>{
+        res.send(data)
+      }
+    )
+    .catch(err => {
+      res.status(500).send({ message: err.message || "Erreur" });
+    });
+}
+exports.getMonthlyAppointmentNumber = (req,res) =>{
+  managerService.getMonthlyAppointmentNumber()
+    .then(data =>{
+        res.send(data)
+      }
+    )
+    .catch(err => {
+      res.status(500).send({ message: err.message || "Erreur" });
+    });
+}
+
 exports.workingTime = (req,res) =>{
   managerService.workingTime()
     .then(data =>{

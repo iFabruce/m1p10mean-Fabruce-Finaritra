@@ -2,32 +2,60 @@
 const Manager = require('../models/manager.model');
 const Appointment = require('../models/appointment.model');
 
-const db = require("../models");
 
-exports.workingTime = () => {
+exports.getDailyAppointmentNumber = () => {
   return Appointment.aggregate([
-    // {
-    //   $match: {
-    //     "employee.id": { $exists: true }
-    //   }
-    // },
     {
       $group: {
-        _id: "$employee._id",
-        totalWorkTime: {
-          $sum: "$service.duration"
+        _id: { $dayOfWeek: "$startingDate" },
+        total: {$sum: 1}
+      }, 
+    },
+    {
+      $project: {
+        dayOfWeek: "$_id",
+        total: "$total"
+      }
+    }
+  ]);
+}
+exports.getMonthlyAppointmentNumber = () => {
+  return Appointment.aggregate([
+    {
+      $group: {
+        _id: { $month: "$startingDate" },
+        total: {$sum: 1}
+      }, 
+    },
+    {
+      $project: {
+        month: "$_id",
+        total: "$total"
+      }
+    }
+  ]);
+}
+
+//Temps moyen de travail
+exports.workingTime = () => {
+  return Appointment.aggregate([
+    {
+      $group: {
+        _id: "$employee.fullname",
+        averageWorkTime: {
+          $avg: "$service.duration"
         }
       }
     },
     {
       $project: {
-        employeeId: "$_id",
-        totalWorkTime: "$totalWorkTime"
+        employee: "$_id",
+        averageWorkTime: "$averageWorkTime"
       }
     }
   ]);
-  
 } 
+
 exports.findAll = () => {
   return Manager.find();
 };
