@@ -4,7 +4,7 @@ import { Table } from 'primeng/table';
 
 import { GetObjectService } from './../../services/getObject.service';
 interface Service {
-	_id: String;
+	id: String;
 	name: String;
 	price: number;
 	duration: number;
@@ -72,18 +72,20 @@ export class ManageserviceComponent {
 	findIndex(service: Service) {
 		let index = -1;
 		for (let i = 0; i < this.available.length; i++) {
-			if (service._id === this.available[i]._id) {
+			if (service.id === this.available[i].id) {
 				index = i;
 				break;
 			}
 		}
 		return index;
 	}
-  inactifToActif(service: any) {
-    this.available = [...this.available, service];
-    this.selected = this.selected.filter((p) => p._id !== service._id);
-    const data ={service:service,statusFilter:"actif"}
+  inactifToActif(myservice: any) {
+    this.available = [...this.available, myservice];
+    this.selected = this.selected.filter((p) => {p.id !== myservice.id;
+      console.log("id: ",p.id)});
+    const data ={service:myservice,statusFilter:"actif"}
     this.getObjectService.updateDataObject("service","updateStatus",data).subscribe(updatedService => {
+      this.freshList()
       console.log(' mis à jour:', updatedService);
     }, error => {
       console.error('Erreur lors de la mise à jour :', error);
@@ -123,7 +125,7 @@ export class ManageserviceComponent {
 
   onModif(){
     const service = {
-      _id:this.id,
+      id:this.id,
       name:this.name,
       price:this.price,
       duration:this.duration,
@@ -132,7 +134,6 @@ export class ManageserviceComponent {
     console.log("modif: ",service)
     this.getObjectService.updateDataObject("service","updateService",service).subscribe(updatedService => {
       console.log(' mis à jour:', updatedService);
-      this.freshList();
     }, error => {
       console.error('Erreur lors de la mise à jour :', error);
     });

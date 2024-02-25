@@ -56,10 +56,10 @@ exports.updateStatus = async (service,statusFilter) => {
 };
 
 exports.updateService = async (service) => {
-  console.log("serviceback",service._id)
+  console.log("serviceback",service.id)
   try {
       const updatedService = await Service.findOneAndUpdate(
-        { "id": service._id },
+        { "id": service.id },
         { $set: { name: service.name, price:service.price, duration:service.duration, commission:service.commission } },
         { new: true }
       );
