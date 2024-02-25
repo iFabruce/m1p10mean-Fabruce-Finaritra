@@ -12,6 +12,7 @@ import { CalendarComponent } from './pages/calendar/calendar.component';
 
 import { ManageemployeeComponent } from './pages/manageemployee/manageemployee.component';
 import { ManageserviceComponent } from './pages/manageservice/manageservice.component';
+import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/updateprofilemployee.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'client/historics',   canActivate: [AuthGuard], component: HistoricComponent },
   { path: 'client/appointment',   canActivate: [AuthGuard], component: AppointmentComponent },
   { path: 'manager/manageEmploye',   canActivate: [AuthGuard], component: ManageemployeeComponent },
-  { path: 'manager/manageService',   canActivate: [AuthGuard], component: ManageserviceComponent }
+  { path: 'manager/manageService',   canActivate: [AuthGuard], component: ManageserviceComponent },
+  { path: 'employee/updateProfil',   canActivate: [AuthGuard], component: UpdateprofilemployeeComponent },
   // { path: 'tutorials', component: TutorialsListComponent },
   // { path: 'tutorials/:id', component: TutorialDetailsComponent },
 ];

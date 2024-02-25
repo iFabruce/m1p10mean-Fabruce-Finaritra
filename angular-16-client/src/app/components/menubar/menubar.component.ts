@@ -60,17 +60,12 @@ export class MenubarComponent {
     }else{
       this.items = [
         {
-          label: 'Gestion',
+          label: 'Parametre',
           items: [
             {
-              label: 'Employé',
+              label: 'Profil',
               icon: 'pi pi-users',
-              routerLink: 'manager/manageEmploye',
-            },
-            {
-              label: 'Service',
-              icon: 'pi pi-briefcase',
-              routerLink: 'manager/manageService',
+              routerLink: 'employee/updateProfil',
             }
           ],
         },
