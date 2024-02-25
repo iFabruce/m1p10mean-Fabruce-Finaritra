@@ -18,7 +18,7 @@ interface Person {
 export class ManageemployeeComponent {
   @ViewChild('dt1') dt1: Table | undefined;
   @ViewChild('dt') dt: Table | undefined;
-
+//Drag and drop
 	constructor(private msg: MessageService,private getObjectService: GetObjectService) {}
 	available: Person[] = [];
 	selected: Person[] = [];
