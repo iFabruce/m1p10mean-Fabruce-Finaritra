@@ -2,7 +2,7 @@
 const Service = require('../models/service.model');
 
 exports.findAll = () => {
-  return Service.find();
+  return Service.find({status: "actif"});
 };
 
 exports.findByUsername = (username) => {

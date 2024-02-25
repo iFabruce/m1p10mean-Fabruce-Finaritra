@@ -26,14 +26,7 @@ export class TrackingComponent implements OnInit{
             }
           })
         }
-      }
-      )
-      const documentStyle = getComputedStyle(document.documentElement);
-      const textColor = documentStyle.getPropertyValue('--text-color');
-      const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-      const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-  
-      this.data = {
+        this.data = {
           labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'May', 'June', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
           datasets: [
               {
@@ -45,6 +38,14 @@ export class TrackingComponent implements OnInit{
               }
           ]
       };
+      }
+      )
+      const documentStyle = getComputedStyle(document.documentElement);
+      const textColor = documentStyle.getPropertyValue('--text-color');
+      const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+      const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+  
+     
   
       this.options = {
           maintainAspectRatio: false,

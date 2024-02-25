@@ -53,7 +53,17 @@ export class MenubarComponent {
               label: 'Service',
               icon: 'pi pi-briefcase',
               routerLink: 'manager/manageService',
-            }
+            },
+            {
+              label: 'Réservation journalière',
+              icon: 'pi pi-tag',
+              routerLink: 'manager/tracking/daily',
+            },
+            {
+              label: 'Réservation mensuelle',
+              icon: 'pi pi-tags',
+              routerLink: 'manager/tracking/monthly',
+            },
           ],
         },
       ];
@@ -71,7 +81,17 @@ export class MenubarComponent {
               label: 'Service',
               icon: 'pi pi-briefcase',
               routerLink: 'manager/manageService',
-            }
+            },  
+            {
+              label: 'Réservation journalière',
+              icon: 'pi pi-tag',
+              routerLink: 'manager/tracking/daily',
+            },
+            {
+              label: 'Réservation mensuelle',
+              icon: 'pi pi-tags',
+              routerLink: 'manager/tracking/monthly',
+            },
           ],
         },
       ];

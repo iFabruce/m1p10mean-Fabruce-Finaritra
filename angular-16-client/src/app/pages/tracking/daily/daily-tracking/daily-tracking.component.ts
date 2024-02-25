@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ManagerService } from 'src/app/services/manager.service';
-
 @Component({
   selector: 'app-tracking',
   templateUrl: './daily-tracking.component.html',
@@ -8,7 +7,7 @@ import { ManagerService } from 'src/app/services/manager.service';
 })
 export class DailyTrackingComponent implements OnInit{
   dataDaily: any;
-  list: any | undefined;
+  list: any;
   options: any;
   constructor(private managerService: ManagerService){
     this.list=[]
@@ -18,7 +17,6 @@ export class DailyTrackingComponent implements OnInit{
       (data: any) => {
         for(var i=0; i<=6;i++) {
           data.forEach((element: any)=>{
-            console.log("day:"+element.dayOfWeek+" vs i:"+i)
             if(element.dayOfWeek == i){
               this.list.push(element.total)
             }else{
@@ -26,14 +24,7 @@ export class DailyTrackingComponent implements OnInit{
             }
           })
         }
-      }
-      )
-      const documentStyle = getComputedStyle(document.documentElement);
-      const textColor = documentStyle.getPropertyValue('--text-color');
-      const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-      const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-  
-      this.dataDaily = {
+        this.dataDaily = {
           labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
           datasets: [
               {
@@ -45,6 +36,15 @@ export class DailyTrackingComponent implements OnInit{
               }
           ]
       };
+      }
+      )
+      
+      const documentStyle = getComputedStyle(document.documentElement);
+      const textColor = documentStyle.getPropertyValue('--text-color');
+      const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+      const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+  
+     
   
       this.options = {
           maintainAspectRatio: false,
@@ -77,6 +77,5 @@ export class DailyTrackingComponent implements OnInit{
               }
           }
       };
-
-  }
+    }
 }

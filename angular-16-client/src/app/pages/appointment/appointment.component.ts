@@ -18,8 +18,8 @@
   }
   interface Appointment {
     id: String;
-    startingDate: String;
-    endingDate: String;
+    startingDate: any;
+    endingDate: any;
   }
 
   @Component({
@@ -29,8 +29,13 @@
     providers: [MessageService]
   })
   export class AppointmentComponent {
+moment(arg0: any) {
+throw new Error('Method not implemented.');
+}
 
-    constructor(private messageService: MessageService, private router: Router, private employeeService: EmployeeService, private serviceService: ServiceService, private appointmentService: AppointmentService){}
+    constructor(private messageService: MessageService, private router: Router, private employeeService: EmployeeService, private serviceService: ServiceService, private appointmentService: AppointmentService){
+      this.appointment = []
+    }
 
     employes: Employe[] | undefined;
     services: Service[] | undefined;
@@ -51,7 +56,7 @@
     selectedEmploye: Employe | undefined;
     selectedService: Service | undefined;
 
-    appointment: Appointment[] | undefined;
+    appointment: any[] | undefined;
     price: any | undefined
     result: any | undefined;
 
@@ -62,6 +67,12 @@
         const formattedDate = `${year}-${month}-${day}`;
         return formattedDate
     }
+    dateo(idate: any) {
+      const date = new Date(idate)
+      const hour = date?.getHours()-3
+      const minutes = date?.getMinutes()
+      return `${hour}:${minutes}`
+    }
     onValeurInputChange() {
         //Quand la date et l'employé est choisi
         if(this.selectedEmploye!==undefined && !this.date!==undefined){
@@ -70,14 +81,21 @@
           const month = this.date ? ("0" + (this.date.getMonth() + 1)).slice(-2) : '';
           const day = ("0" + this.date?.getDate()).slice(-2); // Ajoute un zéro en tête si nécessaire
           const formattedDate = `${year}-${month}-${day}`;
-          console.log("form date", formattedDate)
+          // console.log("form date", formattedDate)
 
-          // this.appointmentService.employeeAppointment(this.selectedEmploye?.id,formattedDate).subscribe(
-          //   (data: any) => {
-          //     this.appointment=data
+          this.appointmentService.employeeAppointment(this.selectedEmploye?.id,formattedDate).subscribe(
+            (data: any) => {
+              
+              data.forEach((element: any) => {
+                const start = this.dateo(element.startingDate)
+                const end = this.dateo(element.endingDate)
+                console.log("start:"+start+" & end:"+end)
+                this.appointment?.push({startingDate: start, endingDate: end })
+                console.log(this.appointment)
+              })
+            }
+          )
 
-          //   }
-          // )
         }
         //Quand le service est choisi
         // if(this.selectedService !== undefined){
@@ -85,7 +103,9 @@
         // }
     }
 
+
     ngOnInit() {
+      // console.log(this.dateo('2024-02-25T08:00:00.000+00:00'))
       this.selectedEmploye=undefined;
       this.selectedHeure=undefined;
       this.selectedService=undefined;
@@ -97,6 +117,7 @@
           this.services = data
         }
       )
+
       this.employeeService.findAll().subscribe(
         (data: any) => {
           this.employes = data
@@ -114,7 +135,7 @@
       `)
       console.log(localStorage.getItem('profil'))
     }
-
+    
     addAppointment(): any{
       this.appointmentService.addAppointment(this.formatDate(this.date), this.selectedHeure, localStorage.getItem('profil')?.toString(),  this.selectedService?.id, this.selectedEmploye?.id)
         .subscribe(
