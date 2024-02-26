@@ -15,6 +15,8 @@ import { WorkingTimeComponent } from './pages/working-time/working-time.componen
 import { DailyTrackingComponent } from './pages/tracking/daily/daily-tracking/daily-tracking.component';
 import { ManageserviceComponent } from './pages/manageservice/manageservice.component';
 import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/updateprofilemployee.component';
+import { ChiffreAffaireDailyComponent } from './pages/chiffre-affaire-daily/chiffre-affaire-daily.component';
+import { ChiffreAffaireMonthlyComponent } from './pages/chiffre-affaire-monthly/chiffre-affaire-monthly.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -32,6 +34,10 @@ const routes: Routes = [
   { path: 'manager/workingTime', canActivate: [AuthGuard], component: WorkingTimeComponent },
   { path: 'manager/manageEmploye',   canActivate: [AuthGuard], component: ManageemployeeComponent },
   { path: 'manager/manageService',   canActivate: [AuthGuard], component: ManageserviceComponent },
+  { path: 'manager/chiffre-affaire-daily',   canActivate: [AuthGuard], component: ChiffreAffaireDailyComponent },
+  { path: 'manager/chiffre-affaire-monthly',   canActivate: [AuthGuard], component: ChiffreAffaireMonthlyComponent },
+  { path: 'manager/manageService',   canActivate: [AuthGuard], component: ManageserviceComponent },
+  
   { path: 'employee/updateProfil',   canActivate: [AuthGuard], component: UpdateprofilemployeeComponent },
   // { path: 'tutorials', component: TutorialsListComponent },
   // { path: 'tutorials/:id', component: TutorialDetailsComponent },

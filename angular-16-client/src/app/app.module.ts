@@ -51,6 +51,8 @@ import { ManageserviceComponent } from './pages/manageservice/manageservice.comp
 import { AddemployeComponent } from './pages/addemploye/addemploye.component';
 import { AddserviceComponent } from './pages/addservice/addservice.component';
 import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/updateprofilemployee.component';
+import { ChiffreAffaireDailyComponent } from './pages/chiffre-affaire-daily/chiffre-affaire-daily.component';
+import { ChiffreAffaireMonthlyComponent } from './pages/chiffre-affaire-monthly/chiffre-affaire-monthly.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +77,8 @@ import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/upda
     AddemployeComponent,
     AddserviceComponent,
     UpdateprofilemployeeComponent,
+    ChiffreAffaireDailyComponent,
+    ChiffreAffaireMonthlyComponent,
   ],
   imports: [
     BrowserModule,

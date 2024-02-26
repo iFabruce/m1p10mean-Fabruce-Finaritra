@@ -11,7 +11,7 @@ const appointmentSchema = new mongoose.Schema({
   },
   service: {
     name: String,
-    price: String,
+    price: Number,
     duration: Number,
     _id: mongoose.Types.ObjectId,
   },

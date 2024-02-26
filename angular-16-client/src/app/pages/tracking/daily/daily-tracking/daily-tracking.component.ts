@@ -19,9 +19,10 @@ export class DailyTrackingComponent implements OnInit{
           data.forEach((element: any)=>{
             if(element.dayOfWeek == i){
               this.list.push(element.total)
-            }else{
-              this.list.push(0)
             }
+            // else{
+            //   this.list.push(0)
+            // }
           })
         }
         this.dataDaily = {
@@ -30,8 +31,12 @@ export class DailyTrackingComponent implements OnInit{
               {
                   label: 'Nombre de réservation',
                   data: this.list,
+                  backgroundColor: [
+                    'rgb(75, 192, 192)', 
+                    
+                  ],
                   fill: false,
-                  borderColor: documentStyle.getPropertyValue('--yellow-200'),
+                  // borderColor: documentStyle.getPropertyValue('--yellow-200'),
                   tension: 0.4
               }
           ]

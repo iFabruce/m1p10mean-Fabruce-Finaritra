@@ -3,6 +3,38 @@ const Manager = require('../models/manager.model');
 const Appointment = require('../models/appointment.model');
 
 
+exports.getMonthlyCa = () => {
+  return Appointment.aggregate([
+    {
+      $group: {
+        _id: { $month: "$startingDate" },
+        total: {$sum: "$service.price"}
+      }, 
+    },
+    {
+      $project: {
+        month: "$_id",
+        total: "$total"
+      }
+    }
+  ]);
+}
+exports.getDailyCa = () => {
+  return Appointment.aggregate([
+    {
+      $group: {
+        _id: { $dayOfWeek: "$startingDate" },
+        total: {$sum: "$service.price"}
+      }, 
+    },
+    {
+      $project: {
+        dayOfWeek: "$_id",
+        total: "$total"
+      }
+    }
+  ]);
+}
 exports.getDailyAppointmentNumber = () => {
   return Appointment.aggregate([
     {

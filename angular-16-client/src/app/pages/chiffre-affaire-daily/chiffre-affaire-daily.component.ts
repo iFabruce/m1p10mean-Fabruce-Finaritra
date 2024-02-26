@@ -1,48 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { ManagerService } from 'src/app/services/manager.service';
-
 @Component({
   selector: 'app-tracking',
-  templateUrl: './tracking.component.html',
-  styleUrls: ['./tracking.component.css']
+  templateUrl: './chiffre-affaire-daily.component.html',
+  styleUrls: ['./chiffre-affaire-daily.component.css']
 })
-export class TrackingComponent implements OnInit{
-  data: any;
-  list: any | undefined;
+export class ChiffreAffaireDailyComponent implements OnInit{
+  dataDailyCa: any;
+  list: any;
+  nb: any
   options: any;
   constructor(private managerService: ManagerService){
     this.list=[]
+    this.nb = 0
   }
   ngOnInit() {
-    this.managerService.getMonthlyAppointmentNumber().subscribe(
+    this.managerService.getDailyCa().subscribe(
       (data: any) => {
-        for(var i=1; i<=12;i++) {
+        for(var i=0; i<=6;i++) {
           data.forEach((element: any)=>{
-            console.log("month:"+element.month+" vs i:"+i)
-            if(element.month == i){
+            if(element.dayOfWeek == i){
+              console.log(`dayofweek: ${element.dayOfWeek} vs i: ${i}`)
               this.list.push(element.total)
-            }
-            else{
-              this.list.push(0)
+              this.nb += 1
+              console.log(this.nb)
+            }else{
+              // this.list.push(0)
             }
           })
         }
-        this.data = {
-          labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'May', 'June', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+        console.log(this.list)
+        this.dataDailyCa = {
+          labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
           datasets: [
               {
-                  label: 'Nombre de réservation',
+                  label: "Chiffre d'affaire (en Ariary)",
                   data: this.list,
                   fill: false,
-                  backgroundColor: [
-                    'rgb(255, 159, 64)',
-                  ],
+                  borderColor: documentStyle.getPropertyValue('--yellow-200'),
                   tension: 0.4
               }
           ]
       };
       }
       )
+      
       const documentStyle = getComputedStyle(document.documentElement);
       const textColor = documentStyle.getPropertyValue('--text-color');
       const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
@@ -81,6 +83,5 @@ export class TrackingComponent implements OnInit{
               }
           }
       };
-
-  }
+    }
 }
