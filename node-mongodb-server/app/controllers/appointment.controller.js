@@ -1,5 +1,15 @@
 const appointmentService = require('../services/appointment.service');
 
+exports.getEmployeeAppointment= async(req, res) =>{
+  try {
+    const appointments = await appointmentService.getEmployeeAppointment(req.params.employeeId);
+    res.json(appointments);
+    console.log(appointments)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: error.message | 'Internal Server Error' });
+  }
+}
 exports.getClientAppointment= async(req, res) =>{
   try {
     const appointments = await appointmentService.getClientAppointment(req.params.clientId);

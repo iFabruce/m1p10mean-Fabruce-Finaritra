@@ -17,6 +17,7 @@ import { ManageserviceComponent } from './pages/manageservice/manageservice.comp
 import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/updateprofilemployee.component';
 import { ChiffreAffaireDailyComponent } from './pages/chiffre-affaire-daily/chiffre-affaire-daily.component';
 import { ChiffreAffaireMonthlyComponent } from './pages/chiffre-affaire-monthly/chiffre-affaire-monthly.component';
+import { CalendarEmployeeComponent } from './pages/calendar-employee/calendar-employee.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'client/historics',   canActivate: [AuthGuard], component: HistoricComponent },
   { path: 'client/appointment',   canActivate: [AuthGuard], component: AppointmentComponent },
   { path: 'client/calendar',  canActivate: [AuthGuard], component: CalendarComponent },
+  { path: 'employee/calendarEmployee',  canActivate: [AuthGuard], component: CalendarEmployeeComponent },
   { path: 'manager/manageEmploye', canActivate: [AuthGuard], component: ManageemployeeComponent },
   { path: 'manager/tracking/daily', canActivate: [AuthGuard], component: DailyTrackingComponent },
   { path: 'manager/tracking/monthly', canActivate: [AuthGuard], component: TrackingComponent },

@@ -5,6 +5,9 @@ const clientService = require("../services/client.service");
 const employeeService = require("../services/employee.service");
 const serviceService = require("../services/service.service");
 
+exports.getEmployeeAppointment = async (employeeId) => {
+  return Appointment.find({ "employee._id": employeeId})  
+}
 exports.getClientAppointment = async (clientId) => {
   return Appointment.find({ "client._id": clientId})  
 }

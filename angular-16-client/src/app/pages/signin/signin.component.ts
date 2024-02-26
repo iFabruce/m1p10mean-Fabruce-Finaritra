@@ -37,12 +37,14 @@ export class SigninComponent {
         console.log(data)
         localStorage.setItem('token', data.token)
         localStorage.setItem('profil', data.profil)
+        localStorage.setItem('type', data.type)
+
 
         if(data.type == "Client"){
           this.router.navigate(['client/appointment']);
-        }else if(data.type == "Employé"){
+        }else if(data.type == "Employee"){
           console.log(data.type)
-          // this.router.navigate(['/EmployeeAppointement']);
+          this.router.navigate(['/employee/calendarEmployee']);
         }else{
           console.log(data.type)
           this.router.navigate(['manager/manageEmploye']);

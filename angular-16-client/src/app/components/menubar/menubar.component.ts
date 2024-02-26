@@ -11,7 +11,7 @@ export class MenubarComponent {
   title = 'Menu';
   items: MenuItem[] | undefined;
   ngOnInit() {
-    if (this.typeUser == 'client') {
+    if (localStorage.getItem('type') == 'Client') {
       this.items = [
         {
           label: 'Rendez-vous',
@@ -39,31 +39,22 @@ export class MenubarComponent {
           ],
         },
       ];
-    }else if(this.typeUser == "manager"){
+    }else if(localStorage.getItem('type') == 'Employee'){
       this.items = [
         {
           label: 'Gestion',
           items: [
             {
-              label: 'Employé',
-              icon: 'pi pi-users',
-              routerLink: 'manager/manageEmploye',
+              label: 'Calendrier des rendez-vous',
+              icon: 'pi pi-calendar',
+              routerLink: 'employee/calendarEmployee',
             },
             {
-              label: 'Service',
-              icon: 'pi pi-briefcase',
-              routerLink: 'manager/manageService',
+              label: 'Suivi des tâches et commision',
+              icon: 'pi pi-check-circle',
+              routerLink: '/',
             },
-            {
-              label: 'Réservation journalière',
-              icon: 'pi pi-tag',
-              routerLink: 'manager/tracking/daily',
-            },
-            {
-              label: 'Réservation mensuelle',
-              icon: 'pi pi-tags',
-              routerLink: 'manager/tracking/monthly',
-            },
+            
           ],
         },
       ];

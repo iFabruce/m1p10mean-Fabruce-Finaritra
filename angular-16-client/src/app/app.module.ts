@@ -53,6 +53,7 @@ import { AddserviceComponent } from './pages/addservice/addservice.component';
 import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/updateprofilemployee.component';
 import { ChiffreAffaireDailyComponent } from './pages/chiffre-affaire-daily/chiffre-affaire-daily.component';
 import { ChiffreAffaireMonthlyComponent } from './pages/chiffre-affaire-monthly/chiffre-affaire-monthly.component';
+import { CalendarEmployeeComponent } from './pages/calendar-employee/calendar-employee.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +80,7 @@ import { ChiffreAffaireMonthlyComponent } from './pages/chiffre-affaire-monthly/
     UpdateprofilemployeeComponent,
     ChiffreAffaireDailyComponent,
     ChiffreAffaireMonthlyComponent,
+    CalendarEmployeeComponent,
   ],
   imports: [
     BrowserModule,

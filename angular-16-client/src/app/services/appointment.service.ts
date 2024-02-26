@@ -17,6 +17,9 @@ export class AppointmentService {
   getClientAppointment(clientId: any): Observable<any>{
     return this.http.get(`${baseUrl}calendar/${clientId}`)
   }
+  getEmployeeAppointment(employeeId: any): Observable<any>{
+    return this.http.get(`${baseUrl}calendarEmployee/${employeeId}`)
+  }
   addAppointment(date: any, hour: any, clientId: any, serviceId: any,employeeId: any){
     return this.http.post(`${baseUrl}create`, {date, hour, employeeId, clientId, serviceId})
   }
