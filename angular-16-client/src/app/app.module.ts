@@ -51,6 +51,7 @@ import { ManageserviceComponent } from './pages/manageservice/manageservice.comp
 import { AddemployeComponent } from './pages/addemploye/addemploye.component';
 import { AddserviceComponent } from './pages/addservice/addservice.component';
 import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/updateprofilemployee.component';
+import { ManageappointmentComponent } from './pages/manageappointment/manageappointment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +76,7 @@ import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/upda
     AddemployeComponent,
     AddserviceComponent,
     UpdateprofilemployeeComponent,
+    ManageappointmentComponent,
   ],
   imports: [
     BrowserModule,

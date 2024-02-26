@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const appointmentSchema = new mongoose.Schema({
+const AppointmentSchema = new mongoose.Schema({
   startingDate: Date,
   endingDate: Date,
   client: {
@@ -24,6 +24,12 @@ const appointmentSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-const Appointment = mongoose.model('Appointment', appointmentSchema);
+AppointmentSchema.method('toJSON', function() {
+  const { __v, _id, ...object } = this.toObject();
+  object.id = _id;
+  return object;
+});
+
+const Appointment = mongoose.model('Appointment', AppointmentSchema);
 
 module.exports = Appointment;

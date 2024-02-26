@@ -71,3 +71,27 @@ exports.create = (req, res) => {
   });
 }
 
+exports.updateStatus = (req, res) => {
+  console.log("contr: ",req.body.appointment)
+  appointmentService.updateStatus(req.body.appointment, req.body.statusFilter)
+    .then(
+      data => {
+        res.send(data);
+      }
+    )
+    .catch(error =>{
+      console.log(error)
+      res.status(500).send({message: error.message || "Erreur"})
+    })
+};
+exports.findByStatus = (req, res) => {
+  appointmentService.findStatus(req.params)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message || "Erreur" });
+    });
+};
+
+

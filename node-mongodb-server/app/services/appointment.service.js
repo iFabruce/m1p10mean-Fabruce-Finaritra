@@ -134,3 +134,37 @@ exports.create = async (date, hour, clientId, employeeId, serviceId) => {
     return error.message;
   }
 };
+
+exports.updateStatus = async (appointment,statusFilter) => {
+  try {
+    console.log(appointment)
+      const updatedAppointment = await Appointment.findOneAndUpdate(
+        { "_id": appointment.id },
+        { $set: { status: statusFilter } },
+        { new: true }
+      );
+      console.log("App: ",updatedAppointment)
+      return updatedAppointment;
+  } catch (error) {
+    throw new Error(`Erreur lors de la mise à jour du status: ${error.message}`);
+  }
+};
+
+exports.findStatus = (statusFilter) => {
+  const today = new Date().toISOString().split('T')[0];
+  const todayStart = new Date(today).toISOString();
+  const todayEnd = new Date().toISOString();
+  if(statusFilter.status==="actif"){
+    console.log("actif",statusFilter)
+    return Appointment.find({
+      status:"actif",
+      startingDate:{
+          $gte: todayStart,
+          $lt: todayEnd
+      }
+    });
+  }else{
+    console.log(statusFilter)
+    return Appointment.find({status:"inactif"});
+  }
+};

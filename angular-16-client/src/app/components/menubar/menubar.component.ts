@@ -66,7 +66,12 @@ export class MenubarComponent {
               label: 'Profil',
               icon: 'pi pi-users',
               routerLink: 'employee/updateProfil',
-            }
+            },
+            {
+              label: 'Rendez-vous',
+              icon: 'pi pi-stopwatch',
+              routerLink: 'employee/manageAppointment',
+            },
           ],
         },
       ];
