@@ -78,6 +78,9 @@ import { ManageappointmentComponent } from './pages/manageappointment/manageappo
     AddemployeComponent,
     AddserviceComponent,
     UpdateprofilemployeeComponent,
+    ChiffreAffaireDailyComponent,
+    ChiffreAffaireMonthlyComponent,
+    ManageappointmentComponent
   ],
   imports: [
     BrowserModule,

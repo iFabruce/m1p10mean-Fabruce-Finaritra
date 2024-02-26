@@ -6,8 +6,8 @@ const employeeService = require("../services/employee.service");
 const serviceService = require("../services/service.service");
 
 exports.getClientAppointment = async (clientId) => {
-  return Appointment.find({ "client._id": clientId})  
-}
+  return Appointment.find({ "client._id": clientId });
+};
 
 function convertDate(date) {
   const dateSplit = date.split("-");
@@ -15,7 +15,7 @@ function convertDate(date) {
 }
 
 exports.employeeAppointment = async (employeeId, date) => {
-  const dateSplit = date.split("-")
+  const dateSplit = date.split("-");
   const startingDate = new Date(
     dateSplit[0],
     dateSplit[1] - 1,
@@ -37,22 +37,30 @@ exports.employeeAppointment = async (employeeId, date) => {
   });
 };
 
-exports.getAppointmentsByClientAndDateRange = async (clientId, startDate, endDate) => {
-  if (!startDate || startDate.toISOString() === '1970-01-01T00:00:00.000Z' ||
-      !endDate || endDate.toISOString() === '1970-01-01T00:00:00.000Z') {
+exports.getAppointmentsByClientAndDateRange = async (
+  clientId,
+  startDate,
+  endDate
+) => {
+  if (
+    !startDate ||
+    startDate.toISOString() === "1970-01-01T00:00:00.000Z" ||
+    !endDate ||
+    endDate.toISOString() === "1970-01-01T00:00:00.000Z"
+  ) {
     console.log("tsy mety");
     return await Appointment.find({
-      'client._id': clientId
+      "client._id": clientId,
     });
   } else {
-    console.log(startDate,endDate)
+    console.log(startDate, endDate);
     console.log("mety");
     return await Appointment.find({
-      'client._id': clientId,
+      "client._id": clientId,
       createdAt: { $gte: startDate, $lte: endDate },
     });
   }
-}
+};
 
 exports.findAll = () => {
   return Appointment.find();
@@ -72,10 +80,10 @@ exports.create = async (date, hour, clientId, employeeId, serviceId) => {
       dateSplit[0],
       dateSplit[1] - 1,
       dateSplit[2],
-      (Number(hourSplit[0])+3).toString(), //UTC+3
+      (Number(hourSplit[0]) + 3).toString(), //UTC+3
       hourSplit[1]
     );
-    console.log(dateSplit[2])
+    console.log(dateSplit[2]);
 
     const service = await serviceService.findOne(serviceId);
 
@@ -84,8 +92,8 @@ exports.create = async (date, hour, clientId, employeeId, serviceId) => {
 
     const client = await clientService.findOne(clientId);
     const employee = await employeeService.findOne(employeeId);
-    console.log(employee.fullname)
-    
+    console.log(employee.fullname);
+
     const overlappingAppointments = await Appointment.find({
       $and: [
         { "employee._id": employeeId },
@@ -107,13 +115,13 @@ exports.create = async (date, hour, clientId, employeeId, serviceId) => {
         },
       ],
     });
-    console.log(overlappingAppointments)
+    console.log(overlappingAppointments);
 
     if (overlappingAppointments.length > 0) {
       return "overlapping";
     } else {
-      const payment = await clientService.payment(clientId, service.price)
-      if(payment){
+      const payment = await clientService.payment(clientId, service.price);
+      if (payment) {
         const newAppointmentWithClient = new Appointment({
           startingDate,
           endingDate,
@@ -123,12 +131,14 @@ exports.create = async (date, hour, clientId, employeeId, serviceId) => {
           status: "actif",
         });
         newAppointmentWithClient.save();
-        console.log("Rendez-vous ajouté avec succès:", newAppointmentWithClient);
-        return "success"
-      }
-      else{
+        console.log(
+          "Rendez-vous ajouté avec succès:",
+          newAppointmentWithClient
+        );
+        return "success";
+      } else {
         console.log("Solde insuffisant");
-        return "cash"
+        return "cash";
       }
     }
   } catch (error) {
@@ -137,36 +147,32 @@ exports.create = async (date, hour, clientId, employeeId, serviceId) => {
   }
 };
 
-exports.updateStatus = async (appointment,statusFilter) => {
+exports.updateStatus = async (appointment, statusFilter) => {
   try {
-    console.log(appointment)
-      const updatedAppointment = await Appointment.findOneAndUpdate(
-        { "_id": appointment.id },
-        { $set: { status: statusFilter } },
-        { new: true }
-      );
-      console.log("App: ",updatedAppointment)
-      return updatedAppointment;
+    console.log(appointment);
+    const updatedAppointment = await Appointment.findOneAndUpdate(
+      { _id: appointment.id },
+      { $set: { status: statusFilter } },
+      { new: true }
+    );
+    console.log("App: ", updatedAppointment);
+    return updatedAppointment;
   } catch (error) {
-    throw new Error(`Erreur lors de la mise à jour du status: ${error.message}`);
+    throw new Error(
+      `Erreur lors de la mise à jour du status: ${error.message}`
+    );
   }
 };
 
 exports.findStatus = (statusFilter) => {
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
   const todayStart = new Date(today).toISOString();
   const todayEnd = new Date().toISOString();
-  if(statusFilter.status==="actif"){
-    console.log("actif",statusFilter)
     return Appointment.find({
-      status:"actif",
-      startingDate:{
-          $gte: todayStart,
-          $lt: todayEnd
-      }
+      status: statusFilter.status,
+      startingDate: {
+        $gte: todayStart,
+        $lt: todayEnd,
+      },
     });
-  }else{
-    console.log(statusFilter)
-    return Appointment.find({status:"inactif"});
-  }
 };

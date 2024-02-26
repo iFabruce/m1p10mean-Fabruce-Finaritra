@@ -1,4 +1,4 @@
-<p>manageappointment works!</p>
+
 <div class="manageemploye">
   <p-card header="GESTION RENDEZ-VOUS DU JOUR">
     <div class="grid">
@@ -7,7 +7,7 @@
         <p-panel header="Rendez-vous en cours">
           <!-- <p-scrollPanel [style]="{height: '150px' }"> -->
           <p-table
-            [tableStyle]="{ 'min-width': '20rem' }"
+            [tableStyle]="{ 'min-width': '15rem' }"
             #dt1
             [value]="available"
             [globalFilterFields]="[
@@ -40,16 +40,12 @@
                 </th>
                 <th pSortableColumn="client.fullname">Client</th>
                 <th pSortableColumn="service.duration">
-                  <div class="flex justify-content-center">
-                    <p-sortIcon field="schedules"></p-sortIcon>
-                    Durée
-                  </div>
+                  <p-sortIcon field="schedules"></p-sortIcon>
+                  Durée
                 </th>
                 <th pSortableColumn="service.price">
-                  <div class="flex justify-content-center">
-                    <p-sortIcon field="schedules"></p-sortIcon>
-                    Prix
-                  </div>
+                  <p-sortIcon field="schedules"></p-sortIcon>
+                  Prix
                 </th>
               </tr>
             </ng-template>
@@ -60,15 +56,19 @@
                 (onDrag)="drag()"
                 (onDragEnd)="dragEnd()"
               >
-                <td>{{ appointment.service.name }}</td>
+                <td><div class="flex justify-content-center">{{ appointment.service.name }}</div></td>
                 <td>
                   {{ appointment.client.fullname }}
                 </td>
                 <td>
-                  {{ appointment.service.duration }}
+                  <div class="flex justify-content-center">
+                    {{ appointment.service.duration }}
+                  </div>
+
                 </td>
                 <td>
-                  {{ appointment.service.price }}
+                  <div class="flex justify-content-center">{{ appointment.service.price }}</div>
+
                 </td>
               </tr>
             </ng-template>
@@ -89,7 +89,7 @@
           <p-table
             #dt
             [value]="selected"
-            [tableStyle]="{ 'min-width': '20rem' }"
+            [tableStyle]="{ 'min-width': '40rem' }"
             [globalFilterFields]="[
               'service.name',
               'client.fullname',
@@ -120,31 +120,43 @@
                 </th>
                 <th pSortableColumn="client.fullname">Client</th>
                 <th pSortableColumn="service.duration">
-                  <div class="flex justify-content-center">
-                    <p-sortIcon field="schedules"></p-sortIcon>
-                    Durée
-                  </div>
+                  <p-sortIcon field="schedules"></p-sortIcon>
+                  Durée
                 </th>
                 <th pSortableColumn="service.price">
-                  <div class="flex justify-content-center">
-                    <p-sortIcon field="schedules"></p-sortIcon>
-                    Prix
-                  </div>
+                  <p-sortIcon field="schedules"></p-sortIcon>
+                  Prix
+                </th>
+                <th pSortableColumn="service.price*(service.commission/100)">
+                  <p-sortIcon field="schedules"></p-sortIcon>
+                  Commission
                 </th>
                 <th>Action</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-appointment>
               <tr>
-                <td>{{ appointment.service.name }}</td>
+                <td><div class="flex justify-content-center">{{ appointment.service.name }}</div></td>
                 <td>
                   {{ appointment.client.fullname }}
                 </td>
                 <td>
-                  {{ appointment.service.duration }}
+                  <div class="flex justify-content-center">
+                    {{ appointment.service.duration }}
+                  </div>
                 </td>
                 <td>
-                  {{ appointment.service.price }}
+                  <div class="flex justify-content-center">
+                    {{ appointment.service.price }}
+                  </div>
+                </td>
+                <td>
+                  <div class="flex justify-content-center">
+                    {{
+                      appointment.service.price *
+                        (appointment.service.commission / 100)
+                    }}
+                  </div>
                 </td>
                 <td>
                   <div class="flex gap-2">
