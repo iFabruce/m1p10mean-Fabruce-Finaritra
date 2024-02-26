@@ -13,6 +13,8 @@ module.exports = app => {
 
 
 
+    router.put("/updateStatus", appointment.updateStatus);
+    router.get("/findByStatus/:status", appointment.findByStatus);
 
     app.use("/api/appointment", router);
 };

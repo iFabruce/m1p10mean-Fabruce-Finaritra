@@ -99,7 +99,12 @@ export class MenubarComponent {
               routerLink: 'manager/tracking/monthly',
             },{
               routerLink: 'employee/updateProfil',
-            }
+            },
+            {
+              label: 'Rendez-vous',
+              icon: 'pi pi-stopwatch',
+              routerLink: 'employee/manageAppointment',
+            },
           ],
         },
       ];

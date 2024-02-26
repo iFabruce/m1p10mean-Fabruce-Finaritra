@@ -1,0 +1,178 @@
+
+<div class="manageemploye">
+  <p-card header="GESTION RENDEZ-VOUS DU JOUR">
+    <div class="grid">
+      <div class="col-12 md:col-6 drag-column">
+        <br />
+        <p-panel header="Rendez-vous en cours">
+          <!-- <p-scrollPanel [style]="{height: '150px' }"> -->
+          <p-table
+            [tableStyle]="{ 'min-width': '15rem' }"
+            #dt1
+            [value]="available"
+            [globalFilterFields]="[
+              'service.name',
+              'client.fullname',
+              'service.duration',
+              'service.price'
+            ]"
+            [scrollHeight]="'flex'"
+            [scrollable]="true"
+            [style]="{ height: '420px' }"
+          >
+            <ng-template pTemplate="caption">
+              <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                  <i class="pi pi-search"></i>
+                  <input
+                    pInputText
+                    type="text"
+                    (input)="applyFilterGlobal($event, 'contains')"
+                    placeholder="Rechercher actif..."
+                  />
+                </span>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="service.name">
+                  <p-sortIcon field="name"></p-sortIcon> Service
+                </th>
+                <th pSortableColumn="client.fullname">Client</th>
+                <th pSortableColumn="service.duration">
+                  <p-sortIcon field="schedules"></p-sortIcon>
+                  Durée
+                </th>
+                <th pSortableColumn="service.price">
+                  <p-sortIcon field="schedules"></p-sortIcon>
+                  Prix
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-appointment>
+              <tr
+                pDraggable="products"
+                (onDragStart)="dragStart(appointment)"
+                (onDrag)="drag()"
+                (onDragEnd)="dragEnd()"
+              >
+                <td><div class="flex justify-content-center">{{ appointment.service.name }}</div></td>
+                <td>
+                  {{ appointment.client.fullname }}
+                </td>
+                <td>
+                  <div class="flex justify-content-center">
+                    {{ appointment.service.duration }}
+                  </div>
+
+                </td>
+                <td>
+                  <div class="flex justify-content-center">{{ appointment.service.price }}</div>
+
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <!-- </p-scrollPanel> -->
+        </p-panel>
+      </div>
+
+      <div
+        #dt1
+        class="col-12 md:col-6"
+        pDroppable="products"
+        (onDrop)="drop()"
+        responsiveLayout="scroll"
+      >
+        <br />
+        <p-panel header="Rendez-vous terminé">
+          <p-table
+            #dt
+            [value]="selected"
+            [tableStyle]="{ 'min-width': '40rem' }"
+            [globalFilterFields]="[
+              'service.name',
+              'client.fullname',
+              'service.duration',
+              'service.price'
+            ]"
+            [scrollHeight]="'flex'"
+            [scrollable]="true"
+            [style]="{ height: '420px' }"
+          >
+            <ng-template pTemplate="caption">
+              <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                  <i class="pi pi-search"></i>
+                  <input
+                    pInputText
+                    type="text"
+                    (input)="applyFilterGlobalInactif($event, 'contains')"
+                    placeholder="Rechercher inactif..."
+                  />
+                </span>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="service.name">
+                  <p-sortIcon field="name"></p-sortIcon> Service
+                </th>
+                <th pSortableColumn="client.fullname">Client</th>
+                <th pSortableColumn="service.duration">
+                  <p-sortIcon field="schedules"></p-sortIcon>
+                  Durée
+                </th>
+                <th pSortableColumn="service.price">
+                  <p-sortIcon field="schedules"></p-sortIcon>
+                  Prix
+                </th>
+                <th pSortableColumn="service.price*(service.commission/100)">
+                  <p-sortIcon field="schedules"></p-sortIcon>
+                  Commission
+                </th>
+                <th>Action</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-appointment>
+              <tr>
+                <td><div class="flex justify-content-center">{{ appointment.service.name }}</div></td>
+                <td>
+                  {{ appointment.client.fullname }}
+                </td>
+                <td>
+                  <div class="flex justify-content-center">
+                    {{ appointment.service.duration }}
+                  </div>
+                </td>
+                <td>
+                  <div class="flex justify-content-center">
+                    {{ appointment.service.price }}
+                  </div>
+                </td>
+                <td>
+                  <div class="flex justify-content-center">
+                    {{
+                      appointment.service.price *
+                        (appointment.service.commission / 100)
+                    }}
+                  </div>
+                </td>
+                <td>
+                  <div class="flex gap-2">
+                    <p-button
+                      icon="pi pi-times"
+                      (onClick)="inactifToActif(appointment)"
+                    ></p-button>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </p-panel>
+      </div>
+    </div>
+  </p-card>
+</div>
+
+<!-- <p-toast [preventOpenDuplicates]="true"></p-toast> -->

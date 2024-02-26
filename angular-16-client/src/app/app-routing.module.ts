@@ -18,6 +18,8 @@ import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/upda
 import { ChiffreAffaireDailyComponent } from './pages/chiffre-affaire-daily/chiffre-affaire-daily.component';
 import { ChiffreAffaireMonthlyComponent } from './pages/chiffre-affaire-monthly/chiffre-affaire-monthly.component';
 import { CalendarEmployeeComponent } from './pages/calendar-employee/calendar-employee.component';
+import { ManageappointmentComponent } from './pages/manageappointment/manageappointment.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -39,8 +41,9 @@ const routes: Routes = [
   { path: 'manager/chiffre-affaire-daily',   canActivate: [AuthGuard], component: ChiffreAffaireDailyComponent },
   { path: 'manager/chiffre-affaire-monthly',   canActivate: [AuthGuard], component: ChiffreAffaireMonthlyComponent },
   { path: 'manager/manageService',   canActivate: [AuthGuard], component: ManageserviceComponent },
-  
+
   { path: 'employee/updateProfil',   canActivate: [AuthGuard], component: UpdateprofilemployeeComponent },
+  { path: 'employee/manageAppointment',   canActivate: [AuthGuard], component: ManageappointmentComponent },
   // { path: 'tutorials', component: TutorialsListComponent },
   // { path: 'tutorials/:id', component: TutorialDetailsComponent },
 ];
