@@ -5,6 +5,9 @@ module.exports = app => {
     router.get("/workingTime", manager.workingTime);
     router.get("/getDailyAppointmentNumber", manager.getDailyAppointmentNumber);
     router.get("/getMonthlyAppointmentNumber", manager.getMonthlyAppointmentNumber);
+    router.get("/getDailyCa", manager.getDailyCa);
+    router.get("/getMonthlyCa", manager.getMonthlyCa);
+
 
     router.get("/findAll", manager.findAll);
     router.get("/findByUsername/:username", manager.findByUsername);

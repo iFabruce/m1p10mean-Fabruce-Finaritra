@@ -84,10 +84,11 @@ exports.create = async (date, hour, clientId, employeeId, serviceId) => {
 
     const client = await clientService.findOne(clientId);
     const employee = await employeeService.findOne(employeeId);
-
+    console.log(employee.fullname)
+    
     const overlappingAppointments = await Appointment.find({
       $and: [
-        { "Employee.id": employeeId },
+        { "employee._id": employeeId },
         {
           $or: [
             {
@@ -106,6 +107,7 @@ exports.create = async (date, hour, clientId, employeeId, serviceId) => {
         },
       ],
     });
+    console.log(overlappingAppointments)
 
     if (overlappingAppointments.length > 0) {
       return "overlapping";

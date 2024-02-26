@@ -51,6 +51,8 @@ import { ManageserviceComponent } from './pages/manageservice/manageservice.comp
 import { AddemployeComponent } from './pages/addemploye/addemploye.component';
 import { AddserviceComponent } from './pages/addservice/addservice.component';
 import { UpdateprofilemployeeComponent } from './pages/updateprofilemployee/updateprofilemployee.component';
+import { ChiffreAffaireDailyComponent } from './pages/chiffre-affaire-daily/chiffre-affaire-daily.component';
+import { ChiffreAffaireMonthlyComponent } from './pages/chiffre-affaire-monthly/chiffre-affaire-monthly.component';
 import { ManageappointmentComponent } from './pages/manageappointment/manageappointment.component';
 @NgModule({
   declarations: [
@@ -76,7 +78,6 @@ import { ManageappointmentComponent } from './pages/manageappointment/manageappo
     AddemployeComponent,
     AddserviceComponent,
     UpdateprofilemployeeComponent,
-    ManageappointmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,7 +105,7 @@ import { ManageappointmentComponent } from './pages/manageappointment/manageappo
     CardModule,
     ScrollPanelModule,
     FullCalendarModule,
-    ChartModule 
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

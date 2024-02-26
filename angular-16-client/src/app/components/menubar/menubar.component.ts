@@ -11,7 +11,7 @@ export class MenubarComponent {
   title = 'Menu';
   items: MenuItem[] | undefined;
   ngOnInit() {
-    if (this.typeUser === 'client') {
+    if (this.typeUser == 'client') {
       this.items = [
         {
           label: 'Rendez-vous',
@@ -39,7 +39,7 @@ export class MenubarComponent {
           ],
         },
       ];
-    }else if(this.typeUser === "manager"){
+    }else if(this.typeUser == "manager"){
       this.items = [
         {
           label: 'Gestion',
@@ -53,7 +53,17 @@ export class MenubarComponent {
               label: 'Service',
               icon: 'pi pi-briefcase',
               routerLink: 'manager/manageService',
-            }
+            },
+            {
+              label: 'Réservation journalière',
+              icon: 'pi pi-tag',
+              routerLink: 'manager/tracking/daily',
+            },
+            {
+              label: 'Réservation mensuelle',
+              icon: 'pi pi-tags',
+              routerLink: 'manager/tracking/monthly',
+            },
           ],
         },
       ];
@@ -65,6 +75,38 @@ export class MenubarComponent {
             {
               label: 'Profil',
               icon: 'pi pi-users',
+              routerLink: 'manager/manageEmploye',
+            },
+            {
+              label: 'Service',
+              icon: 'pi pi-briefcase',
+              routerLink: 'manager/manageService',
+            },  
+            {
+              label: "Temps moyen de travail",
+              icon: 'pi pi-clock',
+              routerLink: 'manager/working-time',
+            },
+            {
+              label: "Chiffre d'affaire journalier",
+              icon: 'pi pi-dollar',
+              routerLink: 'manager/chiffre-affaire-daily',
+            },
+            {
+              label: "Chiffre d'affaire mensuel",
+              icon: 'pi pi-dollar',
+              routerLink: 'manager/chiffre-affaire-monthly',
+            },
+            {
+              label: 'Réservation journalière',
+              icon: 'pi pi-tag',
+              routerLink: 'manager/tracking/daily',
+            },
+            {
+              label: 'Réservation mensuelle',
+              icon: 'pi pi-tags',
+              routerLink: 'manager/tracking/monthly',
+            },{
               routerLink: 'employee/updateProfil',
             },
             {

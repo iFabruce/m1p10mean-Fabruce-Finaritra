@@ -2,7 +2,7 @@
 const Employee = require('../models/employee.model');
 
 exports.findAll = () => {
-  return Employee.find();
+  return Employee.find({status: "actif"});
 };
 
 exports.findStatus = (statusFilter) => {

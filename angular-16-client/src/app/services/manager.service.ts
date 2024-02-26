@@ -10,7 +10,7 @@ const baseUrl = "http://localhost:8080/api/manager";
 export class ManagerService {
 
   constructor(private http: HttpClient) { }
-
+  
   getWorkingTime(): Observable<any>{
     return this.http.get(`${baseUrl}/workingTime`)
   }
@@ -19,6 +19,12 @@ export class ManagerService {
   }
   getMonthlyAppointmentNumber(): Observable<any>{
     return this.http.get(`${baseUrl}/getMonthlyAppointmentNumber`)
+  }
+  getDailyCa(): Observable<any>{
+    return this.http.get(`${baseUrl}/getDailyCa`)
+  }
+  getMonthlyCa(): Observable<any>{
+    return this.http.get(`${baseUrl}/getMonthlyCa`)
   }
 
 }
