@@ -2,7 +2,7 @@
 const Manager = require('../models/manager.model');
 const Appointment = require('../models/appointment.model');
 
-
+//*
 exports.getMonthlyCa = () => {
   return Appointment.aggregate([
     {
@@ -19,6 +19,8 @@ exports.getMonthlyCa = () => {
     }
   ]);
 }
+
+
 exports.getDailyCa = () => {
   return Appointment.aggregate([
     {
@@ -86,7 +88,8 @@ exports.workingTime = () => {
       }
     }
   ]);
-} 
+}
+
 
 exports.findAll = () => {
   return Manager.find();

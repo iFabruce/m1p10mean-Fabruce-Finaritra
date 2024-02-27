@@ -22,6 +22,7 @@ require("./app/routes/employee.routes")(app);
 require("./app/routes/service.routes")(app);
 require("./app/routes/manager.routes")(app);
 require("./app/routes/appointment.routes")(app);
+require("./app/routes/spent.routes")(app);
 require("./app/routes/email.routes")(app);
 
 
