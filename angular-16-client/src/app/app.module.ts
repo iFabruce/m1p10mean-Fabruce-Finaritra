@@ -55,6 +55,9 @@ import { ChiffreAffaireDailyComponent } from './pages/chiffre-affaire-daily/chif
 import { ChiffreAffaireMonthlyComponent } from './pages/chiffre-affaire-monthly/chiffre-affaire-monthly.component';
 import { CalendarEmployeeComponent } from './pages/calendar-employee/calendar-employee.component';
 import { ManageappointmentComponent } from './pages/manageappointment/manageappointment.component';
+import { NgxLoadingModule } from "ngx-loading";
+import { NgxSpinnerModule } from "ngx-spinner";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -110,7 +113,8 @@ import { ManageappointmentComponent } from './pages/manageappointment/manageappo
     CardModule,
     ScrollPanelModule,
     FullCalendarModule,
-    ChartModule
+    ChartModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

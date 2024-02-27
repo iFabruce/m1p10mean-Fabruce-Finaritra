@@ -20,7 +20,10 @@ export class AppointmentService {
   getEmployeeAppointment(employeeId: any): Observable<any>{
     return this.http.get(`${baseUrl}calendarEmployee/${employeeId}`)
   }
-  addAppointment(date: any, hour: any, clientId: any, serviceId: any,employeeId: any){
-    return this.http.post(`${baseUrl}create`, {date, hour, employeeId, clientId, serviceId})
+  addAppointment(date: any, hour: any, clientId: any, serviceId: any,employeeId: any, email: any){
+    return this.http.post(`${baseUrl}create`, {date, hour, employeeId, clientId, serviceId, email})
+  }
+  sendEmail(email: any, subject: any,  date: any, heure: any, duration: any, service: any,employee: any){
+    return this.http.post('http://localhost:8080/api/email/reservation', {email, subject, date, heure, duration, service, employee})
   }
 }

@@ -38,7 +38,7 @@ export class SigninComponent {
         localStorage.setItem('token', data.token)
         localStorage.setItem('profil', data.profil)
         localStorage.setItem('type', data.type)
-
+        
 
         if(data.type == "Client"){
           this.router.navigate(['client/appointment']);
@@ -50,6 +50,7 @@ export class SigninComponent {
           this.router.navigate(['manager/manageEmploye']);
         }
       },(error: any) => {
+
         console.log(error.message);
         this.erreurLogin = "Veuillez verifier votre identifiant et votre mot de passe"
       }

@@ -1,4 +1,13 @@
 <div class="w-screen flex md:flex-row sm:flex-col  md:space-x-8 sm:space-x-0  md:space-y-0 p-4 ">
+  <ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#000000"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+  
   <div class="md:flex-3  sm:order-2 md:order-1 p-2">
 
     <p-toast></p-toast>
@@ -45,6 +54,9 @@
                 <label [for]="heure.key" class="ml-2">{{ heure.heure }}</label>
             </div>
         </div>
+        </div>
+        <div>
+          <input type="email" pInputText [(ngModel)]="email" name="email"/>
         </div>
         <div class="flex justify-content-end">
           <p-button

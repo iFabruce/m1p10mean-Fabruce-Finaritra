@@ -23,13 +23,13 @@ exports.employeeAppointment = async (employeeId, date) => {
     dateSplit[0],
     dateSplit[1] - 1,
     dateSplit[2],
-    "08" //heure d'ouverture
+    "00" //heure d'ouverture
   );
   const endDate = new Date(
     dateSplit[0],
     dateSplit[1] - 1,
     dateSplit[2],
-    "16" //heure de fermeture
+    "23" //heure de fermeture
   );
 
   return await Appointment.find({

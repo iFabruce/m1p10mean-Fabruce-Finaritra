@@ -4,6 +4,7 @@
   import { AppointmentService } from 'src/app/services/appointment.service';
   import { MessageService } from 'primeng/api';
   import { Router } from '@angular/router';
+  import { NgxSpinnerService } from "ngx-spinner";
 
   interface Employe {
     id: String;
@@ -33,7 +34,7 @@ moment(arg0: any) {
 throw new Error('Method not implemented.');
 }
 
-    constructor(private messageService: MessageService, private router: Router, private employeeService: EmployeeService, private serviceService: ServiceService, private appointmentService: AppointmentService){
+    constructor(private spinner: NgxSpinnerService, private messageService: MessageService, private router: Router, private employeeService: EmployeeService, private serviceService: ServiceService, private appointmentService: AppointmentService){
       this.appointment = []
     }
 
@@ -59,6 +60,8 @@ throw new Error('Method not implemented.');
     appointment: any[] | undefined;
     price: any | undefined
     result: any | undefined;
+    email: any | undefined;
+    public loading = false;
 
     formatDate(date: any) {
       const year = date?.getFullYear();
@@ -85,7 +88,7 @@ throw new Error('Method not implemented.');
 
           this.appointmentService.employeeAppointment(this.selectedEmploye?.id,formattedDate).subscribe(
             (data: any) => {
-              
+              this.appointment = []
               data.forEach((element: any) => {
                 const start = this.dateo(element.startingDate)
                 const end = this.dateo(element.endingDate)
@@ -105,7 +108,8 @@ throw new Error('Method not implemented.');
 
 
     ngOnInit() {
-      // console.log(this.dateo('2024-02-25T08:00:00.000+00:00'))
+      this.spinner.show();
+
       this.selectedEmploye=undefined;
       this.selectedHeure=undefined;
       this.selectedService=undefined;
@@ -115,18 +119,28 @@ throw new Error('Method not implemented.');
       this.serviceService.findAll().subscribe(
         (data: any) => {
           this.services = data
+
         }
       )
 
       this.employeeService.findAll().subscribe(
         (data: any) => {
           this.employes = data
+        
+          
         }
       )
+      
+      setTimeout(() => {
+        this.spinner.hide();
+      }, 1000);
+
+      
     }
 
     //Methode
     getData(): any{
+      
       console.log(this.selectedEmploye?.id)
       console.log(this.selectedService?.id)
       console.log(`
@@ -137,7 +151,7 @@ throw new Error('Method not implemented.');
     }
     
     addAppointment(): any{
-      this.appointmentService.addAppointment(this.formatDate(this.date), this.selectedHeure, localStorage.getItem('profil')?.toString(),  this.selectedService?.id, this.selectedEmploye?.id)
+      this.appointmentService.addAppointment(this.formatDate(this.date), this.selectedHeure, localStorage.getItem('profil')?.toString(),  this.selectedService?.id, this.selectedEmploye?.id, this.email)
         .subscribe(
           (data: any) => {
             console.log(data)
@@ -151,7 +165,41 @@ throw new Error('Method not implemented.');
             }else{
               this.showInfo("Veuillez remplir tous les champs.")
             }
-          }
+              //update employee appointment
+              const year = this.date?.getFullYear();
+              const month = this.date ? ("0" + (this.date.getMonth() + 1)).slice(-2) : '';
+              const day = ("0" + this.date?.getDate()).slice(-2); // Ajoute un zéro en tête si nécessaire
+              const formattedDate = `${year}-${month}-${day}`;
+              console.log("form date", formattedDate)
+
+            //Send email
+            this.appointmentService.sendEmail(
+              this.email, 
+              'Rendez-vous',
+              formattedDate, 
+              this.selectedHeure,
+              this.selectedService?.duration,
+              this.selectedService?.name,
+              this.selectedEmploye?.fullname,
+            ).subscribe(
+              (data: any) => console.log(data)
+            )
+
+          
+            this.appointmentService.employeeAppointment(this.selectedEmploye?.id,formattedDate).subscribe(
+              (data: any) => {
+                this.appointment = []
+                
+                data.forEach((element: any) => {
+                  const start = this.dateo(element.startingDate)
+                  const end = this.dateo(element.endingDate)
+                  console.log("start:"+start+" & end:"+end)
+                  this.appointment?.push({startingDate: start, endingDate: end })
+                  console.log(this.appointment)
+                })
+              }
+            )
+           }
         )
     }
     showInfo(message:any) {

@@ -4,14 +4,8 @@ const {push_mail} = require('../services/email.service.js')
 
 exports.standard_mail = (req, res) => {
     try {
-        const {name,  recipient,  subject} = req.body
-        const mail_options = {
-            from: `${name} <${config.user}>`,
-            to: recipient,
-            subject,
-            html: default_template(req.body)
-        }
-        push_mail(mail_options)
+        const {email, subject, date, heure, duration, service, employee} = req.body
+        push_mail(email, subject, date, heure, duration, service, employee)
         res.send('Standard Send');
     } catch (error) {
         console.log(error.message)
