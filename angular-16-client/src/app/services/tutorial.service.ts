@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Tutorial } from '../models/tutorial.model';
 
-const baseUrl = 'http://localhost:8080/api/client/findAll';
+const baseUrl = 'https://m1p10mean-fabruce-finaritra.onrender.com/api/client/findAll';
 
 @Injectable({
   providedIn: 'root',
