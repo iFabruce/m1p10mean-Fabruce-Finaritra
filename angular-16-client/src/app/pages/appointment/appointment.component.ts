@@ -61,7 +61,7 @@ throw new Error('Method not implemented.');
     price: any | undefined
     result: any | undefined;
     email: any | undefined;
-    public loading = false;
+    
 
     formatDate(date: any) {
       const year = date?.getFullYear();

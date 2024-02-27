@@ -114,7 +114,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ScrollPanelModule,
     FullCalendarModule,
     ChartModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
