@@ -33,8 +33,9 @@ exports.findAll = (req, res) => {
   
   }
 
-  exports.create = (req, res) => {
-    spentService.create(req.body)
+  exports.create = async (req, res) => {
+    console.log("create",req.body)
+    await spentService.create(req.body)
       .then(data => {
         res.send(data);
       })

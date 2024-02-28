@@ -54,7 +54,7 @@ export class MenubarComponent {
               icon: 'pi pi-check-circle',
               routerLink: '/',
             },
-            
+
           ],
         },
       ];
@@ -72,7 +72,7 @@ export class MenubarComponent {
               label: 'Service',
               icon: 'pi pi-briefcase',
               routerLink: 'manager/manageService',
-            },  
+            },
             {
               label: "Temps moyen de travail",
               icon: 'pi pi-clock',
@@ -99,6 +99,11 @@ export class MenubarComponent {
               routerLink: 'manager/tracking/monthly',
             },{
               routerLink: 'employee/updateProfil',
+            },
+            {
+              label: 'Bénéfice',
+              icon: 'pi pi-plus',
+              routerLink: 'manager/profit',
             },
             {
               label: 'Rendez-vous',

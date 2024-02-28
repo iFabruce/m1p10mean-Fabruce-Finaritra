@@ -23,10 +23,11 @@ exports.findOne = (month,year,type) => {
   };
 
 //Create
-exports.create = (serviceData) => {
+exports.create = async (spentData) => {
   try {
-    const newSpent = new Spent(serviceData);
-    return newSpent.save();
+    console.log("servcreate",spentData)
+    const newSpent = new Spent(spentData);
+    return await newSpent.save();
   } catch (error) {
     throw error;
   }
