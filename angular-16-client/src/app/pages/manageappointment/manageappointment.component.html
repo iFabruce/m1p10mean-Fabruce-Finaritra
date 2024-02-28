@@ -153,8 +153,7 @@
                 <td>
                   <div class="flex justify-content-center">
                     {{
-                      appointment.service.price *
-                        (appointment.service.commission / 100)
+                      calculCommission(appointment.service.price,appointment.service.commission)
                     }}
                   </div>
                 </td>

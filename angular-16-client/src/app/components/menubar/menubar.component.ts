@@ -52,7 +52,7 @@ export class MenubarComponent {
             {
               label: 'Suivi des tâches et commision',
               icon: 'pi pi-check-circle',
-              routerLink: '/',
+              routerLink: 'employee/manageAppointment',
             },
 
           ],
@@ -64,7 +64,7 @@ export class MenubarComponent {
           label: 'Parametre',
           items: [
             {
-              label: 'Profil',
+              label: 'Employé',
               icon: 'pi pi-users',
               routerLink: 'manager/manageEmploye',
             },

@@ -150,6 +150,7 @@ export class ManageserviceComponent {
     console.log("modif: ",service)
     this.getObjectService.updateDataObject("service","updateService",service).subscribe(updatedService => {
       console.log(' mis à jour:', updatedService);
+      this.refreshData()
     }, error => {
       console.error('Erreur lors de la mise à jour :', error);
     });

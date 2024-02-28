@@ -25,6 +25,11 @@ export class ManageappointmentComponent {
 
 	currentlyDragging: Appointment | null = null;
 
+  calculCommission(price:any,commission:any){
+    console.log("commission: ", price,commission)
+    return price * (commission/100);
+  }
+
   refreshData (){
 		this.getObjectService.findOne("appointment","actif","findByStatus").subscribe(data => {
       this.available = data;

@@ -135,6 +135,7 @@ export class ManageemployeeComponent {
     this.getObjectService.updateDataObject("employee","updateEmploye",employee).subscribe(updatedEmploye => {
       this.visible=false;
       console.log(' mis à jour:', updatedEmploye);
+      this.refreshData()
     }, error => {
       console.error('Erreur lors de la mise à jour :', error);
     });
