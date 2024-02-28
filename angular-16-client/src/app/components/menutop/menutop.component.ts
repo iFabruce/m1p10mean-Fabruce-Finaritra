@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menutop',
@@ -6,9 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./menutop.component.scss']
 })
 export class MenutopComponent {
-  signout(){
-    console.log("clear")
-    console.log(localStorage.getItem('profil'))
-    // localStorage.clear()
+  constructor(private router: Router){}
+  signout(): void{
+    localStorage.clear()
+    this.router.navigate(['/'])
   }
 }

@@ -10,7 +10,6 @@ import { ManagerService } from 'src/app/services/manager.service';
 })
 export class WorkingTimeComponent implements OnInit {
     list: any[] | undefined;
-
     
 
     constructor(private managerService: ManagerService) {

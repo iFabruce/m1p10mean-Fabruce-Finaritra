@@ -1,5 +1,4 @@
 const appointmentService = require('../services/appointment.service');
-
 exports.getEmployeeAppointment= async(req, res) =>{
   try {
     const appointments = await appointmentService.getEmployeeAppointment(req.params.employeeId);

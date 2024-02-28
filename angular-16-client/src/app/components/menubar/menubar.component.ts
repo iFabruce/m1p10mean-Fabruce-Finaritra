@@ -19,12 +19,12 @@ export class MenubarComponent {
             {
               label: 'Ajouter',
               icon: 'pi pi-plus',
-              routerLink: '/appointment',
+              routerLink: 'client/appointment',
             },
             {
               label: 'Historique',
               icon: 'pi pi-align-left',
-              routerLink: '/historics',
+              routerLink: 'client/historics',
             },
           ],
         },
@@ -34,7 +34,7 @@ export class MenubarComponent {
             {
               label: 'Preference',
               icon: 'pi pi-heart',
-              routerLink: '/preference',
+              routerLink: 'client/preference',
             },
           ],
         },
