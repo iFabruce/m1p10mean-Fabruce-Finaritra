@@ -14,8 +14,8 @@ export class ProfitComponent {
   autres: any;
   total: any;
   depenses: any;
-  mois = 2;
-  annee = 2024;
+  mois:any ;
+  annee:any ;
 
   constructor(
     private getObjectService: GetObjectService,
@@ -164,7 +164,16 @@ export class ProfitComponent {
     );
   }
 
+  buttFiltre(){
+    this.refreshData();
+  }
+
   ngOnInit() {
+    const dateActuelle = new Date();
+    this.mois=dateActuelle.getMonth()+1;
+    this.annee=dateActuelle.getFullYear();
+
+    console.log(this.mois,this.annee)
     this.refreshData();
   }
 }
