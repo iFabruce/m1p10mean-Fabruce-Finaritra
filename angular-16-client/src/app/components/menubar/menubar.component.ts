@@ -97,8 +97,6 @@ export class MenubarComponent {
               label: 'Réservation mensuelle',
               icon: 'pi pi-tags',
               routerLink: 'manager/tracking/monthly',
-            },{
-              routerLink: 'employee/updateProfil',
             },
             {
               label: 'Bénéfice',

@@ -37,8 +37,8 @@ exports.updateSpent = async (spent) => {
     console.log("spentback",spent)
     try {
         const updatedSpent = await Spent.findOneAndUpdate(
-          { "_id": spent._id },
-          { $set: { price:spent.price } },
+          { "_id": spent.id },
+          { $inc: { price: spent.price } },
           { new: true }
         );
         console.log("Spt: ",updatedSpent)

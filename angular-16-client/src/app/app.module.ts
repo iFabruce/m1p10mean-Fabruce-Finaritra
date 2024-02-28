@@ -57,7 +57,6 @@ import { CalendarEmployeeComponent } from './pages/calendar-employee/calendar-em
 import { ManageappointmentComponent } from './pages/manageappointment/manageappointment.component';
 import { NgxLoadingModule } from "ngx-loading";
 import { NgxSpinnerModule } from "ngx-spinner";
-
 import { ProfitComponent } from './pages/profit/profit.component';
 @NgModule({
   declarations: [

@@ -68,15 +68,15 @@
     [resizable]="false"
   >
     <br />
-    <div class="flex flex-column gap-2">
-      <label htmlFor="price">Prix:  MGA</label>
+    <div class="flex flex-column gap-2" *ngIf="depenseSelected">
+      <label htmlFor="price">Prix {{depenseSelected.nom}}:  {{depenseSelected.value}} MGA</label>
       <p-inputNumber
         [(ngModel)]="inputPrice"
         inputId="minmaxfraction"
         mode="decimal"
         [minFractionDigits]="2"
         [maxFractionDigits]="2"
-        placeholder="Ajouter dépense "
+        placeholder="Ajouter dépense"
       >
       </p-inputNumber>
     </div>
