@@ -1,7 +1,8 @@
 const appointmentService = require('../services/appointment.service');
 exports.getEmployeeAppointment= async(req, res) =>{
   try {
-    const appointments = await appointmentService.getEmployeeAppointment(req.params.employeeId);
+    const dateActuelle = new Date();
+    const appointments = await appointmentService.employeeAppointment(req.params.employeeId,dateActuelle);
     res.json(appointments);
     console.log(appointments)
   } catch (error) {
