@@ -1,4 +1,5 @@
 const spentService = require('../services/spent.service');
+const managerService = require('../services/manager.service');
 
 exports.findAll = (req, res) => {
     spentService.findAll()
@@ -31,6 +32,14 @@ exports.findAll = (req, res) => {
       res.status(500).send({ message: err.message || "Erreur" });
     });
   
+  }
+
+  exports.calculateBenefice = async (req, res) => {
+    const {month,year}=req.params;
+    const depenses = await spentService.calculateTotalPrice(month,year);
+    const ca = await managerService.sommePrixAppointments(month,year);
+
+    res.send({benefice: spentService.calculateBenefice(depenses,ca)});
   }
 
   exports.create = async (req, res) => {

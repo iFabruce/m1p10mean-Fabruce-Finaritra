@@ -15,6 +15,8 @@ module.exports = app => {
     router.post("/create", manager.create);
     router.put("/update/:id", manager.update);
     router.delete("/delete/:id", manager.delete);
+    
+    router.get('/ca/:month/:year', manager.sommePrixAppointments);
 
     app.use("/api/manager", router);
 };

@@ -11,6 +11,18 @@ exports.getMonthlyCa = (req,res) =>{
     });
 }
 
+exports.sommePrixAppointments = (req, res) => {
+  const {month,year}=req.params;
+  managerService.sommePrixAppointments(month,year)
+  .then(data => {
+    console.log("data: ",data)
+    res.send({ totalPrix: data });
+  })
+  .catch(err => {
+    console.log(err)
+  });
+}
+
 exports.getDailyCa = (req,res) =>{
   managerService.getDailyCa()
     .then(data =>{

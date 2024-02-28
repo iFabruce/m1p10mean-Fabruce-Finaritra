@@ -14,12 +14,39 @@ export class ProfitComponent {
   autres: any;
   total: any;
   depenses: any;
-  mois = 4;
+  mois = 2;
   annee = 2024;
 
-  constructor(private getObjectService: GetObjectService,private cdr: ChangeDetectorRef) {}
+  constructor(
+    private getObjectService: GetObjectService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
+  ca:any;
+  benefice: any;
   refreshData() {
+    //CA
+    this.getObjectService.findOne('manager', `${this.mois}/${this.annee}`, 'ca').subscribe(
+      (caData) => {
+        this.ca=[{ca:caData.totalPrix}];
+        console.log("ca",this.ca);
+      },
+      (error) => {
+        console.error('Erreur lors de la mise à jour :', error);
+      }
+    );
+    //Benefice
+    this.getObjectService.findOne('spent', `${this.mois}/${this.annee}`, 'calculateBenefice').subscribe(
+      (benef) => {
+        this.benefice=[{benefice:benef.benefice}];
+        console.log("benef",this.benefice);
+      },
+      (error) => {
+        console.error('Erreur lors de la mise à jour :', error);
+      }
+    );
+
+    //types depenses
     const salaire$ = this.getObjectService.findOne(
       'spent',
       `${this.mois}/${this.annee}/salaire`,
@@ -55,10 +82,18 @@ export class ProfitComponent {
         this.total = total.totalPrice;
 
         this.depenses = [
-          { nom: 'Salaire', value: this.salaire ?? 0, id: salaire[0].id },
-          { nom: 'Loyer', value: this.loyer ?? 0, id: loyer[0].id },
-          { nom: 'Achat Pièce', value: this.piece ?? 0, id: piece[0].id },
-          { nom: 'Autres', value: this.autres ?? 0, id: autres[0]?.id ?? ''},
+          {
+            nom: 'Salaire',
+            value: this.salaire ?? 0,
+            id: salaire[0]?.id ?? '',
+          },
+          { nom: 'Loyer', value: this.loyer ?? 0, id: loyer[0]?.id ?? '' },
+          {
+            nom: 'Achat Pièce',
+            value: this.piece ?? 0,
+            id: piece[0]?.id ?? '',
+          },
+          { nom: 'Autres', value: this.autres ?? 0, id: autres[0]?.id ?? '' },
           { nom: 'Total Dépense', value: this.total },
         ];
 
@@ -73,7 +108,7 @@ export class ProfitComponent {
   inputPrice: any = 0;
 
   depenseSelected: any;
-  price:any = 0;
+  price: any = 0;
 
   butt(depense: any) {
     this.depenseSelected = depense;
@@ -128,6 +163,7 @@ export class ProfitComponent {
       }
     );
   }
+
   ngOnInit() {
     this.refreshData();
   }

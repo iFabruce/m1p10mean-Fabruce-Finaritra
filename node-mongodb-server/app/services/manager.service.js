@@ -20,6 +20,35 @@ exports.getMonthlyCa = () => {
   ]);
 }
 
+exports.sommePrixAppointments= async (mois, annee) => {
+  try {
+    const debutMois = new Date(annee, mois - 1, 1);
+    const finMois = new Date(annee, mois, 0, 23, 59, 59, 999);
+
+    const result = await Appointment.aggregate([
+      {
+        $match: {
+          status: "inactif",
+          startingDate: {
+            $gte: debutMois,
+            $lte: finMois
+          }
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          totalPrix: { $sum: "$service.price" }
+        }
+      }
+    ]);
+
+    return result.length > 0 ? result[0].totalPrix : 0;
+  } catch (error) {
+    throw error;
+  }
+}
+
 
 exports.getDailyCa = () => {
   return Appointment.aggregate([

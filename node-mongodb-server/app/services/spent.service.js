@@ -8,6 +8,11 @@ exports.findById = (id) => {
   return Spent.findById(id);
 };
 
+exports.calculateBenefice= (depenses, ca)=>{
+  console.log(depenses,ca)
+  return ca-depenses;
+}
+
 exports.findOne = (month,year,type) => {
     const mySpent = Spent.find(
         {

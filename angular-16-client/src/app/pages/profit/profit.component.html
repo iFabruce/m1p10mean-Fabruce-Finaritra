@@ -1,5 +1,43 @@
 <div class="profit">
   <p-card header="BENEFICE">
+    <div class="list-benefice">
+      <p-table [value]="benefice" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Benefice</th>
+            <th>Montant</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-benefice>
+          <tr>
+            <td>MGA</td>
+            <td>{{benefice.benefice}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </p-card>
+  <br/>
+  <p-card header="CHIFFRE D'AFFAIRE">
+    <div class="list-ca">
+      <p-table [value]="ca" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Chiffre d'affaire</th>
+            <th>Montant</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ca>
+          <tr>
+            <td>MGA</td>
+            <td>{{ca.ca}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </p-card>
+  <br/>
+  <p-card header="DEPENSES">
     <div class="list-depense">
       <p-table [value]="depenses" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
@@ -69,7 +107,9 @@
   >
     <br />
     <div class="flex flex-column gap-2" *ngIf="depenseSelected">
-      <label htmlFor="price">Prix {{depenseSelected.nom}}:  {{depenseSelected.value}} MGA</label>
+      <label htmlFor="price"
+        >Prix {{ depenseSelected.nom }}: {{ depenseSelected.value }} MGA</label
+      >
       <p-inputNumber
         [(ngModel)]="inputPrice"
         inputId="minmaxfraction"
