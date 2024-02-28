@@ -76,7 +76,7 @@ export class MenubarComponent {
             {
               label: "Temps moyen de travail",
               icon: 'pi pi-clock',
-              routerLink: 'manager/working-time',
+              routerLink: 'manager/workingTime',
             },
             {
               label: "Chiffre d'affaire journalier",
