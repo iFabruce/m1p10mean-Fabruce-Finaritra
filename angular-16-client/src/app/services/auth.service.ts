@@ -21,6 +21,15 @@ export class AuthService {
     console.log(url)
     return this.http.post(url,data);
   }
+  signUp(username: string, password: string, fullname: string): Observable<any> {
+    const data: any =  {
+        username, password, fullname
+    }
+    console.log(data)
+    const url = baseUrl+"auth/signup"
+    console.log(url)
+    return this.http.post(url,data);
+  }
 
   //AUTHORIZATION
   getToken(): string | null {

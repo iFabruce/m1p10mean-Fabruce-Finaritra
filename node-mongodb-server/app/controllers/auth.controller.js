@@ -2,6 +2,7 @@
 const clientService = require('../services/client.service');
 const employeeService = require('../services/employee.service');
 const managerService = require('../services/manager.service');
+const Client = require('../models/client.model');
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -66,46 +67,44 @@ exports.signin = (req, res) => {
 };
 
 //Signup
-exports.signup = (req, res) => {
+exports.signup = async(req, res) => {
   const { username, password, fullname  } = req.body;
 
   // Vérification si l'utilisateur existe déjà
-  clientService.findOne(username)
-    .then(existingUser => {
-      if (existingUser) {
+  const client = await clientService.findByUsername(username)
+      if (client) {
         return res.status(400).json({ message: 'Username already exists' });
       }
+ // Hachage du mot de passe
+ await bcrypt.hash(password, 10)
+ .then(hashedPassword => {
+   // Création d'un nouvel utilisateur
+   const newUser = new Client({
+     username,
+     password: hashedPassword,
+     fullname,
+     wallet: 100,
+     // preferedEmployee
+   });
 
-      // Hachage du mot de passe
-      bcrypt.hash(password, 10)
-        .then(hashedPassword => {
-          // Création d'un nouvel utilisateur
-          const newUser = new Client({
-            username,
-            password: hashedPassword,
-            fullname,
-            wallet: 100,
-            // preferedEmployee
-          });
+   // Sauvegarde de l'utilisateur dans la base de données
+   newUser.save()
+     .then(savedUser => {
+       // Création du token JWT
+       const token = jwt.sign({ id: savedUser._id, username: savedUser.username }, 'secret_key', { expiresIn: '1h' });
 
-          // Sauvegarde de l'utilisateur dans la base de données
-          newUser.save()
-            .then(savedUser => {
-              // Création du token JWT
-              const token = jwt.sign({ id: savedUser._id, username: savedUser.username }, 'secret_key', { expiresIn: '1h' });
-
-              // Réponse avec le token
-              res.json({ token });
-            })
-            .catch(saveErr => {
-              res.status(500).json({ message: 'Error saving user to the database' });
-            });
-        })
-        .catch(hashErr => {
-          res.status(500).json({ message: 'Error hashing password' });
-        });
-    })
-    .catch(err => {
-      res.status(500).json({ message: 'Internal Server Error' });
-    });
+       // Réponse avec le token
+       res.json({ token });
+     })
+     .catch(saveErr => {
+       res.status(500).json({ message: 'Error saving user to the database' });
+     });
+ })
+ .catch(hashErr => {
+   res.status(500).json({ message: hashErr.message });
+ });
+     
+     
+    
+    
 };

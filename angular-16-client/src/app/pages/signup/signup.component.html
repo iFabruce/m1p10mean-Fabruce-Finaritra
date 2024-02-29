@@ -1,62 +1,62 @@
 <div class="signup">
+  
   <div>
     <div class="welcome-title">S'inscrire !</div>
     <div class="signup-content">
       <div class="from">
-        <div class="flex flex-column gap-2">
-          <label htmlFor="email">Nom complet</label>
-          <input
-            class="input-signup"
-            pInputText
-            id="name"
-            aria-describedby="name-help"
-            [(ngModel)]="name"
-          />
-          <!-- <small id="username-help">Enter your username to reset your password.</small> -->
-        </div>
-        <div class="flex flex-column gap-2">
-          <label htmlFor="email">Nom d'utilisateur</label>
-          <input
-            class="input-signup"
-            pInputText
-            id="username"
-            aria-describedby="username-help"
-            [(ngModel)]="username"
-          />
-          <!-- <small id="username-help">Enter your username to reset your password.</small> -->
-        </div>
-        <div class="flex flex-column gap-2">
-          <label htmlFor="password1">Votre mot de passe</label>
-          <p-password [(ngModel)]="password1" [feedback]="false"></p-password>
-        </div>
-        <div class="flex flex-column gap-2">
-          <label htmlFor="password2">Confirmer votre mot de passe</label>
-          <p-password [(ngModel)]="password2" [feedback]="false"></p-password>
-        </div>
-        <div class="list-butt">
-
-          <a href="/signin">
-            <div class="flex justify-content-center">
-              <p-button
-                label="Se connecter"
-                iconPos="right"
-                severity="help"
-                text="true"
-              ></p-button>
-            </div>
-          </a>
-          <a href="/historics">
-            <div class="flex justify-content-center">
-              <p-button
-                class="signup-butt"
-                label="S'inscrire'"
-                iconPos="right"
-                severity="help"
-                text="true"
-              ></p-button>
-            </div>
-          </a>
-        </div>
+        <form (ngSubmit)="signUp()">
+          <div class="flex flex-column gap-2">
+            <label htmlFor="email">Nom complet</label>
+            <input
+              class="input-signup"
+              pInputText
+              id="name"
+              aria-describedby="name-help"
+              [(ngModel)]="fullname"
+              name="fullname"
+            />
+            <!-- <small id="username-help">Enter your username to reset your password.</small> -->
+          </div>
+          <div class="flex flex-column gap-2">
+            <label htmlFor="email">Nom d'utilisateur</label>
+            <input
+              class="input-signup"
+              pInputText
+              id="username"
+              aria-describedby="username-help"
+              [(ngModel)]="username"
+              name="username"
+            />
+            <!-- <small id="username-help">Enter your username to reset your password.</small> -->
+          </div>
+          <div class="flex flex-column gap-2">
+            <label htmlFor="password1">Votre mot de passe</label>
+            <p-password [(ngModel)]="password1" [feedback]="false"   name="password1"></p-password>
+          </div>
+          <!-- <div class="flex flex-column gap-2">
+            <label htmlFor="password2">Confirmer votre mot de passe</label>
+            <p-password [(ngModel)]="password2" [feedback]="false"></p-password>
+          </div> -->
+          <div class="list-butt">
+            <a href="/signin">
+              <div class="flex justify-content-center">
+                <p-button
+                  label="Se connecter"
+                  iconPos="right"
+                  severity="help"
+                  text="true"
+                ></p-button>
+              </div>
+            </a>
+            <a href="#" >
+              <div class="flex justify-content-center">
+                <div class=" bg-prim w-full text-center px-16  py-3 rounded-xl">
+                  <input type="submit" value="S'inscrire"  class="text-white font-medium"/>
+                </div>
+              </div>
+            </a>
+          </div>
+        </form>
       </div>
     </div>
   </div>
