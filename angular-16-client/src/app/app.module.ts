@@ -58,6 +58,7 @@ import { ManageappointmentComponent } from './pages/manageappointment/manageappo
 import { NgxLoadingModule } from "ngx-loading";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ProfitComponent } from './pages/profit/profit.component';
+import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +87,8 @@ import { ProfitComponent } from './pages/profit/profit.component';
     ChiffreAffaireMonthlyComponent,
     CalendarEmployeeComponent,
     ManageappointmentComponent,
-    ProfitComponent
+    ProfitComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
