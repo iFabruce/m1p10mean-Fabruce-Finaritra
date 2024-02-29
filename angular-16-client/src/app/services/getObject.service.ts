@@ -10,33 +10,33 @@ export class GetObjectService {
 
   create(nameObject: String, apiname: String, data: any): Observable<any> {
     console.log("url",data)
-    const url = `http://localhost:8080/api/${nameObject}/${apiname}`;
+    const url = `https://m1p10mean-fabruce-finaritra.onrender.com/api/${nameObject}/${apiname}`;
     return this.http.post(url, data);
   }
 
   fetchData(nameObject: string, apiname: string): Observable<any> {
-    const apiUrl = `http://localhost:8080/api/${nameObject}/${apiname}`;
+    const apiUrl = `https://m1p10mean-fabruce-finaritra.onrender.com/api/${nameObject}/${apiname}`;
     return this.http.get(apiUrl);
   }
 
   findOne(nameObject: string, apiname: string, id: string): Observable<any> {
-    const apiUrl = `http://localhost:8080/api/${nameObject}/${id}/${apiname}`;
+    const apiUrl = `https://m1p10mean-fabruce-finaritra.onrender.com/api/${nameObject}/${id}/${apiname}`;
     return this.http.get(apiUrl);
   }
 
   updateData(nameObject: String, apiname: String, id: string, data: any): Observable<any> {
-    const url = `http://localhost:8080/api/${nameObject}/${id}/${apiname}`;
+    const url = `https://m1p10mean-fabruce-finaritra.onrender.com/api/${nameObject}/${id}/${apiname}`;
     return this.http.put(url, data);
   }
 
   updateDataObject(nameObject: String, apiname: String, data: any): Observable<any> {
     console.log("url",data)
-    const url = `http://localhost:8080/api/${nameObject}/${apiname}`;
+    const url = `https://m1p10mean-fabruce-finaritra.onrender.com/api/${nameObject}/${apiname}`;
     return this.http.put(url, data);
   }
 
   findByDataBody(nameObject: String, apiname: String, data: any): Observable<any> {
-    const url = `http://localhost:8080/api/${nameObject}/${apiname}`;
+    const url = `https://m1p10mean-fabruce-finaritra.onrender.com/api/${nameObject}/${apiname}`;
     return this.http.post(url, data);
   }
 }
