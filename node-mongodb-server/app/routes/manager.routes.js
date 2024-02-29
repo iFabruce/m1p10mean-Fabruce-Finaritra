@@ -8,7 +8,6 @@ module.exports = app => {
     router.get("/getDailyCa", manager.getDailyCa);
     router.get("/getMonthlyCa", manager.getMonthlyCa);
 
-
     router.get("/findAll", manager.findAll);
     router.get("/findByUsername/:username", manager.findByUsername);
     router.get("/findOne/:id", manager.findOne);

@@ -11,8 +11,6 @@ module.exports = app => {
     router.get('/calendar/:clientId', appointment.getClientAppointment);
     router.get('/calendarEmployee/:employeeId', appointment.getEmployeeAppointment);
 
-
-
     router.put("/updateStatus", appointment.updateStatus);
     router.get("/findByStatus/:status", appointment.findByStatus);
 

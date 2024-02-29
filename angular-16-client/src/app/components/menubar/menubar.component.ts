@@ -52,7 +52,15 @@ export class MenubarComponent {
             {
               label: 'Suivi des tâches et commision',
               icon: 'pi pi-check-circle',
-              routerLink: '/',
+              routerLink: 'employee/manageAppointment',
+            },
+            {
+              label: 'Rendez-vous',
+              icon: 'pi pi-stopwatch',
+              routerLink: 'employee/manageAppointment',
+            },{
+              label: 'Profil',
+              routerLink: 'employee/updateProfil',
             },
             
           ],
@@ -64,7 +72,7 @@ export class MenubarComponent {
           label: 'Parametre',
           items: [
             {
-              label: 'Profil',
+              label: 'Employé',
               icon: 'pi pi-users',
               routerLink: 'manager/manageEmploye',
             },
@@ -97,14 +105,7 @@ export class MenubarComponent {
               label: 'Réservation mensuelle',
               icon: 'pi pi-tags',
               routerLink: 'manager/tracking/monthly',
-            },{
-              routerLink: 'employee/updateProfil',
-            },
-            {
-              label: 'Rendez-vous',
-              icon: 'pi pi-stopwatch',
-              routerLink: 'employee/manageAppointment',
-            },
+            }
           ],
         },
       ];

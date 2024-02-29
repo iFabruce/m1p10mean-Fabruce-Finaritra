@@ -77,6 +77,8 @@ throw new Error('Method not implemented.');
       return `${hour}:${minutes}`
     }
     onValeurInputChange() {
+      this.getData()
+
         //Quand la date et l'employé est choisi
         if(this.selectedEmploye!==undefined && !this.date!==undefined){
           //Formater la date en YYYY-MM-DD
