@@ -31,7 +31,7 @@ exports.signin = (req, res) => {
         res.status(500).json({ message: err.message });
       });
   }
-  //EMPLOYEE
+  //EMPLOYEE 
   else if(profil.name == "Employé"){
     console.log("e",username)
     employeeService.findByUsername(username)
