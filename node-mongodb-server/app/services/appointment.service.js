@@ -18,7 +18,8 @@ function convertDate(date) {
 }
 
 exports.employeeAppointment = async (employeeId, date) => {
-  const dateSplit = convertDate(date)
+  const dateSplit = date.split("-");
+
   const startingDate = new Date(
     dateSplit[0],
     dateSplit[1] - 1,
