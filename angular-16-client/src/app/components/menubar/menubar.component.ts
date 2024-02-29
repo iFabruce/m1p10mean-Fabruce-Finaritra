@@ -54,12 +54,6 @@ export class MenubarComponent {
               icon: 'pi pi-check-circle',
               routerLink: 'employee/manageAppointment',
             },
-            
-            {
-              label: 'Rendez-vous',
-              icon: 'pi pi-stopwatch',
-              routerLink: 'employee/manageAppointment',
-            },
 
           ],
         },

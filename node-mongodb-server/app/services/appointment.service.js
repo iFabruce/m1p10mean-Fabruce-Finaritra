@@ -31,7 +31,6 @@ exports.employeeAppointment = async (employeeId, date) => {
     dateSplit[2],
     "23" //heure de fermeture
   );
-
   return await Appointment.find({
     $and: [
       { "employee._id": employeeId },

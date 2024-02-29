@@ -3,9 +3,9 @@
     <p-table *ngIf="list" [value]="list" [tableStyle]="{'min-width': '60rem'}">
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="code" style="width:20%">Code <p-sortIcon field="code"></p-sortIcon></th>
-                <th pSortableColumn="name" style="width:20%">Name <p-sortIcon field="name"></p-sortIcon></th>
-               
+                <th pSortableColumn="code" style="width:20%">Nom <p-sortIcon field="code"></p-sortIcon></th>
+                <th pSortableColumn="name" style="width:20%">Heure moyenne <p-sortIcon field="name"></p-sortIcon></th>
+
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-element>
