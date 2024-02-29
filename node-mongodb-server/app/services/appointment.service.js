@@ -83,7 +83,7 @@ exports.create = async (date, hour, clientId, employeeId, serviceId) => {
       dateSplit[0],
       dateSplit[1] - 1,
       dateSplit[2],
-      hourSplit[0], //UTC+3
+      (Number(hourSplit[0])+3).toString(), //UTC+3
       hourSplit[1]
     );
     console.log(dateSplit[2]);
