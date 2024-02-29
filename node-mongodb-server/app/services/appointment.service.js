@@ -18,7 +18,7 @@ function convertDate(date) {
 }
 
 exports.employeeAppointment = async (employeeId, date) => {
-  date = convertDate(date)
+  const dateSplit = convertDate(date)
   const startingDate = new Date(
     dateSplit[0],
     dateSplit[1] - 1,
@@ -74,7 +74,7 @@ exports.findOne = (username) => {
 
 exports.create = async (date, hour, clientId, employeeId, serviceId) => {
   try {
-    const offset = new Date().getTimezoneOffset();
+    // const offset = new Date().getTimezoneOffset();
     const dateSplit = date.split("-");
     const hourSplit = hour.split(":");
     // const hh = (Number(hourSplit[0]) + offset/60).toString()
