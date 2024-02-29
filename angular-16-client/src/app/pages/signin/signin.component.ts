@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class SigninComponent {
   username: string="";
   password: string="";
-  selectedProfil: string = ""
+  selectedProfil: any = ""
   erreurLogin: string | null = null;
 
   data: any[] = [];
@@ -24,6 +24,20 @@ export class SigninComponent {
     { name: 'Employé' },
     { name: 'Manager' },
   ];
+
+  updateDefaultValue() {
+    console.log(this.selectedProfil.name)
+    if (this.selectedProfil.name === "Client") {
+      this.username = "test";
+      this.password="test";
+    } else if (this.selectedProfil.name === "Employé") {
+      this.username = "Sandra";
+      this.password="Sandra";
+    } else {
+      this.username = "Manager";
+      this.password="Manager";
+    }
+  }
 
   constructor(private router: Router, private tutorialService: TutorialService, private authService: AuthService) {}
   ngOnInit(): void {
@@ -38,7 +52,7 @@ export class SigninComponent {
         localStorage.setItem('token', data.token)
         localStorage.setItem('profil', data.profil)
         localStorage.setItem('type', data.type)
-        
+
 
         if(data.type == "Client"){
           this.router.navigate(['client/appointment']);
